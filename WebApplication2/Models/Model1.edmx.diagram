@@ -4,28 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2fe28790dbef436d971c045e07bd0324" Name="Diagram1">
-        <EntityTypeShape EntityType="CT25Team17Model.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CT25Team17Model.AspNetRole" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CT25Team17Model.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="CT25Team17Model.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="CT25Team17Model.AspNetUser" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CT25Team17Model.ChiTietGioHang" Width="1.5" PointX="7.5" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="CT25Team17Model.ChiTietHoaDon" Width="1.5" PointX="7.5" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CT25Team17Model.GioHang" Width="1.5" PointX="5.25" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="CT25Team17Model.HoaDon" Width="1.5" PointX="5.25" PointY="9.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CT25Team17Model.NhomSanPham" Width="1.5" PointX="3" PointY="14" IsExpanded="true" />
-        <EntityTypeShape EntityType="CT25Team17Model.SanPham" Width="1.5" PointX="5.25" PointY="13.375" IsExpanded="true" />
-        <AssociationConnector Association="CT25Team17Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="CT25Team17Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="CT25Team17Model.FK_GIOHANG" ManuallyRouted="false" />
-        <AssociationConnector Association="CT25Team17Model.FK_HOADON" ManuallyRouted="false" />
-        <AssociationConnector Association="CT25Team17Model.FK_HOADON2" ManuallyRouted="false" />
-        <AssociationConnector Association="CT25Team17Model.FK_CHITIETGIOHANG" ManuallyRouted="false" />
-        <AssociationConnector Association="CT25Team17Model.FK_CHITIETGIOHANG2" ManuallyRouted="false" />
-        <AssociationConnector Association="CT25Team17Model.FK_chitiethoadon" ManuallyRouted="false" />
-        <AssociationConnector Association="CT25Team17Model.FK_SANPHAM" ManuallyRouted="false" />
-        <AssociationConnector Association="CT25Team17Model.AspNetUserRoles" ManuallyRouted="false" />
+      <Diagram DiagramId="c2281db1c86940128a43b931e5d099a2" Name="Diagram1" >
+        <EntityTypeShape EntityType="WebsiteModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="WebsiteModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.5" />
+        <EntityTypeShape EntityType="WebsiteModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="WebsiteModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="3.75" />
+        <EntityTypeShape EntityType="WebsiteModel.AspNetUser" Width="1.5" PointX="3" PointY="1.375" />
+        <AssociationConnector Association="WebsiteModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="WebsiteModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="WebsiteModel.AspNetUserRoles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
