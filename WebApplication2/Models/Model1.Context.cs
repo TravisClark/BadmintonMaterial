@@ -13,10 +13,10 @@ namespace WebApplication2.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class CT25Team17Entities : DbContext
+    public partial class WebsiteEntities : DbContext
     {
-        public CT25Team17Entities()
-            : base("name=CT25Team17Entities")
+        public WebsiteEntities()
+            : base("name=WebsiteEntities")
         {
         }
     
@@ -30,11 +30,5 @@ namespace WebApplication2.Models
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
-        public virtual DbSet<ChiTietGioHang> ChiTietGioHangs { get; set; }
-        public virtual DbSet<ChiTietHoaDon> ChiTietHoaDons { get; set; }
-        public virtual DbSet<GioHang> GioHangs { get; set; }
-        public virtual DbSet<HoaDon> HoaDons { get; set; }
-        public virtual DbSet<NhomSanPham> NhomSanPhams { get; set; }
-        public virtual DbSet<SanPham> SanPhams { get; set; }
     }
 }
