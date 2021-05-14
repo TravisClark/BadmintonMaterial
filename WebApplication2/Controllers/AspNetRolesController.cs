@@ -12,7 +12,7 @@ namespace WebApplication2.Controllers
 {
     public class AspNetRolesController : Controller
     {
-        private WebsiteEntities db = new WebsiteEntities();
+        private CT25Team17Entities db = new CT25Team17Entities();
 
         // GET: AspNetRoles
         public ActionResult Index()
