@@ -48,8 +48,8 @@ color:#fff;
 
 }	
 .skyblue li>a,.skyblue>li.showhide span{color:#6f7887}
-.skyblue>li:hover>a,.skyblue .dropdown li:hover>a{color:#555; background:#ffffff;}.
-skyblue .mepanel img:hover,.skyblue form.contact input[type="text"]:focus,.skyblue form.contact textarea:focus{}
+.skyblue>li:hover>a,.skyblue .dropdown li:hover>a{color:#555; background:#ffffff;}
+.skyblue .mepanel img:hover,.skyblue form.contact input[type="text"]:focus,.skyblue form.contact textarea:focus{}
 .skyblue form.contact input[type="submit"]{background:#00405d;text-transform:uppercase;}
 @media(max-width:1024px){
 	.memenu>li>a {
@@ -120,27 +120,27 @@ skyblue .mepanel img:hover,.skyblue form.contact input[type="text"]:focus,.skybl
 
 .skyblue li a.color1:hover{
 	background:#8ce78a;
-	color: #ffffff;
+	color: #111;
 }
 .skyblue li a.color2:hover{
 	background:#8ce78a;
-	color: #ffffff;
+	color: #111;
 }
 .skyblue li a.color3:hover{
 	background:#8ce78a;
-	color: #ffffff;
+	color: #111;
 }
 .skyblue li a.color4:hover{
 	background:#8ce78a;
-	color: #ffffff;
+	color: #111;
 }
 .skyblue li a.color8:hover{
 	background:#8ce78a;
-	color: #ffffff;
+	color: #111;
 }
 .skyblue li a.color6:hover{
 	background:#8ce78a;
-	color: #ffffff;
+	color: #111;
 }
 	
 
