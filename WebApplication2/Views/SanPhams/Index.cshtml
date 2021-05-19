@@ -13,10 +13,7 @@
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.TenSP)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ThuongHieu)
-        </th>
+        </th>  
         <th>
             @Html.DisplayNameFor(model => model.MoTa)
         </th>
@@ -25,9 +22,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.SoLuong)
-        </th>
+        </th>    
         <th>
-            @Html.DisplayNameFor(model => model.NhomSanPham.TenNhom)
+            Hinh Anh
         </th>
         <th></th>
     </tr>
@@ -38,19 +35,23 @@
             @Html.DisplayFor(modelItem => item.TenSP)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ThuongHieu)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MoTa)
+            @if (item.MoTa != null && item.MoTa.Length > 50)
+            {
+                @item.MoTa.Substring(0, 50);
+            }
+            else
+            {
+                @item.MoTa
+            }
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.GiaSP)
         </td>
-        <td>
+        <td align="center">
             @Html.DisplayFor(modelItem => item.SoLuong)
-        </td>
+        </td>   
         <td>
-            @Html.DisplayFor(modelItem => item.NhomSanPham.TenNhom)
+            <img src="@Url.Action("Picture",new { item.MaSP })" width="100px" height="100px" />
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.MaSP }) |

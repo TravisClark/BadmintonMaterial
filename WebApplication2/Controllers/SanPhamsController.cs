@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Transactions;
 using WebApplication2.Models;
 
 namespace WebApplication2.Controllers
@@ -36,6 +37,12 @@ namespace WebApplication2.Controllers
             return View(sanPham);
         }
 
+        public ActionResult Picture(string id)
+        {
+            var path = Server.MapPath(PICTURE_PATH);
+            return File(path + id, "images");
+        }
+
         // GET: SanPhams/Create
         public ActionResult Create()
         {
@@ -48,17 +55,51 @@ namespace WebApplication2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaSP,TenSP,ThuongHieu,MaNhom,MoTa,GiaSP,SoLuong")] SanPham sanPham)
+        public ActionResult Create(SanPham model,HttpPostedFileBase picture)
         {
+            CheckThongTin(model);
             if (ModelState.IsValid)
             {
-                db.SanPhams.Add(sanPham);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if(picture != null)
+                {
+                    using (var scope = new TransactionScope())
+                    {
+                        db.SanPhams.Add(model);
+                        db.SaveChanges();
+
+                        var path = Server.MapPath(PICTURE_PATH);
+                        picture.SaveAs(path + model.MaSP);
+
+                        scope.Complete();
+                        return RedirectToAction("Index");
+                    }                   
+                }
+                else
+                {
+                    ModelState.AddModelError("","Chua chon anh");
+                }
+                
             }
 
-            ViewBag.MaNhom = new SelectList(db.NhomSanPhams, "MaNhom", "TenNhom", sanPham.MaNhom);
-            return View(sanPham);
+            ViewBag.MaNhom = new SelectList(db.NhomSanPhams, "MaNhom", "TenNhom", model.MaNhom);
+            return View(model);
+        }
+
+        private const string PICTURE_PATH = "~/images/";
+
+        private void CheckThongTin(SanPham sanPham)
+        {       
+            if(sanPham.MaSP == null)
+            {
+                ModelState.AddModelError("MaSP", "Ma san pham khong duoc bo trong.");
+            }
+            else
+            {
+                if (sanPham.MaSP.Length < 5 || sanPham.MaSP.Length >10)
+                {
+                    ModelState.AddModelError("MaSP", "Ma san pham phai tu 5 den 10 ky tu.");
+                }
+            }
         }
 
         // GET: SanPhams/Edit/5
