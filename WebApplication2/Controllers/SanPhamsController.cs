@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
@@ -37,10 +38,10 @@ namespace WebApplication2.Controllers
             return View(sanPham);
         }
 
-        public ActionResult Picture(string id)
+        public ActionResult Picture(string MaSP)
         {
             var path = Server.MapPath(PICTURE_PATH);
-            return File(path + id, "images");
+            return File(path + MaSP, "images");
         }
 
         // GET: SanPhams/Create
@@ -76,7 +77,7 @@ namespace WebApplication2.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("","Chua chon anh");
+                    ModelState.AddModelError("","Chưa chọn ảnh");
                 }
                 
             }
@@ -88,17 +89,54 @@ namespace WebApplication2.Controllers
         private const string PICTURE_PATH = "~/images/";
 
         private void CheckThongTin(SanPham sanPham)
-        {       
-            if(sanPham.MaSP == null)
+        {
+            //Kiem tra MaSP
+            var regexItem = new Regex("^[a-z A-Z 0-9 ]*$");
+
+            foreach(var item in db.SanPhams)
             {
-                ModelState.AddModelError("MaSP", "Ma san pham khong duoc bo trong.");
+                if(sanPham.MaSP == item.MaSP)
+                {
+                    ModelState.AddModelError("MaSP", "Mã sản phẩm đã tồn tại.");
+                }
+            }
+            if (sanPham.MaSP == null)
+            {
+                ModelState.AddModelError("MaSP", "Mã sản phẩm không được để trống.");
             }
             else
             {
                 if (sanPham.MaSP.Length < 5 || sanPham.MaSP.Length >10)
                 {
-                    ModelState.AddModelError("MaSP", "Ma san pham phai tu 5 den 10 ky tu.");
+                    ModelState.AddModelError("MaSP", "Mã sản phẩm phải có từ 5 đến 10 ký tự.");
                 }
+                else
+                {
+                    if(sanPham.MaSP.IndexOf(" ") >= 0)
+                    {
+                        ModelState.AddModelError("MaSP", "Mã sản phẩm không chứa khoản trắng.");
+                    }
+                    else
+                    {
+                        if (regexItem.IsMatch(sanPham.MaSP) == false)
+                        {
+                            ModelState.AddModelError("MaSP", "Mã sản phẩm chỉ chứa ký tự alphabet(a-z,A-Z,0-9).");
+                        }
+                    }
+                }
+            }
+            //Kiem tra TenSP
+            
+            if (sanPham.TenSP == null)
+            {
+                ModelState.AddModelError("TenSP", "Tên sản phẩm không được để trống.");
+            }
+            else
+            {
+                //if (sanPham.TenSP.First().Equal)
+                //{
+                //    ModelState.AddModelError("TenSP", "Tên sản phẩm phải có ký tự đầu tiên là chữ.");
+                //}
             }
         }
 
