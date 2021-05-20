@@ -90,10 +90,11 @@ namespace WebApplication2.Controllers
 
         private void CheckThongTin(SanPham sanPham)
         {
+            var regexItem = new Regex("^[ a-z A-Z 0-9 ]*$");
+            var regexNumeric = new Regex("^[ 0-9 ]*$");
+            var regexWord = new Regex("^[ a-z A-Z ]*$");
             //Kiem tra MaSP
-            var regexItem = new Regex("^[a-z A-Z 0-9 ]*$");
-
-            foreach(var item in db.SanPhams)
+            foreach (var item in db.SanPhams)
             {
                 if(sanPham.MaSP == item.MaSP)
                 {
@@ -125,18 +126,93 @@ namespace WebApplication2.Controllers
                     }
                 }
             }
-            //Kiem tra TenSP
-            
+            //Kiem tra TenSP           
             if (sanPham.TenSP == null)
             {
                 ModelState.AddModelError("TenSP", "Tên sản phẩm không được để trống.");
             }
             else
             {
-                //if (sanPham.TenSP.First().Equal)
-                //{
-                //    ModelState.AddModelError("TenSP", "Tên sản phẩm phải có ký tự đầu tiên là chữ.");
-                //}
+                if(sanPham.TenSP.IndexOf(" ") == 0 || regexWord.IsMatch(sanPham.TenSP.FirstOrDefault().ToString()) == false)
+                {
+                    ModelState.AddModelError("TenSP", "Tên sản phẩm phải có ký tự đầu tiên là chữ.");
+                }
+                else
+                {
+                    if (sanPham.TenSP.Length > 100)
+                    {
+                        ModelState.AddModelError("TenSP", "Tên sản phẩm phải dưới 100 ký tự.");
+                    }
+                }
+            }
+            //Kiem tra ThuongHieu
+            if (sanPham.ThuongHieu == null)
+            {
+                ModelState.AddModelError("ThuongHieu", "Thương hiệu sản phẩm không được để trống.");
+            }
+            else
+            {
+                if (sanPham.ThuongHieu.IndexOf(" ") == 0 || regexWord.IsMatch(sanPham.ThuongHieu.FirstOrDefault().ToString()) == false)
+                {
+                    ModelState.AddModelError("ThuongHieu", "Thương hiệu sản phẩm phải có ký tự đầu tiên là chữ.");
+                }
+                else
+                {
+                    if (sanPham.ThuongHieu.Length > 100)
+                    {
+                        ModelState.AddModelError("ThuongHieu", "Thương hiệu sản phẩm phải dưới 100 ký tự.");
+                    }
+                    else
+                    {
+                        if(regexNumeric.IsMatch(sanPham.ThuongHieu) == true || regexWord.IsMatch(sanPham.ThuongHieu) == false)
+                        {
+                            ModelState.AddModelError("ThuongHieu", "Thương hiệu sản phẩm chỉ chứa ký tự chữ cái.");
+                        }
+                    }
+                }
+            }
+            //Kiem tra MaNhom
+            if (sanPham.MaNhom == null)
+            {
+                ModelState.AddModelError("MaNhom", "Nhóm sản phẩm không được để trống.");
+            }
+            //Kiem tra MoTa
+            if (sanPham.MoTa == null)
+            {
+                ModelState.AddModelError("MoTa", "Mô tả sản phẩm không được để trống.");
+            }
+            else
+            {
+                if (sanPham.MoTa.IndexOf(" ") == 0 || regexWord.IsMatch(sanPham.MoTa.FirstOrDefault().ToString()) == false)
+                {
+                    ModelState.AddModelError("MoTa", "Mô tả sản phẩm phải có ký tự đầu tiên là chữ.");
+                }
+            }
+            //Kiem tra File anh
+
+            //Kiem tra GiaSP
+            if (sanPham.GiaSP == null)
+            {
+                ModelState.AddModelError("GiaSP", "Giá sản phẩm không được để trống.");
+            }
+            else
+            {
+                if(sanPham.GiaSP <= 0)
+                {
+                    ModelState.AddModelError("GiaSP", "Giá sản phẩm phải lớn hơn 0đ.");
+                }               
+            }
+            //Kiem tra SoLuong
+            if (sanPham.SoLuong == null)
+            {
+                ModelState.AddModelError("SoLuong", "Số lượng sản phẩm không được để trống.");
+            }
+            else
+            {
+                if (sanPham.SoLuong <= 0)
+                {
+                    ModelState.AddModelError("SoLuong", "Số lượng sản phẩm phải lớn hơn 0đ.");
+                }
             }
         }
 
