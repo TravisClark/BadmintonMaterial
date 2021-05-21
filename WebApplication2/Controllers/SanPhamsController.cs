@@ -41,7 +41,7 @@ namespace WebApplication2.Controllers
         public ActionResult Picture(string MaSP)
         {
             var path = Server.MapPath(PICTURE_PATH);
-            return File(path + MaSP, "images");
+            return File(path + MaSP + ".png", "images");
         }
 
         // GET: SanPhams/Create
@@ -69,7 +69,7 @@ namespace WebApplication2.Controllers
                         db.SaveChanges();
 
                         var path = Server.MapPath(PICTURE_PATH);
-                        picture.SaveAs(path + model.MaSP);
+                        picture.SaveAs(path + model.MaSP + ".png");
 
                         scope.Complete();
                         return RedirectToAction("Index");
@@ -78,8 +78,7 @@ namespace WebApplication2.Controllers
                 else
                 {
                     ModelState.AddModelError("","Chưa chọn ảnh");
-                }
-                
+                }                  
             }
 
             ViewBag.MaNhom = new SelectList(db.NhomSanPhams, "MaNhom", "TenNhom", model.MaNhom);

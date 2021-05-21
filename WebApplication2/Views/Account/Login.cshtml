@@ -4,6 +4,106 @@
     ViewBag.Title = "Log in";
 }
 
+<div class="header">
+    <div class="header-top">
+        <div class="container">
+            <div class="social">
+                <ul>
+                    <li><a href="#"><i class="facebok"> </i></a></li>
+                    <li><a href="#"><i class="twiter"> </i></a></li>
+                    <li><a href="#"><i class="inst"> </i></a></li>
+                    <li><a href="#"><i class="goog"> </i></a></li>
+                    <div class="clearfix"></div>
+                </ul>
+            </div>
+            <div class="header-left">
+
+                <div class="search-box">
+                    <div id="sb-search" class="sb-search">
+                        <form action="#" method="post">
+                            <input class="sb-search-input" placeholder="Enter your search term..." type="search" id="search">
+                            <input class="sb-search-submit" type="submit" value="">
+                            <span class="sb-icon-search"> </span>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- search-scripts -->
+                <script src="@Url.Content("~/js/classie.js")"></script>
+                <script src="@Url.Content("~/js/uisearch.js")"></script>
+                <script>
+                        new UISearch(document.getElementById('sb-search'));
+                </script>
+                <!-- //search-scripts -->
+
+                <div class="ca-r">
+                    <div class="cart box_1">
+                        <a href="checkout.html">
+                            <h3>
+                                <div class="total">
+                                    <span class="simpleCart_total"></span>
+                                </div>
+                                <img src="@Url.Content("~/images/cart.png")" alt="" />
+                            </h3>
+                        </a>
+                        <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
+
+                    </div>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="container">
+        <div class="head-top">
+            <div class="logo">
+                <h1><a href="@Url.Action("Index","Home")">Badminton Material</a></h1>
+            </div>
+            <div class=" h_menu4">
+                <ul class="memenu skyblue">
+                    <li><a class="color8" href="index.html">Trang chủ</a></li>
+                    <li>
+                        <a class="color1" href="#">Sản phẩm</a>
+                        <div class="mepanel">
+                            <div class="row">
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <ul>
+                                            <li><a href="products.html">Vợt cầu lông</a></li>
+                                            <li><a href="products.html">Phụ kiện cầu lông</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="grid">
+                        <a class="color2" href="checkout.html">Giỏ hàng</a>
+                    </li>
+                    <li><a class="color6" href="contact.html">Liên hệ</a></li>
+                    <li>
+                        @if (Request.IsAuthenticated)
+                        {
+                            using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <a class="color4" href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                            }
+                        }
+                        else
+                        {
+                            <a class="color4" href="@Url.Action("Login","Account")">Login</a>
+                        }
+
+                    </li>
+                </ul>
+            </div>
+
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
     <!-- grow -->
     <div class="grow">
         <div class="container">
