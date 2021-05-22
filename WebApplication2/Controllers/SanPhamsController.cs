@@ -43,7 +43,6 @@ namespace WebApplication2.Controllers
             var path = Server.MapPath(PICTURE_PATH);
             return File(path + MaSP + ".png", "images");
         }
-
         // GET: SanPhams/Create
         public ActionResult Create()
         {
@@ -215,6 +214,7 @@ namespace WebApplication2.Controllers
             }
         }
 
+
         // GET: SanPhams/Edit/5
         public ActionResult Edit(string id)
         {
@@ -236,16 +236,17 @@ namespace WebApplication2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaSP,TenSP,ThuongHieu,MaNhom,MoTa,GiaSP,SoLuong")] SanPham sanPham)
+        public ActionResult Edit(SanPham model)
         {
+            CheckThongTin(model);
             if (ModelState.IsValid)
-            {
-                db.Entry(sanPham).State = EntityState.Modified;
+            {              
+                db.Entry(model).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index");                           
             }
-            ViewBag.MaNhom = new SelectList(db.NhomSanPhams, "MaNhom", "TenNhom", sanPham.MaNhom);
-            return View(sanPham);
+            ViewBag.MaNhom = new SelectList(db.NhomSanPhams, "MaNhom", "TenNhom", model.MaNhom);
+            return View(model);
         }
 
         // GET: SanPhams/Delete/5
