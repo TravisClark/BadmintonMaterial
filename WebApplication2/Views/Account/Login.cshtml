@@ -108,20 +108,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <a class="color2" href="checkout.html">Giỏ hàng</a>
                         </li>
                         <li><a class="color6" href="contact.html">Liên hệ</a></li>
-                        <li>
-                            @if (Request.IsAuthenticated)
-                            {
-                                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
-                                {
-                                    @Html.AntiForgeryToken()
-                                    <a class="color4" href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
-                                }
-                            }
-                            else
-                            {
-                                <a class="color4" href="@Url.Action("Login","Account")">Login</a>
-                            }
-
+                        <li>                          
+                            <a class="color4" href="@Url.Action("Login","Account")">Login</a>
                         </li>
                     </ul>
                 </div>

@@ -107,7 +107,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </li>
                         <li><a class="color6" href="contact.html">Liên hệ</a></li>
                         <li>
-                            @if (Request.IsAuthenticated)
+                            @*@if (Request.IsAuthenticated)
                             {
                                 using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
                                 {
@@ -116,10 +116,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 }
                             }
                             else
-                            {
-                                <a class="color4" href="@Url.Action("Login","Account")">Login</a>
-                            }
-
+                            {*@
+                            <a class="color4" href="@Url.Action("Login","Account")">Login</a>                        
                         </li>
                     </ul>
                 </div>
