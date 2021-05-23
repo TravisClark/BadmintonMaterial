@@ -8,6 +8,11 @@ body{
 	background:#fff;
 	font-family: 'Roboto', sans-serif;
 }
+
+#updateCart:hover{
+	background-color:black;
+
+}
  a{
 	transition: 0.5s all;
 	-webkit-transition: 0.5s all;
