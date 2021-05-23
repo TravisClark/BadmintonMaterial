@@ -12,6 +12,7 @@ using WebApplication2.Models;
 
 namespace WebApplication2.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class SanPhamsController : Controller
     {
         private CT25Team17Entities db = new CT25Team17Entities();
