@@ -57,7 +57,7 @@ namespace WebApplication2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(SanPham model,HttpPostedFileBase picture)
         {
-            CheckThongTin(model);
+            CheckThongTinCreate(model);
             if (ModelState.IsValid)
             {
                 if(picture != null)
@@ -86,7 +86,7 @@ namespace WebApplication2.Controllers
 
         private const string PICTURE_PATH = "~/images/";
 
-        private void CheckThongTin(SanPham sanPham)
+        private void CheckThongTinCreate(SanPham sanPham)
         {
             var regexItem = new Regex("^[ a-z A-Z 0-9 ]*$");
             var regexNumeric = new Regex("^[ 0-9 ]*$");
@@ -214,7 +214,100 @@ namespace WebApplication2.Controllers
             }
         }
 
+        private void CheckThongTinEdit(SanPham sanPham)
+        {
+            var regexItem = new Regex("^[ a-z A-Z 0-9 ]*$");
+            var regexNumeric = new Regex("^[ 0-9 ]*$");
+            var regexWord = new Regex("^[ a-z A-Z ]*$");           
+            //Kiem tra TenSP           
+            if (sanPham.TenSP == null)
+            {
+                ModelState.AddModelError("TenSP", "Tên sản phẩm không được để trống.");
+            }
+            else
+            {
+                if (sanPham.TenSP.IndexOf(" ") == 0 || regexWord.IsMatch(sanPham.TenSP.FirstOrDefault().ToString()) == false)
+                {
+                    ModelState.AddModelError("TenSP", "Tên sản phẩm phải có ký tự đầu tiên là chữ.");
+                }
+                else
+                {
+                    if (sanPham.TenSP.Length > 100)
+                    {
+                        ModelState.AddModelError("TenSP", "Tên sản phẩm phải dưới 100 ký tự.");
+                    }
+                }
+            }
+            //Kiem tra ThuongHieu
+            if (sanPham.ThuongHieu == null)
+            {
+                ModelState.AddModelError("ThuongHieu", "Thương hiệu sản phẩm không được để trống.");
+            }
+            else
+            {
+                if (sanPham.ThuongHieu.IndexOf(" ") == 0 || regexWord.IsMatch(sanPham.ThuongHieu.FirstOrDefault().ToString()) == false)
+                {
+                    ModelState.AddModelError("ThuongHieu", "Thương hiệu sản phẩm phải có ký tự đầu tiên là chữ.");
+                }
+                else
+                {
+                    if (sanPham.ThuongHieu.Length > 100)
+                    {
+                        ModelState.AddModelError("ThuongHieu", "Thương hiệu sản phẩm phải dưới 100 ký tự.");
+                    }
+                    else
+                    {
+                        if (regexNumeric.IsMatch(sanPham.ThuongHieu) == true || regexWord.IsMatch(sanPham.ThuongHieu) == false)
+                        {
+                            ModelState.AddModelError("ThuongHieu", "Thương hiệu sản phẩm chỉ chứa ký tự chữ cái.");
+                        }
+                    }
+                }
+            }
+            //Kiem tra MaNhom
+            if (sanPham.MaNhom == null)
+            {
+                ModelState.AddModelError("MaNhom", "Nhóm sản phẩm không được để trống.");
+            }
+            //Kiem tra MoTa
+            if (sanPham.MoTa == null)
+            {
+                ModelState.AddModelError("MoTa", "Mô tả sản phẩm không được để trống.");
+            }
+            else
+            {
+                if (sanPham.MoTa.IndexOf(" ") == 0 || regexWord.IsMatch(sanPham.MoTa.FirstOrDefault().ToString()) == false)
+                {
+                    ModelState.AddModelError("MoTa", "Mô tả sản phẩm phải có ký tự đầu tiên là chữ.");
+                }
+            }
+            //Kiem tra File anh
 
+            //Kiem tra GiaSP
+            if (sanPham.GiaSP == null)
+            {
+                ModelState.AddModelError("GiaSP", "Giá sản phẩm không được để trống.");
+            }
+            else
+            {
+                if (sanPham.GiaSP <= 0)
+                {
+                    ModelState.AddModelError("GiaSP", "Giá sản phẩm phải lớn hơn 0đ.");
+                }
+            }
+            //Kiem tra SoLuong
+            if (sanPham.SoLuong == null)
+            {
+                ModelState.AddModelError("SoLuong", "Số lượng sản phẩm không được để trống.");
+            }
+            else
+            {
+                if (sanPham.SoLuong <= 0)
+                {
+                    ModelState.AddModelError("SoLuong", "Số lượng sản phẩm phải lớn hơn 0đ.");
+                }
+            }
+        }
         // GET: SanPhams/Edit/5
         public ActionResult Edit(string id)
         {
@@ -236,14 +329,25 @@ namespace WebApplication2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(SanPham model)
+        public ActionResult Edit(SanPham model, HttpPostedFileBase picture)
         {
-            CheckThongTin(model);
+            CheckThongTinEdit(model);
             if (ModelState.IsValid)
-            {              
-                db.Entry(model).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");                           
+            {
+                using (var scope = new TransactionScope())
+                {
+                    db.Entry(model).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    if(picture != null)
+                    {
+                        var path = Server.MapPath(PICTURE_PATH);
+                        picture.SaveAs(path + model.MaSP + ".png");
+                    }
+
+                    scope.Complete();
+                    return RedirectToAction("Index");
+                }                                       
             }
             ViewBag.MaNhom = new SelectList(db.NhomSanPhams, "MaNhom", "TenNhom", model.MaNhom);
             return View(model);
