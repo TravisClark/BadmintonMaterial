@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="CT25Team17Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="CT25Team17Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -105,6 +105,17 @@
           <Property Name="TaiKhoanKhachHang" Type="nvarchar" MaxLength="128" />
           <Property Name="TaiKhoanNhanVien" Type="nvarchar" MaxLength="128" />
           <Property Name="MaChiTietGioHang" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="KhuyenMai">
+          <Key>
+            <PropertyRef Name="MaKM" />
+          </Key>
+          <Property Name="MaKM" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="TGBatDau" Type="date" />
+          <Property Name="TGKetThuc" Type="date" />
+          <Property Name="LoaiKM" Type="nvarchar" MaxLength="30" />
+          <Property Name="LoaiApDung" Type="nvarchar" MaxLength="30" />
+          <Property Name="GiaTriDHTu" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="NhomSanPham">
           <Key>
@@ -276,6 +287,7 @@
           <EntitySet Name="ChiTietHoaDon" EntityType="Self.ChiTietHoaDon" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GioHang" EntityType="Self.GioHang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HoaDon" EntityType="Self.HoaDon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KhuyenMai" EntityType="Self.KhuyenMai" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NhomSanPham" EntityType="Self.NhomSanPham" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SanPham" EntityType="Self.SanPham" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_CHITIETGIOHANG" Association="Self.FK_CHITIETGIOHANG">
@@ -323,7 +335,8 @@
             <End Role="SanPham" EntitySet="SanPham" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CT25Team17Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -399,8 +412,8 @@
           <Property Name="SoLuong" Type="Int32" />
           <Property Name="MaSanPham" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="GioHang" Relationship="Self.FK_CHITIETGIOHANG" FromRole="ChiTietGioHang" ToRole="GioHang" />
-          <NavigationProperty Name="SanPham" Relationship="CT25Team17Model.FK_ChiTietGioHang_MaSanPham" FromRole="ChiTietGioHang" ToRole="SanPham" />
-          </EntityType>
+          <NavigationProperty Name="SanPham" Relationship="Self.FK_ChiTietGioHang_MaSanPham" FromRole="ChiTietGioHang" ToRole="SanPham" />
+        </EntityType>
         <EntityType Name="ChiTietHoaDon">
           <Key>
             <PropertyRef Name="MaChiTietHoaDon" />
@@ -437,13 +450,38 @@
           <NavigationProperty Name="AspNetUser1" Relationship="Self.FK_HOADON2" FromRole="HoaDon" ToRole="AspNetUsers" />
           <NavigationProperty Name="ChiTietHoaDons" Relationship="Self.FK_chitiethoadon" FromRole="HoaDon" ToRole="ChiTietHoaDon" />
         </EntityType>
+        <EntityType Name="KhuyenMai">
+          <Key>
+            <PropertyRef Name="MaKM" />
+          </Key>
+          <Property Name="MaKM" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TGBatDau" Type="DateTime" Precision="0" />
+          <Property Name="TGKetThuc" Type="DateTime" Precision="0" />
+          <Property Name="LoaiKM" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="LoaiApDung" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="GiaTriDHTu" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="NhomSanPham">
           <Key>
             <PropertyRef Name="MaNhom" />
           </Key>
           <Property Name="MaNhom" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TenNhom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="SanPhams" Relationship="CT25Team17Model.FK_SanPham_MaNhom" FromRole="NhomSanPham" ToRole="SanPham" />
+          <NavigationProperty Name="SanPhams" Relationship="Self.FK_SanPham_MaNhom" FromRole="NhomSanPham" ToRole="SanPham" />
+        </EntityType>
+        <EntityType Name="SanPham">
+          <Key>
+            <PropertyRef Name="MaSP" />
+          </Key>
+          <Property Name="MaSP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TenSP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ThuongHieu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MaNhom" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GiaSP" Type="Int32" Nullable="false" />
+          <Property Name="SoLuong" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ChiTietGioHangs" Relationship="Self.FK_ChiTietGioHang_MaSanPham" FromRole="SanPham" ToRole="ChiTietGioHang" />
+          <NavigationProperty Name="NhomSanPham" Relationship="Self.FK_SanPham_MaNhom" FromRole="SanPham" ToRole="NhomSanPham" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -521,6 +559,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ChiTietGioHang_MaSanPham">
+          <End Role="SanPham" Type="Self.SanPham" Multiplicity="0..1" />
+          <End Role="ChiTietGioHang" Type="Self.ChiTietGioHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SanPham">
+              <PropertyRef Name="MaSP" />
+            </Principal>
+            <Dependent Role="ChiTietGioHang">
+              <PropertyRef Name="MaSanPham" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_chitiethoadon">
           <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="0..1" />
           <End Role="ChiTietHoaDon" Type="Self.ChiTietHoaDon" Multiplicity="*" />
@@ -530,6 +580,18 @@
             </Principal>
             <Dependent Role="ChiTietHoaDon">
               <PropertyRef Name="MaHoaDon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SanPham_MaNhom">
+          <End Role="NhomSanPham" Type="Self.NhomSanPham" Multiplicity="1" />
+          <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NhomSanPham">
+              <PropertyRef Name="MaNhom" />
+            </Principal>
+            <Dependent Role="SanPham">
+              <PropertyRef Name="MaNhom" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -547,7 +609,9 @@
           <EntitySet Name="ChiTietHoaDons" EntityType="Self.ChiTietHoaDon" />
           <EntitySet Name="GioHangs" EntityType="Self.GioHang" />
           <EntitySet Name="HoaDons" EntityType="Self.HoaDon" />
+          <EntitySet Name="KhuyenMais" EntityType="Self.KhuyenMai" />
           <EntitySet Name="NhomSanPhams" EntityType="Self.NhomSanPham" />
+          <EntitySet Name="SanPhams" EntityType="Self.SanPham" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -572,62 +636,23 @@
             <End Role="GioHang" EntitySet="GioHangs" />
             <End Role="ChiTietGioHang" EntitySet="ChiTietGioHangs" />
           </AssociationSet>
+          <AssociationSet Name="FK_ChiTietGioHang_MaSanPham" Association="Self.FK_ChiTietGioHang_MaSanPham">
+            <End Role="SanPham" EntitySet="SanPhams" />
+            <End Role="ChiTietGioHang" EntitySet="ChiTietGioHangs" />
+          </AssociationSet>
           <AssociationSet Name="FK_chitiethoadon" Association="Self.FK_chitiethoadon">
             <End Role="HoaDon" EntitySet="HoaDons" />
             <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SanPham_MaNhom" Association="Self.FK_SanPham_MaNhom">
+            <End Role="NhomSanPham" EntitySet="NhomSanPhams" />
+            <End Role="SanPham" EntitySet="SanPhams" />
           </AssociationSet>
           <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
-          <EntitySet Name="SanPhams" EntityType="CT25Team17Model.SanPham" />
-          <AssociationSet Name="FK_ChiTietGioHang_MaSanPham" Association="CT25Team17Model.FK_ChiTietGioHang_MaSanPham">
-            <End Role="SanPham" EntitySet="SanPhams" />
-            <End Role="ChiTietGioHang" EntitySet="ChiTietGioHangs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SanPham_MaNhom" Association="CT25Team17Model.FK_SanPham_MaNhom">
-            <End Role="NhomSanPham" EntitySet="NhomSanPhams" />
-            <End Role="SanPham" EntitySet="SanPhams" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="SanPham">
-          <Key>
-            <PropertyRef Name="MaSP" />
-          </Key>
-          <Property Name="MaSP" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="TenSP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ThuongHieu" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MaNhom" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MoTa" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="GiaSP" Type="Int32" Nullable="false" />
-          <Property Name="SoLuong" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="ChiTietGioHangs" Relationship="CT25Team17Model.FK_ChiTietGioHang_MaSanPham" FromRole="SanPham" ToRole="ChiTietGioHang" />
-          <NavigationProperty Name="NhomSanPham" Relationship="CT25Team17Model.FK_SanPham_MaNhom" FromRole="SanPham" ToRole="NhomSanPham" />
-        </EntityType>
-        <Association Name="FK_ChiTietGioHang_MaSanPham">
-          <End Type="CT25Team17Model.SanPham" Role="SanPham" Multiplicity="0..1" />
-          <End Type="CT25Team17Model.ChiTietGioHang" Role="ChiTietGioHang" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SanPham">
-              <PropertyRef Name="MaSP" />
-            </Principal>
-            <Dependent Role="ChiTietGioHang">
-              <PropertyRef Name="MaSanPham" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SanPham_MaNhom">
-          <End Type="CT25Team17Model.NhomSanPham" Role="NhomSanPham" Multiplicity="1" />
-          <End Type="CT25Team17Model.SanPham" Role="SanPham" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NhomSanPham">
-              <PropertyRef Name="MaNhom" />
-            </Principal>
-            <Dependent Role="SanPham">
-              <PropertyRef Name="MaNhom" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -733,11 +758,36 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="KhuyenMais">
+            <EntityTypeMapping TypeName="CT25Team17Model.KhuyenMai">
+              <MappingFragment StoreEntitySet="KhuyenMai">
+                <ScalarProperty Name="MaKM" ColumnName="MaKM" />
+                <ScalarProperty Name="TGBatDau" ColumnName="TGBatDau" />
+                <ScalarProperty Name="TGKetThuc" ColumnName="TGKetThuc" />
+                <ScalarProperty Name="LoaiKM" ColumnName="LoaiKM" />
+                <ScalarProperty Name="LoaiApDung" ColumnName="LoaiApDung" />
+                <ScalarProperty Name="GiaTriDHTu" ColumnName="GiaTriDHTu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="NhomSanPhams">
             <EntityTypeMapping TypeName="CT25Team17Model.NhomSanPham">
               <MappingFragment StoreEntitySet="NhomSanPham">
                 <ScalarProperty Name="MaNhom" ColumnName="MaNhom" />
                 <ScalarProperty Name="TenNhom" ColumnName="TenNhom" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SanPhams">
+            <EntityTypeMapping TypeName="CT25Team17Model.SanPham">
+              <MappingFragment StoreEntitySet="SanPham">
+                <ScalarProperty Name="MaSP" ColumnName="MaSP" />
+                <ScalarProperty Name="TenSP" ColumnName="TenSP" />
+                <ScalarProperty Name="ThuongHieu" ColumnName="ThuongHieu" />
+                <ScalarProperty Name="MaNhom" ColumnName="MaNhom" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+                <ScalarProperty Name="GiaSP" ColumnName="GiaSP" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -749,19 +799,6 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="SanPhams">
-            <EntityTypeMapping TypeName="CT25Team17Model.SanPham">
-              <MappingFragment StoreEntitySet="SanPham">
-                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
-                <ScalarProperty Name="GiaSP" ColumnName="GiaSP" />
-                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
-                <ScalarProperty Name="MaNhom" ColumnName="MaNhom" />
-                <ScalarProperty Name="ThuongHieu" ColumnName="ThuongHieu" />
-                <ScalarProperty Name="TenSP" ColumnName="TenSP" />
-                <ScalarProperty Name="MaSP" ColumnName="MaSP" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
