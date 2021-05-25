@@ -14,7 +14,6 @@
         <EntityTypeShape EntityType="CT25Team17Model.ChiTietHoaDon" Width="1.5" PointX="7.5" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CT25Team17Model.GioHang" Width="1.5" PointX="5.25" PointY="7" IsExpanded="true" />
         <EntityTypeShape EntityType="CT25Team17Model.HoaDon" Width="1.5" PointX="5.25" PointY="9.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CT25Team17Model.KhuyenMai" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CT25Team17Model.NhomSanPham" Width="1.5" PointX="3" PointY="14" IsExpanded="true" />
         <EntityTypeShape EntityType="CT25Team17Model.SanPham" Width="1.5" PointX="5.25" PointY="13.5" IsExpanded="true" />
         <AssociationConnector Association="CT25Team17Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
@@ -27,6 +26,16 @@
         <AssociationConnector Association="CT25Team17Model.FK_chitiethoadon" ManuallyRouted="false" />
         <AssociationConnector Association="CT25Team17Model.FK_SanPham_MaNhom" ManuallyRouted="false" />
         <AssociationConnector Association="CT25Team17Model.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CT25Team17Model.KhuyenMai" Width="1.5" PointX="9.625" PointY="1" />
+        <EntityTypeShape EntityType="CT25Team17Model.LoaiApDung" Width="1.5" PointX="7.375" PointY="18" />
+        <EntityTypeShape EntityType="CT25Team17Model.LoaiKhuyenMai" Width="1.5" PointX="7.375" PointY="1.625" />
+        <AssociationConnector Association="CT25Team17Model.FK__KhuyenMai__MaApD__489AC854" />
+        <AssociationConnector Association="CT25Team17Model.FK__KhuyenMai__MaApD__607251E5" />
+        <AssociationConnector Association="CT25Team17Model.FK__KhuyenMai__Maloa__47A6A41B" />
+        <AssociationConnector Association="CT25Team17Model.FK__KhuyenMai__Maloa__6166761E" />
+        <AssociationConnector Association="CT25Team17Model.FK__KhuyenMai__Maloa__625A9A57" />
+        <AssociationConnector Association="CT25Team17Model.FK__KhuyenMai__Maloa__634EBE90" />
+        <AssociationConnector Association="CT25Team17Model.FK__KhuyenMai__Maloa__6442E2C9" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
