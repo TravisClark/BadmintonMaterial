@@ -1,0 +1,51 @@
+﻿@model WebApplication2.Models.DonHang
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DonHang</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.customer_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.customer_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.total_money)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.total_money)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrangThaiDonHang.name_status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrangThaiDonHang.name_status)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
