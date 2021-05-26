@@ -43,29 +43,17 @@
                         <div class="card-body">
                             <h4 class="card-title">Thông tin mã khuyến mãi</h4>
                             <div class="form-group row">
-                                <label for="fname" class="col-sm-2 text-end control-label col-form-label">
-                                    Mã
-                                    khuyến mãi
-                                </label>
+                                @Html.LabelFor(model => model.Makhuyenmai,"Mã khuyến mãi", htmlAttributes: new { @class = "col-sm-2 text-end control-label col-form-label" })
                                 <div class="col-sm-3">
-                                    <input type="text" class="form-control" id="fname"
-                                           placeholder="Nhập mã sản phẩm" required>
+                                    @Html.EditorFor(model => model.Makhuyenmai, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nhập mã khuyến mãi" } })
+                                    @Html.ValidationMessageFor(model => model.Makhuyenmai, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="fname" class="col-sm-2 text-end control-label col-form-label">
-                                    Loại
-                                    khuyến mãi
-                                </label>
+                                @Html.LabelFor(model => model.Maloai, "Loại khuyến mãi", htmlAttributes: new { @class = "col-sm-2 text-end control-label col-form-label" })
                                 <div class="col-sm-3">
-                                    <select class="select2 form-select shadow-none"
-                                            style="width: 100%; height:36px;">
-                                        <option>Select</option>
-                                        <optgroup label="Loại giảm giá">
-                                            <option value="AK">Giảm theo số tiền</option>
-                                            <option value="HI">Giảm theo %</option>
-                                        </optgroup>
-                                    </select>
+                                    @Html.DropDownList("Maloai", null, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Maloai, "", new { @class = "text-danger" })
                                 </div>
                                 <label for="fname" class="col-sm-1 text-end control-label col-form-label">
                                     Mức
@@ -77,19 +65,10 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="fname" class="col-sm-2 text-end control-label col-form-label">
-                                    Áp
-                                    dụng cho
-                                </label>
+                                @Html.LabelFor(model => model.MaApDung, "Áp dụng cho", htmlAttributes: new { @class = "col-sm-2 text-end control-label col-form-label" } )
                                 <div class="col-sm-3">
-                                    <select class="select2 form-select shadow-none"
-                                            style="width: 100%; height:36px;">
-                                        <option>Select</option>
-                                        <optgroup label="Loại đơn hàng">
-                                            <option value="AK">Tất cả đơn hàng</option>
-                                            <option value="HI">Trị giá đơn hàng từ</option>
-                                        </optgroup>
-                                    </select>
+                                    @Html.DropDownList("MaApDung", null, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.MaApDung, "", new { @class = "text-danger" })
                                 </div>
                                 <label for="fname"
                                        class="col-sm-1 text-end control-label col-form-label"></label>
@@ -100,11 +79,21 @@
 
                             </div>
                             <div class="form-group row">
-                                <label for="fname"
+                                @*<label for="fname"
                                        class="col-sm-2 text-end control-label col-form-label">Datepicker</label>
                                 <div class="col-sm-3">
                                     <input type="text" class="form-control mydatepicker"
                                            placeholder="mm/dd/yyyy">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text h-100">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>*@
+                                @Html.LabelFor(model => model.TGbatdau,"Thời gian bắt đầu", htmlAttributes: new { @class = "col-sm-2 text-end control-label col-form-label" })
+                                <div class="col-sm-3">
+                                    @Html.EditorFor(model => model.TGbatdau, new { htmlAttributes = new { @class = "form-control mydatepicker" } })
+                                    @Html.ValidationMessageFor(model => model.TGbatdau, "", new { @class = "text-danger" })
                                     <div class="input-group-append">
                                         <span class="input-group-text h-100">
                                             <i class="fa fa-calendar"></i>
@@ -123,6 +112,7 @@
                                         <span class="input-group-text h-100">
                                             <i class="fa fa-calendar"></i>
                                         </span>
+
                                     </div>
                                 </div>
                             </div>
