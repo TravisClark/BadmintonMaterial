@@ -13,10 +13,11 @@ using Microsoft.AspNet.Identity;
 
 namespace WebApplication2.Controllers
 {
+    //[Authorize(Roles = "Admim")]
     public class SanPhamController : Controller
     {
+        
         public CT25Team17Entities db = new CT25Team17Entities();
-
         
         // GET: SanPhams
         public ActionResult IndexAdmin()
@@ -99,6 +100,7 @@ namespace WebApplication2.Controllers
                 if(sanPham.MaSP == item.MaSP)
                 {
                     ModelState.AddModelError("MaSP", "Mã sản phẩm đã tồn tại.");
+                    break;
                 }
             }
             if (sanPham.MaSP == null)
@@ -115,7 +117,7 @@ namespace WebApplication2.Controllers
                 {
                     if(sanPham.MaSP.IndexOf(" ") >= 0)
                     {
-                        ModelState.AddModelError("MaSP", "Mã sản phẩm không chứa khoản trắng.");
+                        ModelState.AddModelError("MaSP", "Mã sản phẩm không chứa khoảng trắng.");
                     }
                     else
                     {
@@ -139,12 +141,13 @@ namespace WebApplication2.Controllers
                 }
                 else
                 {
-                    if (sanPham.TenSP.Length > 100)
+                    if (sanPham.TenSP.Length > 50)
                     {
-                        ModelState.AddModelError("TenSP", "Tên sản phẩm phải dưới 100 ký tự.");
+                        ModelState.AddModelError("TenSP", "Tên sản phẩm phải dưới 50 ký tự.");
                     }
                 }
             }
+
             //Kiem tra ThuongHieu
             if (sanPham.ThuongHieu == null)
             {
@@ -158,9 +161,9 @@ namespace WebApplication2.Controllers
                 }
                 else
                 {
-                    if (sanPham.ThuongHieu.Length > 100)
+                    if (sanPham.ThuongHieu.Length > 50)
                     {
-                        ModelState.AddModelError("ThuongHieu", "Thương hiệu sản phẩm phải dưới 100 ký tự.");
+                        ModelState.AddModelError("ThuongHieu", "Thương hiệu sản phẩm phải dưới 50 ký tự.");
                     }
                     else
                     {

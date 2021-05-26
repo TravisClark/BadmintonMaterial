@@ -10,6 +10,7 @@ using WebApplication2.Models;
 
 namespace WebApplication2.Controllers
 {
+    //[Authorize(Roles ="Admim")]
     public class AspNetRolesController : Controller
     {
         private CT25Team17Entities db = new CT25Team17Entities();
