@@ -12,17 +12,18 @@ namespace WebApplication2.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class KhuyenMai
+    public partial class LoaiApDung
     {
-        public string Makhuyenmai { get; set; }
-        public string Maloai { get; set; }
-        public Nullable<int> Mucgiam { get; set; }
-        public string MaApDung { get; set; }
-        public Nullable<int> GTapdung { get; set; }
-        public Nullable<System.DateTime> TGbatdau { get; set; }
-        public Nullable<System.DateTime> TGketthuc { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public LoaiApDung()
+        {
+            this.KhuyenMais = new HashSet<KhuyenMai>();
+        }
     
-        public virtual LoaiApDung LoaiApDung { get; set; }
-        public virtual LoaiKhuyenMai LoaiKhuyenMai { get; set; }
+        public string MaApDung { get; set; }
+        public string TenLApDung { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<KhuyenMai> KhuyenMais { get; set; }
     }
 }

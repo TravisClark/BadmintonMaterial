@@ -12,17 +12,14 @@ namespace WebApplication2.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class KhuyenMai
+    public partial class DonHang
     {
-        public string Makhuyenmai { get; set; }
-        public string Maloai { get; set; }
-        public Nullable<int> Mucgiam { get; set; }
-        public string MaApDung { get; set; }
-        public Nullable<int> GTapdung { get; set; }
-        public Nullable<System.DateTime> TGbatdau { get; set; }
-        public Nullable<System.DateTime> TGketthuc { get; set; }
+        public int id { get; set; }
+        public string customer_id { get; set; }
+        public Nullable<System.DateTime> date { get; set; }
+        public string status { get; set; }
+        public string total_money { get; set; }
     
-        public virtual LoaiApDung LoaiApDung { get; set; }
-        public virtual LoaiKhuyenMai LoaiKhuyenMai { get; set; }
+        public virtual TrangThaiDonHang TrangThaiDonHang { get; set; }
     }
 }
