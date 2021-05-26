@@ -18,7 +18,18 @@
     <link href="@Url.Content("~/assets/libs/flot/css/float-chart.css")" rel="stylesheet">
     <link href="@Url.Content("~/dist/css/style.min.css")" rel="stylesheet">
     <link href="@Url.Content("~/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css")" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="@Url.Content("../../assets/libs/quill/dist/quill.snow.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/assets/libs/quill/dist/quill.snow.css")">
+    <!-- Custom CSS KhuyenMai.Index -->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/assets/extra-libs/multicheck/multicheck.css")">
+    <link href="@Url.Content("~/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css")" rel="stylesheet">
+    <link href="@Url.Content("~/dist/css/style.min.css")" rel="stylesheet">
+    <!-- Custom CSS KhuyenMai.Create -->
+    <link href="@Url.Content("~/assets/libs/flot/css/float-chart.css")" rel="stylesheet">
+    <link href="@Url.Content("~/dist/css/style.min.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css")" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/assets/libs/quill/dist/quill.snow.css")">
+    <link rel="stylesheet" type="text/css"
+          href="@Url.Content("~/assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css")">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -49,20 +60,20 @@
                         <b class="logo-icon ps-2">
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                             <!-- Dark Logo icon -->
-                            <img src="../../assets/images/logo-bm.png" alt="homepage" class="light-logo" />
+                            <img src="@Url.Content("~/assets/images/logo-bm.png")" alt="homepage" class="light-logo" />
 
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
                         <span class="logo-text">
                             <!-- dark Logo text -->
-                            <img src="../../assets/images/template.png" alt="homepage" class="light-logo" />
+                            <img src="@Url.Content("~/assets/images/template.png")" alt="homepage" class="light-logo" />
                         </span>
                         <!-- Logo icon -->
                         <!-- <b class="logo-icon"> -->
                         <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                         <!-- Dark Logo icon -->
-                        <!-- <img src="../../assets/images/logo-text.png" alt="homepage" class="light-logo" /> -->
+                        <!-- <img src="@Url.Content("~/assets/images/logo-text.png")" alt="homepage" class="light-logo" /> -->
                         <!-- </b> -->
                         <!--End Logo icon -->
                     </a>
@@ -98,8 +109,7 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="@Url.Action("Create","SanPham")">Sản phẩm</a></li>
-                                <li><a class="dropdown-item" href=""@Url.Action("Create","DonHang")"">Đơn hàng</a></li>
-                                <li><a class="dropdown-item" href="addDiscount.html">Khuyến mãi</a></li>
+
                             </ul>
                         </li>
                         <!-- ============================================================== -->
@@ -206,7 +216,7 @@
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="../../assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31">
+                                <img src="@Url.Content("~/assets/images/users/1.jpg")" alt="user" class="rounded-circle" width="31">
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end user-dd animated" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="@Url.Action("IndexAdmin","Manage")">
@@ -263,7 +273,7 @@
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                               href="tables.html" aria-expanded="false">
+                               href="@Url.Action("Index","KhuyenMais")" aria-expanded="false">
                                 <i class="mdi mdi-tag"></i><span class="hide-menu">Khuyến mãi</span>
                             </a>
                         </li>

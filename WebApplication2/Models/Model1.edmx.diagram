@@ -26,16 +26,7 @@
         <AssociationConnector Association="CT25Team17Model.FK_chitiethoadon" ManuallyRouted="false" />
         <AssociationConnector Association="CT25Team17Model.FK_SanPham_MaNhom" ManuallyRouted="false" />
         <AssociationConnector Association="CT25Team17Model.AspNetUserRoles" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="CT25Team17Model.DonHang" Width="1.5" PointX="12.625" PointY="0.875" />
-        <EntityTypeShape EntityType="CT25Team17Model.TrangThaiDonHang" Width="1.5" PointX="10.375" PointY="1.25" />
-        <AssociationConnector Association="CT25Team17Model.FK_DonHang_status" />
-        <EntityTypeShape EntityType="CT25Team17Model.KhuyenMai" Width="1.5" PointX="12.625" PointY="5" />
-        <EntityTypeShape EntityType="CT25Team17Model.LoaiApDung" Width="1.5" PointX="10.375" PointY="8.5" />
-        <EntityTypeShape EntityType="CT25Team17Model.LoaiKhuyenMai" Width="1.5" PointX="10.375" PointY="5.5" />
-        <EntityTypeShape EntityType="CT25Team17Model.sysdiagram" Width="1.5" PointX="7.375" PointY="0.75" />
-        <AssociationConnector Association="CT25Team17Model.FK__KhuyenMai__MaApD__2057CCD0" />
-        <AssociationConnector Association="CT25Team17Model.FK__KhuyenMai__Maloa__1F63A897" />
-      </Diagram>
+
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
