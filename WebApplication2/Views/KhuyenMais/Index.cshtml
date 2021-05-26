@@ -16,7 +16,7 @@
                 <h4 class="page-title">Danh sách mã khuyến mãi</h4>
                 <div class="ms-auto text-end">
                     <nav aria-label="breadcrumb">
-                        <button type="button" class="btn btn-primary" style="margin-bottom: 5px;"><a href="addDiscount.html" style="text-decoration: none; color: #fff;">Tạo mới mã khuyến mãi</a></button>
+                        <button type="button" class="btn btn-primary" style="margin-bottom: 5px;"><a href="@Url.Action("Create","KhuyenMais")" style="text-decoration: none; color: #fff;">Tạo mới mã khuyến mãi</a></button>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="tables.html">Danh sách mã khuyến mãi</a></li>
                         </ol>
@@ -40,56 +40,54 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Danh sách mã khuyến mãi</h5>
+                        <div class="table-responsive">
+                            <table id="zero_config" class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Mã khuyến mãi</th>
+                                        <th scope="col">Loại khuyến mãi</th>
+                                        <th scope="col">Mức giảm</th>
+                                        <th scope="col">Áp dụng cho</th>
+                                        <th scope="col">Trị giá từ</th>
+                                        <th scope="col">Thời gian bắt đầu</th>
+                                        <th scope="col">Thời gian kết thúc</th>
+                                        <th scope="col">Xóa</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Makhuyenmai)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.LoaiKhuyenMai.Tenloai)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Mucgiam)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.LoaiApDung.TenLApDung)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.GTapdung)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.TGbatdau)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.TGketthuc)
+                                            </td>
+                                            <td>
+                                                @Html.ActionLink("mdi mdi-delete", "Delete", new { id = item.Makhuyenmai })
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Mã khuyến mãi</th>
-                                <th scope="col">Loại khuyến mãi</th>
-                                <th scope="col">Mức giảm</th>
-                                <th scope="col">Áp dụng cho</th>
-                                <th scope="col">Trị giá từ</th>
-                                <th scope="col">Thời gian bắt đầu</th>
-                                <th scope="col">Thời gian kết thúc</th>
-                                <th scope="col">Xóa</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Makhuyenmai)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.LoaiKhuyenMai.Tenloai)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Mucgiam)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.LoaiApDung.TenLApDung)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.GTapdung)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.TGbatdau)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.TGketthuc)
-                                </td>
-                                <td>
-                                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                                </td>
-                                <td><a href="#"><i class="mdi mdi-delete"></i></a></td>
-                            </tr>
-                            }
-                            </tbody>
-                    </table>
-                </div>
             </div>
         </div>
         <!-- ============================================================== -->
@@ -116,7 +114,28 @@
     <!-- End footer -->
     <!-- ============================================================== -->
 </div>
-
+<script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap tether Core JavaScript -->
+<script src="../../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<!-- slimscrollbar scrollbar JavaScript -->
+<script src="../../assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+<script src="../../assets/extra-libs/sparkline/sparkline.js"></script>
+<!--Wave Effects -->
+<script src="../../dist/js/waves.js"></script>
+<!--Menu sidebar -->
+<script src="../../dist/js/sidebarmenu.js"></script>
+<!--Custom JavaScript -->
+<script src="../../dist/js/custom.min.js"></script>
+<!-- this page js -->
+<script src="../../assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
+<script src="../../assets/extra-libs/multicheck/jquery.multicheck.js"></script>
+<script src="../../assets/extra-libs/DataTables/datatables.min.js"></script>
+<script>
+        /****************************************
+         *       Basic Table                   *
+         ****************************************/
+        $('#zero_config').DataTable();
+</script>
 
 @*<h2>Index</h2>
 
