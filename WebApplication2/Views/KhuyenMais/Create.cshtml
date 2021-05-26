@@ -1,5 +1,4 @@
 ﻿@model WebApplication2.Models.KhuyenMai
-
 @{
     ViewBag.Title = "Create";
 }
@@ -42,80 +41,71 @@
                     <form class="form-horizontal">
                         <div class="card-body">
                             <h4 class="card-title">Thông tin mã khuyến mãi</h4>
+
+                            @*Mã khuyến mãi*@
                             <div class="form-group row">
-                                @Html.LabelFor(model => model.Makhuyenmai,"Mã khuyến mãi", htmlAttributes: new { @class = "col-sm-2 text-end control-label col-form-label" })
+                                @Html.LabelFor(model => model.Makhuyenmai, "Mã khuyến mãi", htmlAttributes: new { @class = "col-sm-2 text-end control-label col-form-label" })
                                 <div class="col-sm-3">
                                     @Html.EditorFor(model => model.Makhuyenmai, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nhập mã khuyến mãi" } })
                                     @Html.ValidationMessageFor(model => model.Makhuyenmai, "", new { @class = "text-danger" })
                                 </div>
                             </div>
+
+                            @*Loại khuyến mãi*@
                             <div class="form-group row">
                                 @Html.LabelFor(model => model.Maloai, "Loại khuyến mãi", htmlAttributes: new { @class = "col-sm-2 text-end control-label col-form-label" })
                                 <div class="col-sm-3">
                                     @Html.DropDownList("Maloai", null, htmlAttributes: new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.Maloai, "", new { @class = "text-danger" })
                                 </div>
-                                <label for="fname" class="col-sm-1 text-end control-label col-form-label">
-                                    Mức
-                                    giảm
-                                </label>
+
+                                @*Mức giảm*@
+                                @Html.LabelFor(model => model.Mucgiam, "Mức giảm", htmlAttributes: new { @class = "col-sm-1 text-end control-label col-form-label" })
                                 <div class="col-sm-3">
-                                    <input type="text" class="form-control" id="fname" placeholder="0đ"
-                                           required>
+                                    @Html.EditorFor(model => model.Mucgiam, new { htmlAttributes = new { @class = "form-control", @placeholder = "0đ" } })
+                                    @Html.ValidationMessageFor(model => model.Mucgiam, "", new { @class = "text-danger" })
                                 </div>
                             </div>
+
+                            @*Áp dụng cho*@
                             <div class="form-group row">
-                                @Html.LabelFor(model => model.MaApDung, "Áp dụng cho", htmlAttributes: new { @class = "col-sm-2 text-end control-label col-form-label" } )
+                                @Html.LabelFor(model => model.MaApDung, "Áp dụng cho", htmlAttributes: new { @class = "col-sm-2 text-end control-label col-form-label" })
                                 <div class="col-sm-3">
                                     @Html.DropDownList("MaApDung", null, htmlAttributes: new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.MaApDung, "", new { @class = "text-danger" })
                                 </div>
-                                <label for="fname"
-                                       class="col-sm-1 text-end control-label col-form-label"></label>
+                                @Html.LabelFor(model => model.GTapdung, " ", htmlAttributes: new { @class = "col-sm-1 text-end control-label col-form-label" })
                                 <div class="col-sm-3">
-                                    <input type="text" class="form-control" id="fname" placeholder="0đ"
-                                           required>
-                                </div>
-
-                            </div>
-                            <div class="form-group row">
-                                @*<label for="fname"
-                                       class="col-sm-2 text-end control-label col-form-label">Datepicker</label>
-                                <div class="col-sm-3">
-                                    <input type="text" class="form-control mydatepicker"
-                                           placeholder="mm/dd/yyyy">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text h-100">
-                                            <i class="fa fa-calendar"></i>
-                                        </span>
-                                    </div>
-                                </div>*@
-                                @Html.LabelFor(model => model.TGbatdau,"Thời gian bắt đầu", htmlAttributes: new { @class = "col-sm-2 text-end control-label col-form-label" })
-                                <div class="col-sm-3">
-                                    @Html.EditorFor(model => model.TGbatdau, new { htmlAttributes = new { @class = "form-control mydatepicker" } })
-                                    @Html.ValidationMessageFor(model => model.TGbatdau, "", new { @class = "text-danger" })
-                                    <div class="input-group-append">
-                                        <span class="input-group-text h-100">
-                                            <i class="fa fa-calendar"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                                <label for="fname"
-                                       class="col-sm-1 text-end control-label col-form-label">
-                                    Autoclose
-                                    Datepicker
-                                </label>
-                                <div class="col-sm-3">
-                                    <input type="text" class="form-control" id="datepicker-autoclose"
-                                           placeholder="mm/dd/yyyy">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text h-100">
-                                            <i class="fa fa-calendar"></i>
-                                        </span>
-
-                                    </div>
+                                    @Html.EditorFor(model => model.GTapdung, new { htmlAttributes = new { @class = "form-control", @placeholder = "0đ" } })
+                                    @Html.ValidationMessageFor(model => model.GTapdung, "", new { @class = "text-danger" })
                                 </div>
                             </div>
+
+                            @*Thời gian*@
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.TGbatdau, "Thời gian bắt đầu", htmlAttributes: new { @class = "col-sm-2 text-end control-label col-form-label" })
+                            <div class="col-sm-3">
+                                @Html.EditorFor(model => model.TGbatdau, new { htmlAttributes = new { @class = "form-control mydatepicker", @placeholder = "mm/dd/yyyy" } })
+                                @Html.ValidationMessageFor(model => model.TGbatdau, "", new { @class = "text-danger" })
+                                <div class="input-group-append">
+                                    <span class="input-group-text h-100">
+                                        <i class="fa fa-calendar"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            @Html.LabelFor(model => model.TGketthuc, "Thời gian kết thúc", htmlAttributes: new { @class = "col-sm-1 text-end control-label col-form-label" })
+                            <div class="col-sm-3">
+                                @Html.EditorFor(model => model.TGketthuc, new { htmlAttributes = new { @class = "form-control mydatepicker", @placeholder = "mm/dd/yyyy" } })
+                                @Html.ValidationMessageFor(model => model.TGketthuc, "", new { @class = "text-danger" })
+                                <div class="input-group-append">
+                                    <span class="input-group-text h-100">
+                                        <i class="fa fa-calendar"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        </div>
                             <div class="border-top">
                                 <div class="card-body" style="text-align: right;">
                                     <button type="button" class="btn btn-secondary"
