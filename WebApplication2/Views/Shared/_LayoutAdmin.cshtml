@@ -109,8 +109,7 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="@Url.Action("Create","SanPham")">Sản phẩm</a></li>
-                                <li><a class="dropdown-item" href="create-receipt.html">Đơn hàng</a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("Create","KhuyenMais")">Khuyến mãi</a></li>
+
                             </ul>
                         </li>
                         <!-- ============================================================== -->
@@ -268,7 +267,7 @@
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                               href="widgets.html" aria-expanded="false">
+                               href="@Url.Action("Index","DonHang")" aria-expanded="false">
                                 <i class="mdi mdi-receipt"></i><span class="hide-menu">Đơn hàng</span>
                             </a>
                         </li>

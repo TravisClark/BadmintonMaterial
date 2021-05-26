@@ -87,6 +87,16 @@
           <Property Name="MaSanPham" Type="varchar" MaxLength="10" />
           <Property Name="MaKhuyenMai" Type="varchar" MaxLength="10" />
         </EntityType>
+        <EntityType Name="DonHang">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="customer_id" Type="nvarchar" MaxLength="500" />
+          <Property Name="date" Type="datetime" />
+          <Property Name="status" Type="varchar" MaxLength="10" />
+          <Property Name="total_money" Type="nvarchar" MaxLength="500" />
+        </EntityType>
         <EntityType Name="GioHang">
           <Key>
             <PropertyRef Name="MaGioHang" />
@@ -153,6 +163,7 @@
           <Property Name="GiaSP" Type="int" Nullable="false" />
           <Property Name="SoLuong" Type="int" Nullable="false" />
         </EntityType>
+
         <Association Name="FK__KhuyenMai__MaApD__2057CCD0">
           <End Role="LoaiApDung" Type="Self.LoaiApDung" Multiplicity="1" />
           <End Role="KhuyenMai" Type="Self.KhuyenMai" Multiplicity="*" />
@@ -269,6 +280,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_DonHang_status">
+          <End Role="TrangThaiDonHang" Type="Self.TrangThaiDonHang" Multiplicity="0..1" />
+          <End Role="DonHang" Type="Self.DonHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrangThaiDonHang">
+              <PropertyRef Name="status" />
+            </Principal>
+            <Dependent Role="DonHang">
+              <PropertyRef Name="status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_GIOHANG">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
           <End Role="GioHang" Type="Self.GioHang" Multiplicity="*" />
@@ -326,6 +349,7 @@
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChiTietGioHang" EntityType="Self.ChiTietGioHang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChiTietHoaDon" EntityType="Self.ChiTietHoaDon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DonHang" EntityType="Self.DonHang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GioHang" EntityType="Self.GioHang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HoaDon" EntityType="Self.HoaDon" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KhuyenMai" EntityType="Self.KhuyenMai" Schema="dbo" store:Type="Tables" />
@@ -333,6 +357,7 @@
           <EntitySet Name="LoaiKhuyenMai" EntityType="Self.LoaiKhuyenMai" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NhomSanPham" EntityType="Self.NhomSanPham" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SanPham" EntityType="Self.SanPham" Schema="dbo" store:Type="Tables" />
+
           <AssociationSet Name="FK__KhuyenMai__MaApD__2057CCD0" Association="Self.FK__KhuyenMai__MaApD__2057CCD0">
             <End Role="LoaiApDung" EntitySet="LoaiApDung" />
             <End Role="KhuyenMai" EntitySet="KhuyenMai" />
@@ -368,6 +393,10 @@
           <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DonHang_status" Association="Self.FK_DonHang_status">
+            <End Role="TrangThaiDonHang" EntitySet="TrangThaiDonHang" />
+            <End Role="DonHang" EntitySet="DonHang" />
           </AssociationSet>
           <AssociationSet Name="FK_GIOHANG" Association="Self.FK_GIOHANG">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -690,9 +719,7 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
-          <EntitySet Name="KhuyenMais" EntityType="CT25Team17Model.KhuyenMai" />
-          <EntitySet Name="LoaiApDungs" EntityType="CT25Team17Model.LoaiApDung" />
-          <EntitySet Name="LoaiKhuyenMais" EntityType="CT25Team17Model.LoaiKhuyenMai" />
+
           <AssociationSet Name="FK__KhuyenMai__MaApD__2057CCD0" Association="CT25Team17Model.FK__KhuyenMai__MaApD__2057CCD0">
             <End Role="LoaiApDung" EntitySet="LoaiApDungs" />
             <End Role="KhuyenMai" EntitySet="KhuyenMais" />
@@ -701,7 +728,7 @@
             <End Role="LoaiKhuyenMai" EntitySet="LoaiKhuyenMais" />
             <End Role="KhuyenMai" EntitySet="KhuyenMais" />
           </AssociationSet>
-          </EntityContainer>
+
         <EntityType Name="KhuyenMai">
           <Key>
             <PropertyRef Name="Makhuyenmai" />
@@ -734,6 +761,7 @@
           <Property Name="Tenloai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="KhuyenMais" Relationship="CT25Team17Model.FK__KhuyenMai__Maloa__1F63A897" FromRole="LoaiKhuyenMai" ToRole="KhuyenMai" />
         </EntityType>
+
         <Association Name="FK__KhuyenMai__MaApD__2057CCD0">
           <End Type="CT25Team17Model.LoaiApDung" Role="LoaiApDung" Multiplicity="1" />
           <End Type="CT25Team17Model.KhuyenMai" Role="KhuyenMai" Multiplicity="*" />
@@ -758,7 +786,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        </Schema>
+
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -892,6 +920,7 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+
           <EntitySetMapping Name="KhuyenMais">
             <EntityTypeMapping TypeName="CT25Team17Model.KhuyenMai">
               <MappingFragment StoreEntitySet="KhuyenMai">
@@ -921,7 +950,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          </EntityContainerMapping>
+
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

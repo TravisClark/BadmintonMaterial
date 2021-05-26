@@ -36,8 +36,6 @@ namespace WebApplication2.Models
         public virtual DbSet<HoaDon> HoaDons { get; set; }
         public virtual DbSet<NhomSanPham> NhomSanPhams { get; set; }
         public virtual DbSet<SanPham> SanPhams { get; set; }
-        public virtual DbSet<KhuyenMai> KhuyenMais { get; set; }
-        public virtual DbSet<LoaiApDung> LoaiApDungs { get; set; }
-        public virtual DbSet<LoaiKhuyenMai> LoaiKhuyenMais { get; set; }
+
     }
 }
