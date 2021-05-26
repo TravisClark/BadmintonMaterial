@@ -1,0 +1,184 @@
+﻿@model IEnumerable<WebApplication2.Models.KhuyenMai>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<!-- Page wrapper  -->
+<!-- ============================================================== -->
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">Danh sách mã khuyến mãi</h4>
+                <div class="ms-auto text-end">
+                    <nav aria-label="breadcrumb">
+                        <button type="button" class="btn btn-primary" style="margin-bottom: 5px;"><a href="addDiscount.html" style="text-decoration: none; color: #fff;">Tạo mới mã khuyến mãi</a></button>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="tables.html">Danh sách mã khuyến mãi</a></li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Danh sách mã khuyến mãi</h5>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Mã khuyến mãi</th>
+                                <th scope="col">Loại khuyến mãi</th>
+                                <th scope="col">Mức giảm</th>
+                                <th scope="col">Áp dụng cho</th>
+                                <th scope="col">Trị giá từ</th>
+                                <th scope="col">Thời gian bắt đầu</th>
+                                <th scope="col">Thời gian kết thúc</th>
+                                <th scope="col">Xóa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Makhuyenmai)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LoaiKhuyenMai.Tenloai)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Mucgiam)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LoaiApDung.TenLApDung)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.GTapdung)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TGbatdau)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TGketthuc)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                </td>
+                                <td><a href="#"><i class="mdi mdi-delete"></i></a></td>
+                            </tr>
+                            }
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right sidebar -->
+        <!-- ============================================================== -->
+        <!-- .right-sidebar -->
+        <!-- ============================================================== -->
+        <!-- End Right sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+    <footer class="footer text-center">
+        All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://www.wrappixel.com">WrapPixel</a>.
+    </footer>
+    <!-- ============================================================== -->
+    <!-- End footer -->
+    <!-- ============================================================== -->
+</div>
+
+
+@*<h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Makhuyenmai)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LoaiKhuyenMai.Tenloai)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mucgiam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LoaiApDung.TenLApDung)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GTapdung)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TGbatdau)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TGketthuc)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Makhuyenmai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LoaiKhuyenMai.Tenloai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mucgiam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LoaiApDung.TenLApDung)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GTapdung)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TGbatdau)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TGketthuc)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+
+    </table>
+*@

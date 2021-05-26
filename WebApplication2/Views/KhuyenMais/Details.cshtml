@@ -1,0 +1,106 @@
+﻿@model WebApplication2.Models.KhuyenMai
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>KhuyenMai</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Mucgiam)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mucgiam)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GTapdung)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GTapdung)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TGbatdau)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TGbatdau)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TGketthuc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TGketthuc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoaiApDung.TenLApDung)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoaiApDung.TenLApDung)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoaiApDung1.TenLApDung)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoaiApDung1.TenLApDung)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoaiKhuyenMai.Tenloai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoaiKhuyenMai.Tenloai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoaiKhuyenMai1.Tenloai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoaiKhuyenMai1.Tenloai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoaiKhuyenMai2.Tenloai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoaiKhuyenMai2.Tenloai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoaiKhuyenMai3.Tenloai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoaiKhuyenMai3.Tenloai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoaiKhuyenMai4.Tenloai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoaiKhuyenMai4.Tenloai)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
