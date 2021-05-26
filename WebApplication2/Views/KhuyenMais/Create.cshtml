@@ -16,7 +16,7 @@
                 <div class="ms-auto text-end">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="tables.html">Danh sách mã khuyến mãi</a></li>
+                            <li class="breadcrumb-item"><a href="@Url.Action("Index","KhuyenMais")">Danh sách mã khuyến mãi</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Tạo mã khuyến mãi</li>
                         </ol>
                     </nav>
@@ -108,11 +108,10 @@
                         </div>
                             <div class="border-top">
                                 <div class="card-body" style="text-align: right;">
-                                    <button type="button" class="btn btn-secondary"
-                                            style="margin-right: 15px;">
-                                        Hủy tạo mới
-                                    </button>
-                                    <button type="button" class="btn btn-primary">Lưu dữ liệu</button>
+                                    <a href="@Url.Action("Index","KhuyenMais")"><button type="button" class="btn btn-secondary"
+                                        style="margin-right: 15px;">Hủy tạo mới</button></a>
+                                    
+                                    <input type="submit" value="Lưu" class="btn btn-default" />
                                 </div>
                             </div>
                     </form>
