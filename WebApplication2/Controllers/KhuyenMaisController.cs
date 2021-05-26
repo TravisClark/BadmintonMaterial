@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Transactions;
 using WebApplication2.Models;
+using Microsoft.AspNet.Identity;
 
 namespace WebApplication2.Controllers
 {
@@ -73,9 +76,48 @@ namespace WebApplication2.Controllers
             return View(khuyenMai);
         }
 
-        // GET: KhuyenMais/Edit/5
-        public ActionResult Edit(string id)
+        private void CheckThongTinCreate(KhuyenMai khuyenMai)
         {
+            var regexItem = new Regex("^[ a-z A-Z 0-9 ]*$");
+            var regexNumeric = new Regex("^[ 0-9 ]*$");
+            var regexWord = new Regex("^[ a-z A-Z ]*$");
+            //Kiem tra MaSP
+            foreach (var item in db.KhuyenMais)
+            {
+                if (khuyenMai.Makhuyenmai == item.Makhuyenmai)
+                {
+                    ModelState.AddModelError("Makhuyenmai", "Mã khuyến mãi đã tồn tại.");
+                }
+            }
+            if (khuyenMai.Makhuyenmai == null)
+            {
+                ModelState.AddModelError("Makhuyenmai", "Mã khuyến mãi không được để trống.");
+            }
+            else
+            {
+                if (khuyenMai.Makhuyenmai.Length != 10)
+                {
+                    ModelState.AddModelError("Makhuyenmai", "Mã khuyến mãi phải có đúng 10 ký tự.");
+                }
+                else
+                {
+                    if (khuyenMai.Makhuyenmai.IndexOf(" ") >= 0)
+                    {
+                        ModelState.AddModelError("Makhuyenmai", "Mã khuyến mãi không chứa khoảng trắng.");
+                    }
+                    else
+                    {
+                        if (regexItem.IsMatch(khuyenMai.Makhuyenmai) == false)
+                        {
+                            ModelState.AddModelError("Makhuyenmai", "Mã khuyến mãi chỉ chứa ký tự alphabet(a-z,A-Z,0-9).");
+                        }
+                    }
+                }
+            }
+        }
+            // GET: KhuyenMais/Edit/5
+        public ActionResult Edit(string id)
+            {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
