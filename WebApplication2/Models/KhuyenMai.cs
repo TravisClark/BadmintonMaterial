@@ -14,11 +14,15 @@ namespace WebApplication2.Models
     
     public partial class KhuyenMai
     {
-        public string MaKM { get; set; }
-        public Nullable<System.DateTime> TGBatDau { get; set; }
-        public Nullable<System.DateTime> TGKetThuc { get; set; }
-        public string LoaiKM { get; set; }
-        public string LoaiApDung { get; set; }
-        public string GiaTriDHTu { get; set; }
+        public string Makhuyenmai { get; set; }
+        public string Maloai { get; set; }
+        public Nullable<int> Mucgiam { get; set; }
+        public string MaApDung { get; set; }
+        public Nullable<int> GTapdung { get; set; }
+        public Nullable<System.DateTime> TGbatdau { get; set; }
+        public Nullable<System.DateTime> TGketthuc { get; set; }
+    
+        public virtual LoaiApDung LoaiApDung { get; set; }
+        public virtual LoaiKhuyenMai LoaiKhuyenMai { get; set; }
     }
 }
