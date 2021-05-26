@@ -57,8 +57,9 @@ namespace WebApplication2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Makhuyenmai,Maloai,Mucgiam,MaApDung,GTapdung,TGbatdau,TGketthuc")] KhuyenMai khuyenMai)
+        public ActionResult Create(KhuyenMai khuyenMai)
         {
+            CheckThongTinCreate(khuyenMai);
             if (ModelState.IsValid)
             {
                 db.KhuyenMais.Add(khuyenMai);
@@ -112,6 +113,49 @@ namespace WebApplication2.Controllers
                             ModelState.AddModelError("Makhuyenmai", "Mã khuyến mãi chỉ chứa ký tự alphabet(a-z,A-Z,0-9).");
                         }
                     }
+                }
+            }
+
+            // Loại khuyến mãi và mức giảm giá
+            if (khuyenMai.Mucgiam == null)
+            {
+                ModelState.AddModelError("Mucgiam", "Mức giảm giá không được rỗng.");
+            }
+            else
+            {
+                if (khuyenMai.Maloai.ToString() == "KML-02")
+                {
+                    if(khuyenMai.Mucgiam < 1 || khuyenMai.Mucgiam > 100)
+                    {
+                        ModelState.AddModelError("Mucgiam", "Mức giảm giá theo % có giá trị từ 1-100%");
+                    }
+                }
+                else
+                {
+                    if(khuyenMai.Mucgiam < 1)
+                    {
+                        ModelState.AddModelError("Mucgiam", "Mức giảm giá phải lớn hơn 1");
+                    }
+                }
+            }
+
+            // Loại áp dụng và giá trị tối thiểu
+            if (khuyenMai.MaApDung.ToString() == "KMAD-01")
+            {
+            }
+            else
+            {
+                if(khuyenMai.GTapdung <1)
+                {
+                    ModelState.AddModelError("GTapdung", "Giá trị áp dụng phải lớn hơn 1");
+                }
+                else if(khuyenMai.GTapdung < khuyenMai.Mucgiam)
+                {
+                    ModelState.AddModelError("GTapdung", "Giá trị áp dụng phải lớn hơn mức giảm giá");
+                }
+                else
+                {
+                    ModelState.AddModelError("GTapdung", "Giá trị áp dụng không được bỏ trống");
                 }
             }
         }
