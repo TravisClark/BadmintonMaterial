@@ -370,6 +370,7 @@
     <Content Include="Views\ChiTietGioHangs\Details.cshtml" />
     <Content Include="Views\ChiTietGioHangs\Edit.cshtml" />
     <Content Include="Views\ChiTietGioHangs\Index.cshtml" />
+    <Content Include="Views\test\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
