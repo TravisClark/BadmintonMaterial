@@ -27,10 +27,10 @@
         <AssociationConnector Association="CT25Team17Model.FK_SanPham_MaNhom" ManuallyRouted="false" />
         <AssociationConnector Association="CT25Team17Model.AspNetUserRoles" ManuallyRouted="false" />
         <EntityTypeShape EntityType="CT25Team17Model.KhuyenMai" Width="1.5" PointX="9.625" PointY="1" />
-        <EntityTypeShape EntityType="CT25Team17Model.LoaiApDung" Width="1.5" PointX="7.375" PointY="17.5" />
-        <EntityTypeShape EntityType="CT25Team17Model.LoaiKhuyenMai" Width="1.5" PointX="7.375" PointY="1.5" />
-        <AssociationConnector Association="CT25Team17Model.FK__KhuyenMai__MaApD__2057CCD0" />
-        <AssociationConnector Association="CT25Team17Model.FK__KhuyenMai__Maloa__1F63A897" />
+        <EntityTypeShape EntityType="CT25Team17Model.LoaiApDung" Width="1.5" PointX="7.375" PointY="1.5" />
+        <EntityTypeShape EntityType="CT25Team17Model.LoaiKhuyenMai" Width="1.5" PointX="7.375" PointY="17.5" />
+        <AssociationConnector Association="CT25Team17Model.FK__KhuyenMai__MaApD__408F9238" />
+        <AssociationConnector Association="CT25Team17Model.FK__KhuyenMai__Maloa__3F9B6DFF" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

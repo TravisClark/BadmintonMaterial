@@ -109,13 +109,11 @@
         <EntityType Name="KhuyenMai">
           <Key>
             <PropertyRef Name="Makhuyenmai" />
-            <PropertyRef Name="Maloai" />
-            <PropertyRef Name="MaApDung" />
           </Key>
           <Property Name="Makhuyenmai" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="Maloai" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Maloai" Type="nvarchar" MaxLength="10" />
           <Property Name="Mucgiam" Type="int" />
-          <Property Name="MaApDung" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MaApDung" Type="varchar" MaxLength="10" />
           <Property Name="GTapdung" Type="int" />
           <Property Name="TGbatdau" Type="date" />
           <Property Name="TGketthuc" Type="date" />
@@ -153,8 +151,8 @@
           <Property Name="GiaSP" Type="int" Nullable="false" />
           <Property Name="SoLuong" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK__KhuyenMai__MaApD__2057CCD0">
-          <End Role="LoaiApDung" Type="Self.LoaiApDung" Multiplicity="1" />
+        <Association Name="FK__KhuyenMai__MaApD__408F9238">
+          <End Role="LoaiApDung" Type="Self.LoaiApDung" Multiplicity="0..1" />
           <End Role="KhuyenMai" Type="Self.KhuyenMai" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="LoaiApDung">
@@ -165,8 +163,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__KhuyenMai__Maloa__1F63A897">
-          <End Role="LoaiKhuyenMai" Type="Self.LoaiKhuyenMai" Multiplicity="1" />
+        <Association Name="FK__KhuyenMai__Maloa__3F9B6DFF">
+          <End Role="LoaiKhuyenMai" Type="Self.LoaiKhuyenMai" Multiplicity="0..1" />
           <End Role="KhuyenMai" Type="Self.KhuyenMai" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="LoaiKhuyenMai">
@@ -333,11 +331,11 @@
           <EntitySet Name="LoaiKhuyenMai" EntityType="Self.LoaiKhuyenMai" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NhomSanPham" EntityType="Self.NhomSanPham" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SanPham" EntityType="Self.SanPham" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__KhuyenMai__MaApD__2057CCD0" Association="Self.FK__KhuyenMai__MaApD__2057CCD0">
+          <AssociationSet Name="FK__KhuyenMai__MaApD__408F9238" Association="Self.FK__KhuyenMai__MaApD__408F9238">
             <End Role="LoaiApDung" EntitySet="LoaiApDung" />
             <End Role="KhuyenMai" EntitySet="KhuyenMai" />
           </AssociationSet>
-          <AssociationSet Name="FK__KhuyenMai__Maloa__1F63A897" Association="Self.FK__KhuyenMai__Maloa__1F63A897">
+          <AssociationSet Name="FK__KhuyenMai__Maloa__3F9B6DFF" Association="Self.FK__KhuyenMai__Maloa__3F9B6DFF">
             <End Role="LoaiKhuyenMai" EntitySet="LoaiKhuyenMai" />
             <End Role="KhuyenMai" EntitySet="KhuyenMai" />
           </AssociationSet>
@@ -693,11 +691,11 @@
           <EntitySet Name="KhuyenMais" EntityType="CT25Team17Model.KhuyenMai" />
           <EntitySet Name="LoaiApDungs" EntityType="CT25Team17Model.LoaiApDung" />
           <EntitySet Name="LoaiKhuyenMais" EntityType="CT25Team17Model.LoaiKhuyenMai" />
-          <AssociationSet Name="FK__KhuyenMai__MaApD__2057CCD0" Association="CT25Team17Model.FK__KhuyenMai__MaApD__2057CCD0">
+          <AssociationSet Name="FK__KhuyenMai__MaApD__408F9238" Association="CT25Team17Model.FK__KhuyenMai__MaApD__408F9238">
             <End Role="LoaiApDung" EntitySet="LoaiApDungs" />
             <End Role="KhuyenMai" EntitySet="KhuyenMais" />
           </AssociationSet>
-          <AssociationSet Name="FK__KhuyenMai__Maloa__1F63A897" Association="CT25Team17Model.FK__KhuyenMai__Maloa__1F63A897">
+          <AssociationSet Name="FK__KhuyenMai__Maloa__3F9B6DFF" Association="CT25Team17Model.FK__KhuyenMai__Maloa__3F9B6DFF">
             <End Role="LoaiKhuyenMai" EntitySet="LoaiKhuyenMais" />
             <End Role="KhuyenMai" EntitySet="KhuyenMais" />
           </AssociationSet>
@@ -707,14 +705,14 @@
             <PropertyRef Name="Makhuyenmai" />
           </Key>
           <Property Name="Makhuyenmai" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Maloai" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Maloai" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="Mucgiam" Type="Int32" />
-          <Property Name="MaApDung" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MaApDung" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="GTapdung" Type="Int32" />
           <Property Name="TGbatdau" Type="DateTime" Precision="0" />
           <Property Name="TGketthuc" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="LoaiApDung" Relationship="CT25Team17Model.FK__KhuyenMai__MaApD__2057CCD0" FromRole="KhuyenMai" ToRole="LoaiApDung" />
-          <NavigationProperty Name="LoaiKhuyenMai" Relationship="CT25Team17Model.FK__KhuyenMai__Maloa__1F63A897" FromRole="KhuyenMai" ToRole="LoaiKhuyenMai" />
+          <NavigationProperty Name="LoaiApDung" Relationship="CT25Team17Model.FK__KhuyenMai__MaApD__408F9238" FromRole="KhuyenMai" ToRole="LoaiApDung" />
+          <NavigationProperty Name="LoaiKhuyenMai" Relationship="CT25Team17Model.FK__KhuyenMai__Maloa__3F9B6DFF" FromRole="KhuyenMai" ToRole="LoaiKhuyenMai" />
         </EntityType>
         <EntityType Name="LoaiApDung">
           <Key>
@@ -722,7 +720,7 @@
           </Key>
           <Property Name="MaApDung" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="TenLApDung" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="KhuyenMais" Relationship="CT25Team17Model.FK__KhuyenMai__MaApD__2057CCD0" FromRole="LoaiApDung" ToRole="KhuyenMai" />
+          <NavigationProperty Name="KhuyenMais" Relationship="CT25Team17Model.FK__KhuyenMai__MaApD__408F9238" FromRole="LoaiApDung" ToRole="KhuyenMai" />
         </EntityType>
         <EntityType Name="LoaiKhuyenMai">
           <Key>
@@ -730,10 +728,10 @@
           </Key>
           <Property Name="Maloai" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="Tenloai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="KhuyenMais" Relationship="CT25Team17Model.FK__KhuyenMai__Maloa__1F63A897" FromRole="LoaiKhuyenMai" ToRole="KhuyenMai" />
+          <NavigationProperty Name="KhuyenMais" Relationship="CT25Team17Model.FK__KhuyenMai__Maloa__3F9B6DFF" FromRole="LoaiKhuyenMai" ToRole="KhuyenMai" />
         </EntityType>
-        <Association Name="FK__KhuyenMai__MaApD__2057CCD0">
-          <End Type="CT25Team17Model.LoaiApDung" Role="LoaiApDung" Multiplicity="1" />
+        <Association Name="FK__KhuyenMai__MaApD__408F9238">
+          <End Type="CT25Team17Model.LoaiApDung" Role="LoaiApDung" Multiplicity="0..1" />
           <End Type="CT25Team17Model.KhuyenMai" Role="KhuyenMai" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="LoaiApDung">
@@ -744,8 +742,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__KhuyenMai__Maloa__1F63A897">
-          <End Type="CT25Team17Model.LoaiKhuyenMai" Role="LoaiKhuyenMai" Multiplicity="1" />
+        <Association Name="FK__KhuyenMai__Maloa__3F9B6DFF">
+          <End Type="CT25Team17Model.LoaiKhuyenMai" Role="LoaiKhuyenMai" Multiplicity="0..1" />
           <End Type="CT25Team17Model.KhuyenMai" Role="KhuyenMai" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="LoaiKhuyenMai">
