@@ -12,24 +12,19 @@ namespace WebApplication2.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class KhuyenMai
+    public partial class KhachHang
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public KhuyenMai()
+        public KhachHang()
         {
             this.DonHangs = new HashSet<DonHang>();
         }
     
-        public string Makhuyenmai { get; set; }
-        public string Maloai { get; set; }
-        public Nullable<int> Mucgiam { get; set; }
-        public string MaApDung { get; set; }
-        public Nullable<int> GTapdung { get; set; }
-        public Nullable<System.DateTime> TGbatdau { get; set; }
-        public Nullable<System.DateTime> TGketthuc { get; set; }
+        public int customer_id { get; set; }
+        public string customer_name { get; set; }
+        public double numberphone { get; set; }
+        public string address { get; set; }
     
-        public virtual LoaiApDung LoaiApDung { get; set; }
-        public virtual LoaiKhuyenMai LoaiKhuyenMai { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DonHang> DonHangs { get; set; }
     }

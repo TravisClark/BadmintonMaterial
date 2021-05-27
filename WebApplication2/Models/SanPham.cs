@@ -18,7 +18,7 @@ namespace WebApplication2.Models
         public SanPham()
         {
             this.ChiTietGioHangs = new HashSet<ChiTietGioHang>();
-            this.DonHangs = new HashSet<DonHang>();
+            this.ChiTietDonHangs = new HashSet<ChiTietDonHang>();
         }
     
         public string MaSP { get; set; }
@@ -33,6 +33,6 @@ namespace WebApplication2.Models
         public virtual ICollection<ChiTietGioHang> ChiTietGioHangs { get; set; }
         public virtual NhomSanPham NhomSanPham { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DonHang> DonHangs { get; set; }
+        public virtual ICollection<ChiTietDonHang> ChiTietDonHangs { get; set; }
     }
 }
