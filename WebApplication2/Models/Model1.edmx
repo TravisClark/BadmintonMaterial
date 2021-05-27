@@ -705,8 +705,6 @@
         <EntityType Name="KhuyenMai">
           <Key>
             <PropertyRef Name="Makhuyenmai" />
-            <PropertyRef Name="Maloai" />
-            <PropertyRef Name="MaApDung" />
           </Key>
           <Property Name="Makhuyenmai" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="Maloai" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
