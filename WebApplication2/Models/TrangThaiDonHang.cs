@@ -15,18 +15,27 @@ namespace WebApplication2.Models
 using System;
     using System.Collections.Generic;
     
-public partial class AspNetUserLogin
+public partial class TrangThaiDonHang
 {
 
-    public string LoginProvider { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public TrangThaiDonHang()
+    {
 
-    public string ProviderKey { get; set; }
+        this.DonHangs = new HashSet<DonHang>();
 
-    public string UserId { get; set; }
+    }
+
+
+    public string status { get; set; }
+
+    public string name_status { get; set; }
 
 
 
-    public virtual AspNetUser AspNetUser { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<DonHang> DonHangs { get; set; }
 
 }
 

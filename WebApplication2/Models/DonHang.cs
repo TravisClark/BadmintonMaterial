@@ -15,18 +15,26 @@ namespace WebApplication2.Models
 using System;
     using System.Collections.Generic;
     
-public partial class AspNetUserLogin
+public partial class DonHang
 {
 
-    public string LoginProvider { get; set; }
+    public int id { get; set; }
 
-    public string ProviderKey { get; set; }
+    public string product_id { get; set; }
 
-    public string UserId { get; set; }
+    public string customer_id { get; set; }
+
+    public Nullable<System.DateTime> date { get; set; }
+
+    public string status { get; set; }
+
+    public double total_money { get; set; }
 
 
 
-    public virtual AspNetUser AspNetUser { get; set; }
+    public virtual SanPham SanPham { get; set; }
+
+    public virtual TrangThaiDonHang TrangThaiDonHang { get; set; }
 
 }
 
