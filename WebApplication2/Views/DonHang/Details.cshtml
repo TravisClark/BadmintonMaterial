@@ -5,47 +5,64 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Details</h2>
-
 <div>
-    <h4>DonHang</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.customer_id)
-        </dt>
+    <div class="page-wrapper">
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center">
+                    <h4>Xem chi tiết đơn hàng</h4>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div>
+                            <hr />
+                            <dl class="dl-horizontal">
+                                <dt>
+                                    @Html.DisplayName("Tên khách hàng")
+                                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.customer_id)
-        </dd>
+                                <dd>
+                                    @Html.DisplayFor(model => model.customer_id)
+                                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.date)
-        </dt>
+                                <dt>
+                                    @Html.DisplayName("Ngày đặt")
+                                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.date)
-        </dd>
+                                <dd>
+                                    @Html.DisplayFor(model => model.date)
+                                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.total_money)
-        </dt>
+                                <dt>
+                                    @Html.DisplayName("Tổng tiền")
+                                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.total_money)
-        </dd>
+                                <dd>
+                                    @Html.DisplayFor(model => model.total_money)
+                                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TrangThaiDonHang.name_status)
-        </dt>
+                                <dt>
+                                    @Html.DisplayName("Trạng thái")
+                                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TrangThaiDonHang.name_status)
-        </dd>
+                                <dd>
+                                    @Html.DisplayFor(model => model.TrangThaiDonHang.name_status)
+                                </dd>
 
-    </dl>
+                            </dl>
+                        </div>
+                        <p>
+                            @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+                            @Html.ActionLink("Back to List", "Index")
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
