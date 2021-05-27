@@ -153,10 +153,39 @@ namespace WebApplication2.Controllers
                 {
                     ModelState.AddModelError("GTapdung", "Giá trị áp dụng phải lớn hơn mức giảm giá");
                 }
-                else
+                else if(khuyenMai.GTapdung == null)
                 {
                     ModelState.AddModelError("GTapdung", "Giá trị áp dụng không được bỏ trống");
                 }
+                else { }
+            }
+
+            // Thời gian có event
+            if(khuyenMai.TGbatdau == null)
+            {
+                ModelState.AddModelError("TGbatdau", "Thời gian bắt đầu khuyến mãi không được trống");
+            }
+            else if(khuyenMai.TGketthuc == null)
+            {
+                ModelState.AddModelError("TGketthuc", "Thời gian kết thúc khuyến mãi không được trống");
+            }
+            else
+            {
+                string[] time1 = khuyenMai.TGbatdau.ToString().Split('/');
+                string[] year1 = time1[2].Split(' ');
+                string[] time2 = khuyenMai.TGketthuc.ToString().Split('/');
+                string[] year2 = time2[2].Split(' ');
+                DateTime date1 = new DateTime(int.Parse(year1[0]), int.Parse(time1[0]),int.Parse(time1[1]),0,0,0);
+                DateTime date2 = new DateTime(int.Parse(year2[0]), int.Parse(time2[0]), int.Parse(time2[1]), 0, 0, 0);
+                int result = DateTime.Compare(date1, date2);
+                string relationship;
+
+                if (result < 0) { }
+                else if (result == 0)
+                    ModelState.AddModelError("TGketthuc", "Thời gian kết thúc khuyến mãi không trùng với thời gian bắt đầu");
+                else
+                    ModelState.AddModelError("TGketthuc", "Thời gian kết thúc khuyến mãi sau thời gian bắt đầu");
+
             }
         }
             // GET: KhuyenMais/Edit/5
@@ -211,7 +240,7 @@ namespace WebApplication2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KhuyenMai khuyenMai = db.KhuyenMais.Find(id);
+            KhuyenMai khuyenMai = db.KhuyenMais.SingleOrDefault(m => m.Makhuyenmai == id);
             if (khuyenMai == null)
             {
                 return HttpNotFound();
@@ -224,7 +253,7 @@ namespace WebApplication2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            KhuyenMai khuyenMai = db.KhuyenMais.Find(id);
+            KhuyenMai khuyenMai = db.KhuyenMais.SingleOrDefault(m => m.Makhuyenmai == id);
             db.KhuyenMais.Remove(khuyenMai);
             db.SaveChanges();
             return RedirectToAction("Index");
