@@ -1,4 +1,5 @@
 ﻿@model WebApplication2.Models.DonHang
+@using Microsoft.AspNet.Identity
 
 @{
     ViewBag.Title = "Details";
@@ -7,45 +8,105 @@
 
 <h2>Details</h2>
 
-<div>
-    <h4>DonHang</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.customer_id)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.customer_id)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.date)
-        </dt>
+<div class="page-wrapper">
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h2 class="page-title">Chỉnh sửa sản phẩm</h2>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div>
 
-        <dd>
-            @Html.DisplayFor(model => model.date)
-        </dd>
+                        <hr />
+                        <dl class="dl-horizontal">
+                            <h3>Sản phẩm</h3>
+                                <dt>
+                                    @Html.DisplayName("Tên sản phẩm")
+                                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.total_money)
-        </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.SanPham.TenSP)
+                                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.total_money)
-        </dd>
+                                <dt>
+                                    @Html.DisplayName("Số lượng")
+                                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TrangThaiDonHang.name_status)
-        </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.product_amout)
+                                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.TrangThaiDonHang.name_status)
-        </dd>
+                                <h3>Khách hàng</h3>
+                                <dt>
+                                    @Html.DisplayName("Tên khách hàng")
+                                </dt>
 
-    </dl>
+                                <dd>
+                                    @Html.DisplayFor(model => model.customer_id)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayName("Số điện thoại")
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.numberphone)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayName("Địa chỉ")
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.address)
+                                </dd>
+                                <h3>Thanh toán</h3>
+                                <dt>
+                                    @Html.DisplayName("Ngày đặt")
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.date)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayName("Mã khuyến mãi")
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.voucher)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayName("Trạng thái")
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.TrangThaiDonHang.name_status)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayName("Tổng tiền")
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.total_money)
+                                </dd>
+                            </dl>
+                        </div>
+                    <p>
+                        @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.id }) |
+                        @Html.ActionLink("Quay lại", "Index")
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

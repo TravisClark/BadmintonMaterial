@@ -4,7 +4,6 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-
 <div class=page-wrapper>
     <div class="page-breadcrumb">
         <div class="row">
@@ -17,6 +16,7 @@
                                 Tạo mới đơn
                                 hàng
                             </a>
+                        </button>
                     </nav>
                 </div>
             </div>
@@ -65,19 +65,17 @@
                                                     <td>
                                                         @Html.DisplayFor(modelItem => item.total_money)
                                                     </td>
-
                                                     <td>
-                                                        @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                                                        @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                                                        @Html.ActionLink("Edit", "Edit", new { id = item.id })
+                                                        |
+                                                        @Html.ActionLink("Details", "Details", new { id = item.id })
+                                                        |
                                                         @Html.ActionLink("Delete", "Delete", new { id = item.id })
                                                     </td>
                                                 </tr>
-                                                    
                                                 }
-
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -87,3 +85,4 @@
             </div>
         </div>
     </div>
+</div>

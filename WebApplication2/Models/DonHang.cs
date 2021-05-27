@@ -22,11 +22,19 @@ public partial class DonHang
 
     public string product_id { get; set; }
 
+    public int product_amout { get; set; }
+
     public string customer_id { get; set; }
+
+    public double numberphone { get; set; }
+
+    public string address { get; set; }
 
     public Nullable<System.DateTime> date { get; set; }
 
     public string status { get; set; }
+
+    public string voucher { get; set; }
 
     public double total_money { get; set; }
 
