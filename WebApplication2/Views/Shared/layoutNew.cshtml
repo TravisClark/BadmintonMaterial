@@ -1,16 +1,11 @@
-﻿
-@{
-
-    ViewBag.Title = "layoutNew";
-
-}
+﻿@{ ViewBag.Title = "layoutNew"; }
 
 <!DOCTYPE html>
 <html>
 <head>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    <link href="@Url.Content("~/css/DonHang.css")" rel="stylesheet" type="text/css" />
+
     <title>Mattress A Ecommerce Category Flat Bootstrap Responsive Website Template | Home :: w3layouts</title>
     <link href="@Url.Content("~/css/bootstrap.css")" rel="stylesheet" type="text/css" media="all" />
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -33,10 +28,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script>$(document).ready(function () { $(".memenu").memenu(); });</script>
     <script src="@Url.Content("~/js/simpleCart.min.js")"></script>
 
-
     @*@Styles.Render("~/Content/css")*@
-
-
 
 
     @*@Scripts.Render("~/bundles/modernizr")*@
@@ -85,23 +77,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <!-- //search-scripts -->
 
                     <div class="ca-r">
-                        <div class="cart box_1">
-                            <a href="checkout.html">
-                                <h3>
-                                    <div class="total">
-                                        <span class="simpleCart_total"></span>
-                                    </div>
-                                    <img src="~/images/cart.png" alt="" />
-                                </h3>
-                            </a>
-                            <p>
-                                <a href="javascript:;" class="simpleCart_empty">Empty Cart</a>
-                            </p>
-                        </div>
+                        
                     </div>
                     <div class="clearfix"> </div>
                 </div>
-
 
             </div>
         </div>
@@ -160,17 +139,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <h4>CONTACT US</h4>
                     <p>Contrary to popular belief</p>
                     <p>The standard chunk</p>
-                    <p>office :  +12 34 995 0792</p>
+                    <p>office : +12 34 995 0792</p>
                 </div>
                 <div class="clearfix"> </div>
             </div>
         </div>
         <div class="footer-class w3-agile">
-            <p>© 2015 Mattress . All Rights Reserved | Design by  <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
+            <p>© 2015 Mattress . All Rights Reserved | Design by <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
         </div>
     </div>
-
     @RenderSection("scripts", required: false)
 </body>
 </html>
-

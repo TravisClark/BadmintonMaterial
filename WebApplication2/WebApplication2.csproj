@@ -175,6 +175,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ChiTietGioHangsController.cs" />
     <Compile Include="Controllers\DonHangController.cs" />
+    <Compile Include="Controllers\HoaDonKhachHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SanPhamController.cs" />
@@ -375,7 +376,7 @@
     <Content Include="Views\ChiTietGioHangs\Details.cshtml" />
     <Content Include="Views\ChiTietGioHangs\Edit.cshtml" />
     <Content Include="Views\ChiTietGioHangs\Index.cshtml" />
-    <Content Include="Views\DonHang\Index.cshtml" />
+    <Content Include="Views\HoaDonKhachHang\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
