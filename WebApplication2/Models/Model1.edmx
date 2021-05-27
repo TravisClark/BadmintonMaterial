@@ -96,6 +96,7 @@
           <Property Name="customer_id" Type="nvarchar" MaxLength="500" />
           <Property Name="date" Type="datetime" />
           <Property Name="status" Type="nvarchar" MaxLength="50" />
+          <Property Name="voucher" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="total_money" Type="float" Nullable="false" />
         </EntityType>
         <EntityType Name="GioHang">
@@ -855,6 +856,7 @@
           <Property Name="total_money" Type="Double" Nullable="false" />
           <NavigationProperty Name="SanPham" Relationship="CT25Team17Model.FK_DonHang_product_id" FromRole="DonHang" ToRole="SanPham" />
           <NavigationProperty Name="TrangThaiDonHang" Relationship="CT25Team17Model.FK_DonHang_status" FromRole="DonHang" ToRole="TrangThaiDonHang" />
+          <Property Name="voucher" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="TrangThaiDonHang">
           <Key>
@@ -1065,6 +1067,7 @@
           <EntitySetMapping Name="DonHangs">
             <EntityTypeMapping TypeName="CT25Team17Model.DonHang">
               <MappingFragment StoreEntitySet="DonHang">
+                <ScalarProperty Name="voucher" ColumnName="voucher" />
                 <ScalarProperty Name="total_money" ColumnName="total_money" />
                 <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="date" ColumnName="date" />

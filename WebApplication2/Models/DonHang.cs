@@ -30,6 +30,8 @@ public partial class DonHang
 
     public double total_money { get; set; }
 
+    public string voucher { get; set; }
+
 
 
     public virtual SanPham SanPham { get; set; }

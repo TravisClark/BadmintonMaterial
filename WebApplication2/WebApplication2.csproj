@@ -1365,7 +1365,11 @@
     <Content Include="Views\ChiTietGioHangs\Details.cshtml" />
     <Content Include="Views\ChiTietGioHangs\Edit.cshtml" />
     <Content Include="Views\ChiTietGioHangs\Index.cshtml" />
-
+    <Content Include="Views\DonHang\Create.cshtml" />
+    <Content Include="Views\DonHang\Delete.cshtml" />
+    <Content Include="Views\DonHang\Details.cshtml" />
+    <Content Include="Views\DonHang\Edit.cshtml" />
+    <Content Include="Views\DonHang\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

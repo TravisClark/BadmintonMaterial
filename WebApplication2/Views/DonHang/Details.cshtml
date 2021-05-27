@@ -39,19 +39,27 @@
                                 </dd>
 
                                 <dt>
-                                    @Html.DisplayName("Tổng tiền")
-                                </dt>
-
-                                <dd>
-                                    @Html.DisplayFor(model => model.total_money)
-                                </dd>
-
-                                <dt>
                                     @Html.DisplayName("Trạng thái")
                                 </dt>
 
                                 <dd>
                                     @Html.DisplayFor(model => model.TrangThaiDonHang.name_status)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayName("Voucher")
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.voucher)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayName("Tổng tiền")
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.total_money)
                                 </dd>
 
                             </dl>
