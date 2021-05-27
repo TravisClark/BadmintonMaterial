@@ -32,7 +32,7 @@
         <EntityTypeShape EntityType="CT25Team17Model.sysdiagram" Width="1.5" PointX="7.375" PointY="0.75" />
         <AssociationConnector Association="CT25Team17Model.FK__KhuyenMai__MaApD__2057CCD0" />
         <AssociationConnector Association="CT25Team17Model.FK__KhuyenMai__Maloa__1F63A897" />
-        <EntityTypeShape EntityType="CT25Team17Model.DonHang" Width="1.5" PointX="8.75" PointY="13.875" />
+        <EntityTypeShape EntityType="CT25Team17Model.DonHang" Width="1.5" PointX="8.75" PointY="13.375" />
         <EntityTypeShape EntityType="CT25Team17Model.TrangThaiDonHang" Width="1.5" PointX="6.5" PointY="18.25" />
         <AssociationConnector Association="CT25Team17Model.FK_DonHang_product_id" />
         <AssociationConnector Association="CT25Team17Model.FK_DonHang_status" />

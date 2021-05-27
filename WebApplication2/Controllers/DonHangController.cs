@@ -49,7 +49,7 @@ namespace WebApplication2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,product_id,customer_id,date,status,total_money,voucher")] DonHang donHang)
+        public ActionResult Create([Bind(Include = "id,product_id,product_amout,customer_id,numberphone,address,date,status,voucher,total_money")] DonHang donHang)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace WebApplication2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,product_id,customer_id,date,status,total_money,voucher")] DonHang donHang)
+        public ActionResult Edit([Bind(Include = "id,product_id,product_amout,customer_id,numberphone,address,date,status,voucher,total_money")] DonHang donHang)
         {
             if (ModelState.IsValid)
             {
