@@ -142,6 +142,7 @@ namespace WebApplication2.Controllers
             // Loại áp dụng và giá trị tối thiểu
             if (khuyenMai.MaApDung.ToString() == "KMAD-01")
             {
+                khuyenMai.GTapdung = null;
             }
             else
             {
