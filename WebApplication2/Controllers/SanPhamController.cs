@@ -13,7 +13,7 @@ using Microsoft.AspNet.Identity;
 
 namespace WebApplication2.Controllers
 {
-    //[Authorize(Roles = "Admim")]
+    [Authorize(Roles = "Admim")]
     public class SanPhamController : Controller
     {
         
@@ -24,21 +24,6 @@ namespace WebApplication2.Controllers
         {
             var sanPhams = db.SanPhams.Include(s => s.NhomSanPham);
             return View(sanPhams.ToList());
-        }
-
-        // GET: SanPhams/Details/5
-        public ActionResult Details(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            SanPham sanPham = db.SanPhams.Find(id);
-            if (sanPham == null)
-            {
-                return HttpNotFound();
-            }
-            return View(sanPham);
         }
 
         public ActionResult Picture(string MaSP)
