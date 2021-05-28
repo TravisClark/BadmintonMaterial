@@ -31,7 +31,7 @@ namespace WebApplication2.Controllers
         }
 
         // GET: GioHang
-        [Authorize]
+
         public ActionResult Index()
         {
             ViewBag.hinh = ".png";
