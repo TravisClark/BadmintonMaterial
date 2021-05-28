@@ -21,7 +21,9 @@ namespace WebApplication2.Controllers
                 Tong += item.SanPham.GiaSP * int.Parse(item.SoLuong.ToString());
             }
             ViewBag.Tong = Tong;
+            ViewBag.hinh = ".png";
             return View(cart);
         }
+     
     }
 }
