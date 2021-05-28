@@ -13,7 +13,7 @@ using Microsoft.AspNet.Identity;
 
 namespace WebApplication2.Controllers
 {
-    [Authorize(Roles = "Admim")]
+    [Authorize(Roles = "Admin")]
     public class SanPhamController : Controller
     {
         
