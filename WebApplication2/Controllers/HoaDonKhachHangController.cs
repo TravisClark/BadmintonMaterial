@@ -10,16 +10,21 @@ namespace WebApplication2.Controllers
     
     public class HoaDonKhachHangController : Controller
     {
-        private List<ChiTietGioHang> cart = Session["cart"] as List<ChiTietGioHang>;
+        private List<ChiTietGioHang> cart;
         // GET: HoaDonKhachHang
         public ActionResult Index()
         {
             var Session = System.Web.HttpContext.Current.Session;
             cart = Session["cart"] as List<ChiTietGioHang>;
-            return View();
-        }
-
-        
-    }
-    
+            int Tong = 0;
+            foreach (var item in cart)
+            {
+                Tong += item.SanPham.GiaSP * int.Parse(item.SoLuong.ToString());
+            }
+            ViewBag.Tong = Tong;
+            ViewBag.hinh = ".png";
+            return View(cart);
+        }             
+    }     
 }
+    

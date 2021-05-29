@@ -13,13 +13,14 @@ using Microsoft.AspNet.Identity;
 
 namespace WebApplication2.Controllers
 {
-    [Authorize(Roles = "Admim")]
+    
     public class SanPhamController : Controller
     {
         
         public CT25Team17Entities db = new CT25Team17Entities();
-        
+
         // GET: SanPhams
+        [Authorize(Roles = "Admim")]
         public ActionResult IndexAdmin()
         {
             var sanPhams = db.SanPhams.Include(s => s.NhomSanPham);
@@ -32,6 +33,7 @@ namespace WebApplication2.Controllers
             return File(path + MaSP + ".png", "images");
         }
         // GET: SanPhams/Create
+        [Authorize(Roles = "Admim")]
         public ActionResult Create()
         {
             ViewBag.MaNhom = new SelectList(db.NhomSanPhams, "MaNhom", "TenNhom");
@@ -380,7 +382,7 @@ namespace WebApplication2.Controllers
         
         [AllowAnonymous]
         // GET: SanPhamGiaoDienKhachHang
-        public ActionResult Index(string returnUrl)
+        public ActionResult Index()
         {
             var sp = db.SanPhams.ToList();
             ViewBag.hinh = ".png";
