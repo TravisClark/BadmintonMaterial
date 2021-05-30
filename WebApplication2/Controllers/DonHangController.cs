@@ -15,6 +15,7 @@ namespace WebApplication2.Controllers
         private CT25Team17Entities db = new CT25Team17Entities();
 
         // GET: DonHang
+        [Authorize(Roles = "Admim")]
         public ActionResult Index()
         {
             var donHangs = db.DonHangs.Include(d => d.ChiTietDonHang).Include(d => d.KhachHang).Include(d => d.TrangThaiDonHang).Include(d => d.KhuyenMai);
@@ -22,6 +23,7 @@ namespace WebApplication2.Controllers
         }
 
         // GET: DonHang/Details/5
+        [Authorize(Roles = "Admim")]
         public ActionResult Details(int? id)
         {
             if (id == null)
