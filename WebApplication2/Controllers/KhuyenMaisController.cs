@@ -17,6 +17,7 @@ namespace WebApplication2.Controllers
     {
         private CT25Team17Entities db = new CT25Team17Entities();
 
+        [Authorize(Roles = "Admin")]
         // GET: KhuyenMais
         public ActionResult Index()
         {

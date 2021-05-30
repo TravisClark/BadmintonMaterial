@@ -15,7 +15,7 @@ namespace WebApplication2.Models
     public partial class DonHang
     {
         public int id { get; set; }
-        public int order_id { get; set; }
+        public string order_id { get; set; }
         public int customer_id { get; set; }
         public Nullable<System.DateTime> date { get; set; }
         public string status { get; set; }

@@ -2,56 +2,52 @@
 @model LoginViewModel
 @{
     ViewBag.Title = "Log in";
-
+    Layout = "~/Views/Shared/layoutNew.cshtml";
 }
-
-
 
 <div class="grow">
     <div class="container">
         <h2>Đăng Nhập</h2>
     </div>
 </div>
-<div class="row">
-    <div style="width:80%; margin-left:auto;margin-right:auto;">
-        <section id="loginForm">
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-            {
-                @Html.AntiForgeryToken()
 
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+<div class="container">
+    <div class="account">
+        <div class="account-pass">
+            <div class="col-md-8 account-top">
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                            
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div>
+                        @Html.LabelFor(m => m.Email)
+                        <div>
+                            @Html.TextBoxFor(m => m.Email)
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    <div>
+                        @Html.LabelFor(m => m.Password)
+                        <div>
+                            @Html.PasswordFor(m => m.Password)
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Đăng Nhập" class="btn btn-default" style="background-color: #8ce78a; color: white; text-align: center; padding: 5px" />
+                    <div>
+                        <div>
+                            <input type="submit" value="Đăng Nhập"/>
+                        </div>
                     </div>
-                </div>
-                <p>
-                    @Html.ActionLink("Đăng Ký Tài Khoản", "Register")
-                </p>
-
-                <p>
-                    @Html.ActionLink("Quên Mật Khẩu", "ForgotPassword")
-                </p>
-            }
-        </section>
-    </div>
-
+                    <p>
+                        @Html.ActionLink("Quên Mật Khẩu?", "ForgotPassword")
+                    </p>
+                }
+            </div>
+        </div>
+    </div>                    
 </div>
 
 @section Scripts {

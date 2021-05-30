@@ -10,94 +10,112 @@ using WebApplication2.Models;
 
 namespace WebApplication2.Controllers
 {
-    [Authorize(Roles ="Admin")]
-    public class AspNetRolesController : Controller
+    public class ChiTietDonHangController : Controller
     {
         private CT25Team17Entities db = new CT25Team17Entities();
 
-        // GET: AspNetRoles
+        // GET: ChiTietDonHang
         public ActionResult Index()
         {
-            return View(db.AspNetRoles.ToList());
-        }        
+            var chiTietDonHangs = db.ChiTietDonHangs.Include(c => c.SanPham);
+            return View(chiTietDonHangs.ToList());
+        }
 
-        // GET: AspNetRoles/Create
+        // GET: ChiTietDonHang/Details/5
+        public ActionResult Details(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ChiTietDonHang chiTietDonHang = db.ChiTietDonHangs.Find(id);
+            if (chiTietDonHang == null)
+            {
+                return HttpNotFound();
+            }
+            return View(chiTietDonHang);
+        }
+
+        // GET: ChiTietDonHang/Create
         public ActionResult Create()
         {
+            ViewBag.order_id = new SelectList(db.SanPhams, "MaSP", "TenSP");
             return View();
         }
 
-        // POST: AspNetRoles/Create
+        // POST: ChiTietDonHang/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create( AspNetRole aspNetRole)
+        public ActionResult Create([Bind(Include = "order_id,product_name,product_amout,total_money")] ChiTietDonHang chiTietDonHang)
         {
             if (ModelState.IsValid)
             {
-                aspNetRole.Id = Guid.NewGuid().ToString();
-                db.AspNetRoles.Add(aspNetRole);
+                db.ChiTietDonHangs.Add(chiTietDonHang);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(aspNetRole);
+            ViewBag.order_id = new SelectList(db.SanPhams, "MaSP", "TenSP", chiTietDonHang.order_id);
+            return View(chiTietDonHang);
         }
 
-        // GET: AspNetRoles/Edit/5
+        // GET: ChiTietDonHang/Edit/5
         public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AspNetRole aspNetRole = db.AspNetRoles.Find(id);
-            if (aspNetRole == null)
+            ChiTietDonHang chiTietDonHang = db.ChiTietDonHangs.Find(id);
+            if (chiTietDonHang == null)
             {
                 return HttpNotFound();
             }
-            return View(aspNetRole);
+            ViewBag.order_id = new SelectList(db.SanPhams, "MaSP", "TenSP", chiTietDonHang.order_id);
+            return View(chiTietDonHang);
         }
 
-        // POST: AspNetRoles/Edit/5
+        // POST: ChiTietDonHang/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name")] AspNetRole aspNetRole)
+        public ActionResult Edit([Bind(Include = "order_id,product_name,product_amout,total_money")] ChiTietDonHang chiTietDonHang)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(aspNetRole).State = EntityState.Modified;
+                db.Entry(chiTietDonHang).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(aspNetRole);
+            ViewBag.order_id = new SelectList(db.SanPhams, "MaSP", "TenSP", chiTietDonHang.order_id);
+            return View(chiTietDonHang);
         }
 
-        // GET: AspNetRoles/Delete/5
+        // GET: ChiTietDonHang/Delete/5
         public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AspNetRole aspNetRole = db.AspNetRoles.Find(id);
-            if (aspNetRole == null)
+            ChiTietDonHang chiTietDonHang = db.ChiTietDonHangs.Find(id);
+            if (chiTietDonHang == null)
             {
                 return HttpNotFound();
             }
-            return View(aspNetRole);
+            return View(chiTietDonHang);
         }
 
-        // POST: AspNetRoles/Delete/5
+        // POST: ChiTietDonHang/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            AspNetRole aspNetRole = db.AspNetRoles.Find(id);
-            db.AspNetRoles.Remove(aspNetRole);
+            ChiTietDonHang chiTietDonHang = db.ChiTietDonHangs.Find(id);
+            db.ChiTietDonHangs.Remove(chiTietDonHang);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
