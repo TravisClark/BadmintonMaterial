@@ -1390,6 +1390,9 @@
     <Content Include="Views\DonHang\Details.cshtml" />
     <Content Include="Views\DonHang\Edit.cshtml" />
     <Content Include="Views\DonHang\Index.cshtml" />
+    <Content Include="Views\KhuyenMais\Create.cshtml" />
+    <Content Include="Views\KhuyenMais\Delete.cshtml" />
+    <Content Include="Views\KhuyenMais\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

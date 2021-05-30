@@ -99,7 +99,7 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="@Url.Action("Create","SanPham")">Sản phẩm</a></li>
                                 <li><a class="dropdown-item" href="create-receipt.html">Đơn hàng</a></li>
-                                <li><a class="dropdown-item" href="addDiscount.html">Khuyến mãi</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Create","KhuyenMais")">Khuyến mãi</a></li>
                             </ul>
                         </li>
                         <!-- ============================================================== -->
@@ -349,6 +349,7 @@
             });
 
         });
+
         /*datwpicker*/
         jQuery('.mydatepicker').datepicker();
         jQuery('#datepicker-autoclose').datepicker({
