@@ -20,8 +20,8 @@ namespace WebApplication2.Models
             this.DonHangs = new HashSet<DonHang>();
         }
     
-        public int order_id { get; set; }
-        public string product_id { get; set; }
+        public string order_id { get; set; }
+        public string product_name { get; set; }
         public int product_amout { get; set; }
         public double total_money { get; set; }
     

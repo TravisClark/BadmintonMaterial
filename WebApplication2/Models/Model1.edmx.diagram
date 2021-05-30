@@ -31,12 +31,12 @@
         <EntityTypeShape EntityType="CT25Team17Model.LoaiKhuyenMai" Width="1.5" PointX="14" PointY="14.375" />
         <AssociationConnector Association="CT25Team17Model.FK__KhuyenMai__MaApD__408F9238" />
         <AssociationConnector Association="CT25Team17Model.FK__KhuyenMai__Maloa__3F9B6DFF" />
-        <EntityTypeShape EntityType="CT25Team17Model.ChiTietDonHang" Width="1.5" PointX="7.875" PointY="13.875" />
-        <EntityTypeShape EntityType="CT25Team17Model.DonHang" Width="1.5" PointX="11.875" PointY="11.75" />
-        <EntityTypeShape EntityType="CT25Team17Model.KhachHang" Width="1.5" PointX="9.625" PointY="11.875" />
         <EntityTypeShape EntityType="CT25Team17Model.sysdiagram" Width="1.5" PointX="0.75" PointY="10.75" />
-        <EntityTypeShape EntityType="CT25Team17Model.TrangThaiDonHang" Width="1.5" PointX="11.875" PointY="9" />
-        <AssociationConnector Association="CT25Team17Model.FK_ChiTietDonHang_product_id" />
+        <EntityTypeShape EntityType="CT25Team17Model.ChiTietDonHang" Width="1.5" PointX="7.5" PointY="13.875" />
+        <EntityTypeShape EntityType="CT25Team17Model.DonHang" Width="1.5" PointX="11" PointY="13.625" />
+        <EntityTypeShape EntityType="CT25Team17Model.KhachHang" Width="1.5" PointX="11" PointY="17.125" />
+        <EntityTypeShape EntityType="CT25Team17Model.TrangThaiDonHang" Width="1.5" PointX="11" PointY="10" />
+        <AssociationConnector Association="CT25Team17Model.FK_ChiTietDonHang_order_id" />
         <AssociationConnector Association="CT25Team17Model.FK_DonHang_order_id" />
         <AssociationConnector Association="CT25Team17Model.FK_DonHang_customer_id" />
         <AssociationConnector Association="CT25Team17Model.FK_DonHang_status" />

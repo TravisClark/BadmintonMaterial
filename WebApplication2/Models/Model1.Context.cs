@@ -39,10 +39,10 @@ namespace WebApplication2.Models
         public virtual DbSet<KhuyenMai> KhuyenMais { get; set; }
         public virtual DbSet<LoaiApDung> LoaiApDungs { get; set; }
         public virtual DbSet<LoaiKhuyenMai> LoaiKhuyenMais { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<ChiTietDonHang> ChiTietDonHangs { get; set; }
         public virtual DbSet<DonHang> DonHangs { get; set; }
         public virtual DbSet<KhachHang> KhachHangs { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TrangThaiDonHang> TrangThaiDonHangs { get; set; }
     }
 }
