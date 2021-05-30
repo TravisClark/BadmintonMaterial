@@ -20,7 +20,7 @@ namespace WebApplication2.Controllers
         public CT25Team17Entities db = new CT25Team17Entities();
 
         // GET: SanPhams
-        [Authorize(Roles = "Admim")]
+        [Authorize(Roles = "Admin")]
         public ActionResult IndexAdmin()
         {
             var sanPhams = db.SanPhams.Include(s => s.NhomSanPham);
