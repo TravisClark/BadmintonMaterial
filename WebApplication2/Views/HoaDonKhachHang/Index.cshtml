@@ -29,46 +29,49 @@
     </div>
 }
 
-    <body class="bg-light">
-        <div class="container">
-            <div class="col-md-8 text-center">
-                <li class="list-group-item d-flex justify-content-between bg-light">
-                    <div class="text-success">
-                        <span>Tổng Tiền (VND)</span>
-                    </div>
-                    <strong>@ViewBag.Tong</strong>
-                    <strong>VND</strong>
-                </li><br><br><br>
-                <h2>THÔNG TIN ĐƠN HÀNG</h2>
-                <hr class="mdi-battery-80">
-            </div>
-            
-            <div class="col-md-8 order-md-1">
-                <h4 class="mb-3">VUI LÒNG ĐIỀN ĐẦY ĐỦ THÔNG TIN</h4><br />
+<body class="bg-light">
+    <div class="container">
+        <div class="col-md-8 text-center">
+            <li class="list-group-item d-flex justify-content-between bg-light">
+                <div class="text-success">
+                    <span>Tổng Tiền (VND)</span>
+                </div>
+                <strong>@ViewBag.Tong</strong>
+                <strong>VND</strong>
+            </li><br><br><br>
+            <h2>THÔNG TIN ĐƠN HÀNG</h2>
+            <hr class="mdi-battery-80">
+        </div>
+
+        <div class="col-md-8 order-md-1">
+            <h4 class="mb-3">VUI LÒNG ĐIỀN ĐẦY ĐỦ THÔNG TIN</h4>
+            <form class="needs-validation" novalidate>
+                <br />
+
                 <div class=" mb-3">
-                    <label for="Name">Tên Khách Hàng</label>
-                    <input type="text" class="form-control" id="Name" placeholder="Vui lòng nhập đầy đủ họ tên" value="" required>
+                    <label for="Name">Tên Khách Hàng (*)<span class="text-muted"></span></label>
+                    <input type="text" class="form-control" id="mobile" placeholder="Vui lòng nhập đầy đủ" required>
                 </div><br />
 
                 <div class="mb-3">
-                    <label for="SĐT">Số Điện Thoại <span class="text-muted"></span> </label>
-                    <input type="text" class="form-control" id="SĐT" placeholder="Vui lòng nhập số điện thoại" value="" required>
+                    <label for="SĐT">Số điện thoại (*)<span class="text-muted"></span></label>
+                    <input id="mobile" type="text" class="form-control" placeholder="Vui lòng số điện thoại" required>
                 </div><br />
 
                 <div class="mb-3">
-                    <label for="address">Địa Chỉ Giao Hàng</label>
-                    <input type="text" class="form-control" id="address" placeholder="Vui lòng nhập địa chỉ" value="" required>
+                    <label for="address">Địa Chỉ Giao Hàng (*)<span class="text-muted"></span></label>
+                    <input id="mobile" type="text" class="form-control" placeholder="Vui lòng địa chỉ vận chuyển" required>
                 </div><br />
 
                 <div class="mb-3">
                     <label for="note">Ghi Chú<span class="text-muted"></span></label>
-                    <input type="text" class="form-control" id="note" placeholder="Vui lòng nhập ghi chú" required>
+                    <input type="text" class="form-control" id="note" placeholder="Vui lòng nhập ghi chú">
                 </div><br />
 
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label for="state">Chọn Voucher</label><br><br>
-                        <select class="custom-select d-block w-100" id="state" required>
+                        <label for="state">Chọn Voucher</label>
+                        <select class="form-control" id="mobile" type="text" required>
                             <option value="">Choose</option>
                             <option>Voucher 1</option>
                             <option>Voucher 2</option>
@@ -79,34 +82,55 @@
                     </div>
                     <div class="col-md-6 md-3">
                         <label for="state">Ngày Đặt Hàng</label>
-                        <br><br>
-                        <input type="date" id="state">
+                        <br>
+                        <input type="date" id="mobile">
                     </div>
-                </div><br /><br />
-                <div class="invalid-feedback">
-                    VUI LÒNG NHẬP ĐẦY ĐỦ THÔNG TIN KHI THANH TOÁN
                 </div>
                 <hr class="mb-4">
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" id="save-info">
                     <label class="custom-control-label" for="save-info">Lưu Thông Tin Này Cho Lần Sau</label>
                 </div>
+                <hr class="mb-4">
                 <tr>
-                    <td><a href="@Url.Action("Index","Chitietgiohangs")" class="add-cart item_add" style="padding:20px">Quay Lại Giỏ Hàng</a></td>                   
-                    <td><a style=" text-align:center ; padding:20px;min-width:158px" href="" class="add-cart item_add">Thanh Toán</a></td>
+                    <td><a href="@Url.Action("Index","Chitietgiohangs")" class="add-cart item_add" style="padding:20px" >Quay Lại Giỏ Hàng</a></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+
+                    <td><a class="add-cart item_add btn-default checkmobile" type="submit" style="text-align: center ;padding:20px; min-width: 158px">Thanh Toán</a></td>
                 </tr>
-             
-            </div>
+
+            </form>
         </div>
+    </div>
+    
+    <footer class="text-center">
+        BAMINTON MATERIAL
+    </footer>
 
-        <footer class="text-center">
-            BAMINTON MATERIAL
-        </footer>
-
-            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-            <script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-            <script src="https://getbootstrap.com/docs/4.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
-            <script src="https://getbootstrap.com/docs/4.3/examples/checkout/form-validation.js"></script>
-    </body>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="https://getbootstrap.com/docs/4.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+    <script src="https://getbootstrap.com/docs/4.3/examples/checkout/form-validation.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('body').on('click', '.checkmobile', function () {
+                var vnf_regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
+                var mobile = $('#mobile').val();
+                if (mobile !== '') {
+                    if (vnf_regex.test(mobile) == false) {
+                        alert('Thông tin của bạn không đúng định dạng!');
+                    } else {
+                        alert('Thông tin không của bạn hợp lệ!');
+                    }
+                } else {
+                    alert('Bạn chưa điền thông tin!');
+                }
+            });
+        });
+    </script>
+</body>
 
 
