@@ -39,10 +39,10 @@ namespace WebApplication2.Controllers
         // GET: DonHang/Create
         public ActionResult Create()
         {
-            ViewBag.order_id = new SelectList(db.ChiTietDonHangs, "order_id", "product_id");
+            ViewBag.order_id = new SelectList(db.ChiTietDonHangs, "order_id", "product_name");
             ViewBag.customer_id = new SelectList(db.KhachHangs, "customer_id", "customer_name");
             ViewBag.status = new SelectList(db.TrangThaiDonHangs, "status", "name_status");
-            ViewBag.voucher = new SelectList(db.KhuyenMais, "Makhuyenmai", "Maloai");
+            ViewBag.voucher = new SelectList(db.KhuyenMais, "Makhuyenmai", "Makhuyenmai");
             return View();
         }
 
@@ -60,10 +60,10 @@ namespace WebApplication2.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.order_id = new SelectList(db.ChiTietDonHangs, "order_id", "product_id", donHang.order_id);
+            ViewBag.order_id = new SelectList(db.ChiTietDonHangs, "order_id", "product_name", donHang.order_id);
             ViewBag.customer_id = new SelectList(db.KhachHangs, "customer_id", "customer_name", donHang.customer_id);
             ViewBag.status = new SelectList(db.TrangThaiDonHangs, "status", "name_status", donHang.status);
-            ViewBag.voucher = new SelectList(db.KhuyenMais, "Makhuyenmai", "Maloai", donHang.voucher);
+            ViewBag.voucher = new SelectList(db.KhuyenMais, "Makhuyenmai", "Makhuyenmai", donHang.voucher);
             return View(donHang);
         }
 
@@ -79,10 +79,10 @@ namespace WebApplication2.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.order_id = new SelectList(db.ChiTietDonHangs, "order_id", "product_id", donHang.order_id);
+            ViewBag.order_id = new SelectList(db.ChiTietDonHangs, "order_id", "product_name", donHang.order_id);
             ViewBag.customer_id = new SelectList(db.KhachHangs, "customer_id", "customer_name", donHang.customer_id);
             ViewBag.status = new SelectList(db.TrangThaiDonHangs, "status", "name_status", donHang.status);
-            ViewBag.voucher = new SelectList(db.KhuyenMais, "Makhuyenmai", "Maloai", donHang.voucher);
+            ViewBag.voucher = new SelectList(db.KhuyenMais, "Makhuyenmai", "Makhuyenmai", donHang.voucher);
             return View(donHang);
         }
 
@@ -99,10 +99,10 @@ namespace WebApplication2.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.order_id = new SelectList(db.ChiTietDonHangs, "order_id", "product_id", donHang.order_id);
+            ViewBag.order_id = new SelectList(db.ChiTietDonHangs, "order_id", "product_name", donHang.order_id);
             ViewBag.customer_id = new SelectList(db.KhachHangs, "customer_id", "customer_name", donHang.customer_id);
             ViewBag.status = new SelectList(db.TrangThaiDonHangs, "status", "name_status", donHang.status);
-            ViewBag.voucher = new SelectList(db.KhuyenMais, "Makhuyenmai", "Maloai", donHang.voucher);
+            ViewBag.voucher = new SelectList(db.KhuyenMais, "Makhuyenmai", "Makhuyenmai", donHang.voucher);
             return View(donHang);
         }
 

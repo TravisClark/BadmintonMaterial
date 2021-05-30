@@ -176,6 +176,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AspNetRolesUserController.cs" />
     <Compile Include="Controllers\AspNetRolesController.cs" />
+    <Compile Include="Controllers\ChiTietDonHangController.cs" />
     <Compile Include="Controllers\ChiTietGioHangsController.cs" />
     <Compile Include="Controllers\DonHangController.cs" />
     <Compile Include="Controllers\HoaDonKhachHangController.cs" />
@@ -1373,17 +1374,22 @@
     <Content Include="Views\ChiTietGioHangs\Details.cshtml" />
     <Content Include="Views\ChiTietGioHangs\Edit.cshtml" />
     <Content Include="Views\ChiTietGioHangs\Index.cshtml" />
-    <Content Include="Views\DonHang\Create.cshtml" />
-    <Content Include="Views\DonHang\Delete.cshtml" />
-    <Content Include="Views\DonHang\Details.cshtml" />
-    <Content Include="Views\DonHang\Edit.cshtml" />
-    <Content Include="Views\DonHang\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\SanPham\Create.cshtml" />
     <Content Include="Views\SanPham\Delete.cshtml" />
     <Content Include="Views\SanPham\Edit.cshtml" />
     <Content Include="Views\SanPham\IndexAdmin.cshtml" />
     <Content Include="Views\HoaDonKhachHang\Index.cshtml" />
+    <Content Include="Views\ChiTietDonHang\Create.cshtml" />
+    <Content Include="Views\ChiTietDonHang\Delete.cshtml" />
+    <Content Include="Views\ChiTietDonHang\Details.cshtml" />
+    <Content Include="Views\ChiTietDonHang\Edit.cshtml" />
+    <Content Include="Views\ChiTietDonHang\Index.cshtml" />
+    <Content Include="Views\DonHang\Create.cshtml" />
+    <Content Include="Views\DonHang\Delete.cshtml" />
+    <Content Include="Views\DonHang\Details.cshtml" />
+    <Content Include="Views\DonHang\Edit.cshtml" />
+    <Content Include="Views\DonHang\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
