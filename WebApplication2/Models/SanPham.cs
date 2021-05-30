@@ -31,5 +31,6 @@ namespace WebApplication2.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietGioHang> ChiTietGioHangs { get; set; }
         public virtual NhomSanPham NhomSanPham { get; set; }
+        public virtual ChiTietDonHang ChiTietDonHang { get; set; }
     }
 }

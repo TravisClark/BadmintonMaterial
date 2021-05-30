@@ -19,6 +19,17 @@
     <link href="@Url.Content("~/dist/css/style.min.css")" rel="stylesheet">
     <link href="@Url.Content("~/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css")" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="@Url.Content("../../assets/libs/quill/dist/quill.snow.css")">
+    <!-- Custom CSS KhuyenMai.Index -->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/assets/extra-libs/multicheck/multicheck.css")">
+    <link href="@Url.Content("~/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css")" rel="stylesheet">
+    <link href="@Url.Content("~/dist/css/style.min.css")" rel="stylesheet">
+    <!-- Custom CSS KhuyenMai.Create -->
+    <link href="@Url.Content("~/assets/libs/flot/css/float-chart.css")" rel="stylesheet">
+    <link href="@Url.Content("~/dist/css/style.min.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css")" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/assets/libs/quill/dist/quill.snow.css")">
+    <link rel="stylesheet" type="text/css"
+          href="@Url.Content("~/assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css")">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -99,7 +110,7 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="@Url.Action("Create","SanPham")">Sản phẩm</a></li>
                                 <li><a class="dropdown-item" href="create-receipt.html">Đơn hàng</a></li>
-                                <li><a class="dropdown-item" href="addDiscount.html">Khuyến mãi</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Create","KhuyenMais")">Khuyến mãi</a></li>
                             </ul>
                         </li>
                         <!-- ============================================================== -->
@@ -257,13 +268,13 @@
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                               href="widgets.html" aria-expanded="false">
+                               href="@Url.Action("Index","DonHang")" aria-expanded="false">
                                 <i class="mdi mdi-receipt"></i><span class="hide-menu">Đơn hàng</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                               href="tables.html" aria-expanded="false">
+                               href="@Url.Action("Index","KhuyenMais")" aria-expanded="false">
                                 <i class="mdi mdi-tag"></i><span class="hide-menu">Khuyến mãi</span>
                             </a>
                         </li>
@@ -305,17 +316,60 @@
     <script src="@Url.Content("~/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js")"></script>
     <script src="@Url.Content("~/assets/libs/chart/turning-series.js")"></script>
     <script src="@Url.Content("~/dist/js/pages/chart/chart-page-init.js")"></script>
-
+    <script src="@Url.Content("~/assets/libs/quill/dist/quill.min.js")"></script>
     <script src="@Url.Content("~/dist/js/custom.min.js")"></script>
     <!-- this page js -->
     <script src="@Url.Content("~/assets/extra-libs/multicheck/datatable-checkbox-init.js")"></script>
     <script src="@Url.Content("~/assets/extra-libs/multicheck/jquery.multicheck.js")"></script>
     <script src="@Url.Content("~/assets/extra-libs/DataTables/datatables.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js")"></script>
+    <script src="@Url.Content("~/dist/js/pages/mask/mask.init.js")"></script>
+    <script src="@Url.Content("~/assets/libs/select2/dist/js/select2.full.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/select2/dist/js/select2.min.js")"></script>
     <script>
         /****************************************
          *       Basic Table                   *
          ****************************************/
         $('#zero_config').DataTable();
+        $(".select2").select2();
+
+        /*colorpicker*/
+        $('.demo').each(function () {
+            //
+            // Dear reader, it's actually very easy to initialize MiniColors. For example:
+            //
+            //  $(selector).minicolors();
+            //
+            // The way I've done it below is just for the demo, so don't get confused
+            // by it. Also, data- attributes aren't supported at this time...they're
+            // only used for this demo.
+            //
+            $(this).minicolors({
+                control: $(this).attr('data-control') || 'hue',
+                position: $(this).attr('data-position') || 'bottom left',
+
+                change: function (value, opacity) {
+                    if (!value) return;
+                    if (opacity) value += ', ' + opacity;
+                    if (typeof console === 'object') {
+                        console.log(value);
+                    }
+                },
+                theme: 'bootstrap'
+            });
+
+        });
+
+        /*datwpicker*/
+        jQuery('.mydatepicker').datepicker();
+        jQuery('#datepicker-autoclose').datepicker({
+            autoclose: true,
+            todayHighlight: true
+        });
+        var quill = new Quill('#editor', {
+            theme: 'snow'
+        });
     </script>
     @section Scripts {
         <script>
@@ -330,6 +384,7 @@
                     reader.readAsDataURL(input.files[0]);
                 }
             }
+
         </script>
     }
 </body>

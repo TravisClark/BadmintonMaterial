@@ -18,27 +18,12 @@ namespace WebApplication2.Controllers
     {
         
         public CT25Team17Entities db = new CT25Team17Entities();
-        
-        // GET: SanPhams
+
+        // GET: SanPhams       
         public ActionResult IndexAdmin()
         {
             var sanPhams = db.SanPhams.Include(s => s.NhomSanPham);
             return View(sanPhams.ToList());
-        }
-
-        // GET: SanPhams/Details/5
-        public ActionResult Details(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            SanPham sanPham = db.SanPhams.Find(id);
-            if (sanPham == null)
-            {
-                return HttpNotFound();
-            }
-            return View(sanPham);
         }
 
         public ActionResult Picture(string MaSP)
@@ -46,7 +31,7 @@ namespace WebApplication2.Controllers
             var path = Server.MapPath(PICTURE_PATH);
             return File(path + MaSP + ".png", "images");
         }
-        // GET: SanPhams/Create
+        // GET: SanPhams/Create      
         public ActionResult Create()
         {
             ViewBag.MaNhom = new SelectList(db.NhomSanPhams, "MaNhom", "TenNhom");
@@ -395,7 +380,7 @@ namespace WebApplication2.Controllers
         
         [AllowAnonymous]
         // GET: SanPhamGiaoDienKhachHang
-        public ActionResult Index(string returnUrl)
+        public ActionResult Index()
         {
             var sp = db.SanPhams.ToList();
             ViewBag.hinh = ".png";

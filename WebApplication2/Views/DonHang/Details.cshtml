@@ -1,0 +1,108 @@
+﻿@model WebApplication2.Models.DonHang
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="page-wrapper">
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h2 class="page-title">Xem chi tiết đơn hàng</h2>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div>
+                        <div>
+                            <dl class="dl-horizontal">
+
+                                <h3>Sản phẩm</h3>
+                                <dt>
+                                    @Html.DisplayName("Ngày đặt")
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.date)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayName("Tên sản phẩm")
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.ChiTietDonHang.product_name)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayName("Số lượng sản phẩm")
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.ChiTietDonHang.product_amout)
+                                </dd>
+                                <h3>Khách hàng</h3>
+                                <dt>
+                                    @Html.DisplayName("Tên khách hàng")
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.KhachHang.customer_name)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayName("Số điện thoại")
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.KhachHang.numberphone)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayName("Địa chỉ")
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.KhachHang.address)
+                                </dd>
+                                <h3>Thanh toán</h3>
+                                <dt>
+                                    @Html.DisplayName("Trạng thái")
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.TrangThaiDonHang.name_status)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayName("Mã khuyến mãi")
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.KhuyenMai.Makhuyenmai)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayName("Tổng tiền")
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.ChiTietDonHang.total_money)
+                                </dd>
+
+                            </dl>
+                        </div>
+                        <p>
+                            @Html.ActionLink("Quay lại", "Index")
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

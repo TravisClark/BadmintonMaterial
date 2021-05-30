@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4070a9d832f9480298322d83a0d5f370" Name="Diagram1">
+      <Diagram DiagramId="4070a9d832f9480298322d83a0d5f370" Name="Diagram1" ZoomLevel="64">
         <EntityTypeShape EntityType="CT25Team17Model.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CT25Team17Model.AspNetRole" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
         <EntityTypeShape EntityType="CT25Team17Model.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
@@ -14,7 +14,6 @@
         <EntityTypeShape EntityType="CT25Team17Model.ChiTietHoaDon" Width="1.5" PointX="7.5" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CT25Team17Model.GioHang" Width="1.5" PointX="5.25" PointY="7" IsExpanded="true" />
         <EntityTypeShape EntityType="CT25Team17Model.HoaDon" Width="1.5" PointX="5.25" PointY="9.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CT25Team17Model.KhuyenMai" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CT25Team17Model.NhomSanPham" Width="1.5" PointX="3" PointY="14" IsExpanded="true" />
         <EntityTypeShape EntityType="CT25Team17Model.SanPham" Width="1.5" PointX="5.25" PointY="13.5" IsExpanded="true" />
         <AssociationConnector Association="CT25Team17Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
@@ -27,7 +26,22 @@
         <AssociationConnector Association="CT25Team17Model.FK_chitiethoadon" ManuallyRouted="false" />
         <AssociationConnector Association="CT25Team17Model.FK_SanPham_MaNhom" ManuallyRouted="false" />
         <AssociationConnector Association="CT25Team17Model.AspNetUserRoles" ManuallyRouted="false" />
-      </Diagram>
+        <EntityTypeShape EntityType="CT25Team17Model.KhuyenMai" Width="1.5" PointX="14.25" PointY="10.625" />
+        <EntityTypeShape EntityType="CT25Team17Model.LoaiApDung" Width="1.5" PointX="14.25" PointY="8.25" />
+        <EntityTypeShape EntityType="CT25Team17Model.LoaiKhuyenMai" Width="1.5" PointX="14" PointY="14.375" />
+        <AssociationConnector Association="CT25Team17Model.FK__KhuyenMai__MaApD__408F9238" />
+        <AssociationConnector Association="CT25Team17Model.FK__KhuyenMai__Maloa__3F9B6DFF" />
+        <EntityTypeShape EntityType="CT25Team17Model.sysdiagram" Width="1.5" PointX="0.75" PointY="10.75" />
+        <EntityTypeShape EntityType="CT25Team17Model.ChiTietDonHang" Width="1.5" PointX="7.5" PointY="13.875" />
+        <EntityTypeShape EntityType="CT25Team17Model.DonHang" Width="1.5" PointX="11" PointY="13.625" />
+        <EntityTypeShape EntityType="CT25Team17Model.KhachHang" Width="1.5" PointX="11" PointY="17.125" />
+        <EntityTypeShape EntityType="CT25Team17Model.TrangThaiDonHang" Width="1.5" PointX="11" PointY="10" />
+        <AssociationConnector Association="CT25Team17Model.FK_ChiTietDonHang_order_id" />
+        <AssociationConnector Association="CT25Team17Model.FK_DonHang_order_id" />
+        <AssociationConnector Association="CT25Team17Model.FK_DonHang_customer_id" />
+        <AssociationConnector Association="CT25Team17Model.FK_DonHang_status" />
+        <AssociationConnector Association="CT25Team17Model.FK_DonHang_voucher" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

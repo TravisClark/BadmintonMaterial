@@ -1,0 +1,112 @@
+﻿@model IEnumerable<WebApplication2.Models.ChiTietGioHang>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/layoutNew.cshtml";
+}
+
+@foreach (var item in Model)
+{
+    <div class="col-md-4 order-md-2 mb-4">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-muted">Sản Phẩm Mua :</span>
+            <span class="badge badge-secondary badge-pill">@item.SoLuong</span>
+        </h4>
+        <ul class="list-group mb-3">
+            <li class="list-group-item d-flex justify-content-between lh-condensed">              
+                <div>
+                    <img style="text-align:center; width:100px" src="~/images/@item.SanPham.MaSP@ViewBag.hinh" alt="Alternate Text" />
+                </div><br />
+                <div>
+                    <h6 class="my-0">Tên Sản Phẩm :</h6>
+                    <small class="text-muted">@item.SanPham.TenSP</small>
+                </div><br />
+                <h6 class="my-0">Giá tiền:</h6>
+                <span class="text-muted">@item.SanPham.GiaSP</span>
+                <strong>VND</strong>
+                <br />
+            </li>
+        </ul>
+    </div>
+}
+
+    <body class="bg-light">
+        <div class="container">
+            <div class="col-md-8 text-center">
+                <li class="list-group-item d-flex justify-content-between bg-light">
+                    <div class="text-success">
+                        <span>Tổng Tiền (VND)</span>
+                    </div>
+                    <strong>@ViewBag.Tong</strong>
+                    <strong>VND</strong>
+                </li><br><br><br>
+                <h2>THÔNG TIN ĐƠN HÀNG</h2>
+                <hr class="mdi-battery-80">
+            </div>
+            
+            <div class="col-md-8 order-md-1">
+                <h4 class="mb-3">VUI LÒNG ĐIỀN ĐẦY ĐỦ THÔNG TIN</h4><br />
+                <div class=" mb-3">
+                    <label for="Name">Tên Khách Hàng</label>
+                    <input type="text" class="form-control" id="Name" placeholder="Vui lòng nhập đầy đủ họ tên" value="" required>
+                </div><br />
+
+                <div class="mb-3">
+                    <label for="SĐT">Số Điện Thoại <span class="text-muted"></span> </label>
+                    <input type="text" class="form-control" id="SĐT" placeholder="Vui lòng nhập số điện thoại" value="" required>
+                </div><br />
+
+                <div class="mb-3">
+                    <label for="address">Địa Chỉ Giao Hàng</label>
+                    <input type="text" class="form-control" id="address" placeholder="Vui lòng nhập địa chỉ" value="" required>
+                </div><br />
+
+                <div class="mb-3">
+                    <label for="note">Ghi Chú<span class="text-muted"></span></label>
+                    <input type="text" class="form-control" id="note" placeholder="Vui lòng nhập ghi chú" required>
+                </div><br />
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="state">Chọn Voucher</label><br><br>
+                        <select class="custom-select d-block w-100" id="state" required>
+                            <option value="">Choose</option>
+                            <option>Voucher 1</option>
+                            <option>Voucher 2</option>
+                            <option>Voucher 3</option>
+                            <option>Voucher 4</option>
+                            <option>Voucher 5</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 md-3">
+                        <label for="state">Ngày Đặt Hàng</label>
+                        <br><br>
+                        <input type="date" id="state">
+                    </div>
+                </div><br /><br />
+                <div class="invalid-feedback">
+                    VUI LÒNG NHẬP ĐẦY ĐỦ THÔNG TIN KHI THANH TOÁN
+                </div>
+                <hr class="mb-4">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="save-info">
+                    <label class="custom-control-label" for="save-info">Lưu Thông Tin Này Cho Lần Sau</label>
+                </div>
+                <tr>
+                    <td><a href="@Url.Action("Index","Chitietgiohangs")" class="add-cart item_add" style="padding:20px">Quay Lại Giỏ Hàng</a></td>                   
+                    <td><a style=" text-align:center ; padding:20px;min-width:158px" href="" class="add-cart item_add">Thanh Toán</a></td>
+                </tr>
+             
+            </div>
+        </div>
+
+        <footer class="text-center">
+            BAMINTON MATERIAL
+        </footer>
+
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+            <script src="https://getbootstrap.com/docs/4.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+            <script src="https://getbootstrap.com/docs/4.3/examples/checkout/form-validation.js"></script>
+    </body>
+
+

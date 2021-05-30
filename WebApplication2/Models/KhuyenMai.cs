@@ -14,11 +14,23 @@ namespace WebApplication2.Models
     
     public partial class KhuyenMai
     {
-        public string MaKM { get; set; }
-        public Nullable<System.DateTime> TGBatDau { get; set; }
-        public Nullable<System.DateTime> TGKetThuc { get; set; }
-        public string LoaiKM { get; set; }
-        public string LoaiApDung { get; set; }
-        public string GiaTriDHTu { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public KhuyenMai()
+        {
+            this.DonHangs = new HashSet<DonHang>();
+        }
+    
+        public string Makhuyenmai { get; set; }
+        public string Maloai { get; set; }
+        public Nullable<int> Mucgiam { get; set; }
+        public string MaApDung { get; set; }
+        public Nullable<int> GTapdung { get; set; }
+        public Nullable<System.DateTime> TGbatdau { get; set; }
+        public Nullable<System.DateTime> TGketthuc { get; set; }
+    
+        public virtual LoaiApDung LoaiApDung { get; set; }
+        public virtual LoaiKhuyenMai LoaiKhuyenMai { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DonHang> DonHangs { get; set; }
     }
 }
