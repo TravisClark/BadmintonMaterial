@@ -7,36 +7,30 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Transactions;
 using WebApplication2.Models;
 using Microsoft.AspNet.Identity;
 
 
 namespace WebApplication2.Controllers
 {
-    public class HomeController : Controller
+    public class AdminController : Controller
     {
         public CT25Team17Entities db = new CT25Team17Entities();
+
+        [Authorize(Roles = "Admin")]
+        // GET: SanPhams       
         public ActionResult Index()
         {
-            var sp = db.SanPhams.ToList().Take(4);
-            ViewBag.hinh = ".png";
-
-
-            return View(sp);
+            var sanPhams = db.SanPhams.Include(s => s.NhomSanPham);
+            return View(sanPhams.ToList());
         }
-
-        public ActionResult About()
+        public ActionResult Picture(string MaSP)
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            var path = Server.MapPath(PICTURE_PATH);
+            return File(path + MaSP + ".png", "images");
         }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
+        private const string PICTURE_PATH = "~/images/";
     }
 }

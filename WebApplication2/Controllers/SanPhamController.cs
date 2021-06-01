@@ -384,9 +384,23 @@ namespace WebApplication2.Controllers
         
         [AllowAnonymous]
         // GET: SanPhamGiaoDienKhachHang
-        public ActionResult Index()
+        public ActionResult Index(String maNhom = "")
         {
-            var sp = db.SanPhams.ToList();
+            List<SanPham> sp;
+
+            if (maNhom == "")
+            {
+                sp = db.SanPhams.ToList();
+                ViewBag.TieuDe = "Tất Cả Sản Phẩm";
+            }
+            else
+            {
+                sp = db.SanPhams.Where(p => p.MaNhom == maNhom).ToList();
+                var nhomSP = db.NhomSanPhams.Where(p => p.MaNhom == maNhom).First();
+
+                ViewBag.TieuDe = nhomSP.TenNhom;
+            }
+
             ViewBag.hinh = ".png";
 
             return View(sp);
