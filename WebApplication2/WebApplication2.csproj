@@ -179,7 +179,7 @@
     <Compile Include="Controllers\ChiTietDonHangController.cs" />
     <Compile Include="Controllers\ChiTietGioHangsController.cs" />
     <Compile Include="Controllers\DonHangController.cs" />
-    <Compile Include="Controllers\HoaDonKhachHangController.cs" />
+    <Compile Include="Controllers\HoaDonController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KhuyenMaisController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -1395,6 +1395,11 @@
     <Content Include="Views\KhuyenMais\Delete.cshtml" />
     <Content Include="Views\KhuyenMais\Index.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\HoaDon\Create.cshtml" />
+    <Content Include="Views\HoaDon\Delete.cshtml" />
+    <Content Include="Views\HoaDon\Details.cshtml" />
+    <Content Include="Views\HoaDon\Edit.cshtml" />
+    <Content Include="Views\HoaDon\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
