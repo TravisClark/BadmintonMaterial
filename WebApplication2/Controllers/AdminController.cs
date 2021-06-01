@@ -16,12 +16,21 @@ namespace WebApplication2.Controllers
 {
     public class AdminController : Controller
     {
-        // GET: Admin
         public CT25Team17Entities db = new CT25Team17Entities();
+
+        [Authorize(Roles = "Admin")]
+        // GET: SanPhams       
         public ActionResult Index()
-        {        
-            return View();
+        {
+            var sanPhams = db.SanPhams.Include(s => s.NhomSanPham);
+            return View(sanPhams.ToList());
         }
-        
+        public ActionResult Picture(string MaSP)
+        {
+            var path = Server.MapPath(PICTURE_PATH);
+            return File(path + MaSP + ".png", "images");
+        }
+
+        private const string PICTURE_PATH = "~/images/";
     }
 }
