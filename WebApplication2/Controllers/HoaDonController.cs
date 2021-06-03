@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication2.Models;
@@ -13,7 +14,7 @@ namespace WebApplication2.Controllers
     public class HoaDonController : Controller
     {
         private CT25Team17Entities db = new CT25Team17Entities();
-        
+        private List<ChiTietGioHang> cart;
         // GET: HoaDon
         public ActionResult Index()
         {
@@ -38,13 +39,23 @@ namespace WebApplication2.Controllers
 
         
         // GET: HoaDon/Create
-        public ActionResult Create()
+        public ActionResult Create(HoaDon model)
         {
+            ViewBag.km = db.KhuyenMais.ToList();
+            var Session = System.Web.HttpContext.Current.Session;
+            cart = Session["cart"] as List<ChiTietGioHang>;
+            int Tong = 0;
+            foreach (var item in cart)
+            {
+                Tong += item.SanPham.GiaSP * int.Parse(item.SoLuong.ToString());
+            }
+            ViewBag.Tong = Tong;
+            ViewBag.hinh = ".png";
             ViewBag.order_id = new SelectList(db.ChiTietDonHangs, "order_id", "product_name");
             ViewBag.customer_id = new SelectList(db.KhachHangs, "customer_id", "customer_name");
             ViewBag.status = new SelectList(db.TrangThaiDonHangs, "status", "name_status");
-            ViewBag.voucher = new SelectList(db.KhuyenMais, "Makhuyenmai", "Maloai");
-            return View();
+            ViewBag.voucher = new SelectList(db.KhuyenMais, "Makhuyenmai", "Maloai");           
+            return View(cart);
         }
 
         // POST: HoaDon/Create
@@ -52,7 +63,7 @@ namespace WebApplication2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,order_id,customer_id,date,status,voucher")] DonHang donHang)
+        public ActionResult Create(DonHang donHang)
         {
             if (ModelState.IsValid)
             {

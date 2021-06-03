@@ -178,6 +178,7 @@
     <Compile Include="Controllers\AspNetRolesController.cs" />
     <Compile Include="Controllers\ChiTietDonHangController.cs" />
     <Compile Include="Controllers\ChiTietGioHangsController.cs" />
+    <Compile Include="Controllers\DatHangController.cs" />
     <Compile Include="Controllers\DonHangController.cs" />
     <Compile Include="Controllers\HoaDonController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -1380,7 +1381,6 @@
     <Content Include="Views\SanPham\Delete.cshtml" />
     <Content Include="Views\SanPham\Edit.cshtml" />
     <Content Include="Views\SanPham\IndexAdmin.cshtml" />
-    <Content Include="Views\HoaDonKhachHang\Index.cshtml" />
     <Content Include="Views\ChiTietDonHang\Create.cshtml" />
     <Content Include="Views\ChiTietDonHang\Delete.cshtml" />
     <Content Include="Views\ChiTietDonHang\Details.cshtml" />
