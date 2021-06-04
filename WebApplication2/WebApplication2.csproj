@@ -176,11 +176,9 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AspNetRolesUserController.cs" />
     <Compile Include="Controllers\AspNetRolesController.cs" />
-    <Compile Include="Controllers\ChiTietDonHangController.cs" />
     <Compile Include="Controllers\ChiTietGioHangsController.cs" />
     <Compile Include="Controllers\DatHangController.cs" />
     <Compile Include="Controllers\DonHangController.cs" />
-    <Compile Include="Controllers\HoaDonController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KhuyenMaisController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -203,13 +201,7 @@
     <Compile Include="Models\AspNetUserLogin.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ChiTietDonHang.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\ChiTietGioHang.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ChiTietHoaDon.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\C__MigrationHistory.cs">
@@ -219,9 +211,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GioHang.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\HoaDon.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
@@ -1381,16 +1370,6 @@
     <Content Include="Views\SanPham\Delete.cshtml" />
     <Content Include="Views\SanPham\Edit.cshtml" />
     <Content Include="Views\SanPham\IndexAdmin.cshtml" />
-    <Content Include="Views\ChiTietDonHang\Create.cshtml" />
-    <Content Include="Views\ChiTietDonHang\Delete.cshtml" />
-    <Content Include="Views\ChiTietDonHang\Details.cshtml" />
-    <Content Include="Views\ChiTietDonHang\Edit.cshtml" />
-    <Content Include="Views\ChiTietDonHang\Index.cshtml" />
-    <Content Include="Views\DonHang\Create.cshtml" />
-    <Content Include="Views\DonHang\Delete.cshtml" />
-    <Content Include="Views\DonHang\Details.cshtml" />
-    <Content Include="Views\DonHang\Edit.cshtml" />
-    <Content Include="Views\DonHang\Index.cshtml" />
     <Content Include="Views\KhuyenMais\Create.cshtml" />
     <Content Include="Views\KhuyenMais\Delete.cshtml" />
     <Content Include="Views\KhuyenMais\Index.cshtml" />
@@ -1400,6 +1379,11 @@
     <Content Include="Views\HoaDon\Details.cshtml" />
     <Content Include="Views\HoaDon\Edit.cshtml" />
     <Content Include="Views\HoaDon\Index.cshtml" />
+    <Content Include="Views\DonHang\Create.cshtml" />
+    <Content Include="Views\DonHang\Delete.cshtml" />
+    <Content Include="Views\DonHang\Details.cshtml" />
+    <Content Include="Views\DonHang\Edit.cshtml" />
+    <Content Include="Views\DonHang\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

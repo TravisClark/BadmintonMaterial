@@ -15,15 +15,13 @@ namespace WebApplication2.Controllers
         private CT25Team17Entities db = new CT25Team17Entities();
 
         // GET: DonHang
-        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
-            var donHangs = db.DonHangs.Include(d => d.ChiTietDonHang).Include(d => d.KhachHang).Include(d => d.TrangThaiDonHang).Include(d => d.KhuyenMai);
+            var donHangs = db.DonHangs.Include(d => d.KhachHang).Include(d => d.SanPham).Include(d => d.TrangThaiDonHang).Include(d => d.KhuyenMai);
             return View(donHangs.ToList());
         }
 
         // GET: DonHang/Details/5
-        [Authorize(Roles = "Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -41,8 +39,8 @@ namespace WebApplication2.Controllers
         // GET: DonHang/Create
         public ActionResult Create()
         {
-            ViewBag.order_id = new SelectList(db.ChiTietDonHangs, "order_id", "product_name");
             ViewBag.customer_id = new SelectList(db.KhachHangs, "customer_id", "customer_name");
+            ViewBag.product_id = new SelectList(db.SanPhams, "MaSP", "TenSP");
             ViewBag.status = new SelectList(db.TrangThaiDonHangs, "status", "name_status");
             ViewBag.voucher = new SelectList(db.KhuyenMais, "Makhuyenmai", "Makhuyenmai");
             return View();
@@ -53,7 +51,7 @@ namespace WebApplication2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,order_id,customer_id,date,status,voucher")] DonHang donHang)
+        public ActionResult Create([Bind(Include = "id,product_id,quantity,customer_id,date,status,voucher,price")] DonHang donHang)
         {
             if (ModelState.IsValid)
             {
@@ -62,10 +60,10 @@ namespace WebApplication2.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.order_id = new SelectList(db.ChiTietDonHangs, "order_id", "product_name", donHang.order_id);
             ViewBag.customer_id = new SelectList(db.KhachHangs, "customer_id", "customer_name", donHang.customer_id);
+            ViewBag.product_id = new SelectList(db.SanPhams, "MaSP", "TenSP", donHang.product_id);
             ViewBag.status = new SelectList(db.TrangThaiDonHangs, "status", "name_status", donHang.status);
-            ViewBag.voucher = new SelectList(db.KhuyenMais, "Makhuyenmai", "Makhuyenmai", donHang.voucher);
+            ViewBag.voucher = new SelectList(db.KhuyenMais, "Makhuyenmai", "Maloai", donHang.voucher);
             return View(donHang);
         }
 
@@ -81,10 +79,10 @@ namespace WebApplication2.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.order_id = new SelectList(db.ChiTietDonHangs, "order_id", "product_name", donHang.order_id);
             ViewBag.customer_id = new SelectList(db.KhachHangs, "customer_id", "customer_name", donHang.customer_id);
+            ViewBag.product_id = new SelectList(db.SanPhams, "MaSP", "TenSP", donHang.product_id);
             ViewBag.status = new SelectList(db.TrangThaiDonHangs, "status", "name_status", donHang.status);
-            ViewBag.voucher = new SelectList(db.KhuyenMais, "Makhuyenmai", "Makhuyenmai", donHang.voucher);
+            ViewBag.voucher = new SelectList(db.KhuyenMais, "Makhuyenmai", "Maloai", donHang.voucher);
             return View(donHang);
         }
 
@@ -93,7 +91,7 @@ namespace WebApplication2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,order_id,customer_id,date,status,voucher")] DonHang donHang)
+        public ActionResult Edit([Bind(Include = "id,product_id,quantity,customer_id,date,status,voucher,price")] DonHang donHang)
         {
             if (ModelState.IsValid)
             {
@@ -101,10 +99,10 @@ namespace WebApplication2.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.order_id = new SelectList(db.ChiTietDonHangs, "order_id", "product_name", donHang.order_id);
             ViewBag.customer_id = new SelectList(db.KhachHangs, "customer_id", "customer_name", donHang.customer_id);
+            ViewBag.product_id = new SelectList(db.SanPhams, "MaSP", "TenSP", donHang.product_id);
             ViewBag.status = new SelectList(db.TrangThaiDonHangs, "status", "name_status", donHang.status);
-            ViewBag.voucher = new SelectList(db.KhuyenMais, "Makhuyenmai", "Makhuyenmai", donHang.voucher);
+            ViewBag.voucher = new SelectList(db.KhuyenMais, "Makhuyenmai", "Maloai", donHang.voucher);
             return View(donHang);
         }
 
