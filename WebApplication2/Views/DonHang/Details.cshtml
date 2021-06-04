@@ -5,6 +5,9 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
+<h2>Details</h2>
+
+
 
 <div class="page-wrapper">
     <div class="page-breadcrumb">
@@ -24,10 +27,14 @@
                                 <div class="col-md-6">
                                     <div class="card">
                                         <div class="card-body">
-                                            <h3>Sản phẩm</h3>
+                                            <div>
+                                                <hr />
+                                                <dl class="dl-horizontal">
+                                                    <h3>Sản phẩm</h3>
                                                     <dt>
                                                         @Html.DisplayName("Ngày đặt")
                                                     </dt>
+
 
                                                     <dd>
                                                         @Html.DisplayFor(model => model.date)
@@ -38,15 +45,15 @@
                                                     </dt>
 
                                                     <dd>
-                                                        @Html.DisplayFor(model => model.ChiTietDonHang.product_name)
+                                                        @Html.DisplayFor(model => model.SanPham.TenSP)
                                                     </dd>
 
                                                     <dt>
-                                                        @Html.DisplayName("Số lượng sản phẩm")
+                                                        @Html.DisplayName("Số lượng")
                                                     </dt>
 
                                                     <dd>
-                                                        @Html.DisplayFor(model => model.ChiTietDonHang.product_amout)
+                                                        @Html.DisplayFor(model => model.quantity)
                                                     </dd>
                                                     <h3>Khách hàng</h3>
                                                     <dt>
@@ -74,7 +81,7 @@
                                                     </dd>
                                                     <h3>Thanh toán</h3>
                                                     <dt>
-                                                        @Html.DisplayName("Trạng thái")
+                                                        @Html.DisplayName("Trạng thái đơn hàng")
                                                     </dt>
 
                                                     <dd>
@@ -94,21 +101,22 @@
                                                     </dt>
 
                                                     <dd>
-                                                        @Html.DisplayFor(model => model.ChiTietDonHang.total_money)
+                                                        @Html.DisplayFor(model => model.price)
                                                     </dd>
 
                                                 </dl>
                                             </div>
-                                            <p>
-                                                @Html.ActionLink("Quay lại", "Index")
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
- 
+                            </dl>
+                        </div>
+                        <p>
+                            @Html.ActionLink("Quay lại", "Index")
+                        </p>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
         </div>
     </div>
 </div>

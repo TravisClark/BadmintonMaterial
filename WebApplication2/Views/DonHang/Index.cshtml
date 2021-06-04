@@ -34,7 +34,6 @@
                                             <thead>
                                                 <tr>
                                                     <th>Ngày đặt</th>
-                                                    <th>Tên sản phẩm</th>
                                                     <th>Tên khách hàng</th>
                                                     <th>Trạng thái</th>
                                                     <th>Mã khuyến mãi</th>
@@ -50,9 +49,6 @@
                                                             @Html.DisplayFor(modelItem => item.date)
                                                         </td>
                                                         <td>
-                                                            @Html.DisplayFor(modelItem => item.ChiTietDonHang.product_name)
-                                                        </td>
-                                                        <td>
                                                             @Html.DisplayFor(modelItem => item.KhachHang.customer_name)
                                                         </td>
                                                         <td>
@@ -63,7 +59,7 @@
                                                             @Html.DisplayFor(modelItem => item.KhuyenMai.Makhuyenmai)
                                                         </td>
                                                         <td>
-                                                            @Html.DisplayFor(modelItem => item.ChiTietDonHang.total_money)
+                                                            @Html.DisplayFor(modelItem => item.price)
                                                         </td>
                                                         <td>
                                                             @Html.ActionLink("Cập nhật", "Edit", new { id = item.id }) |
@@ -71,7 +67,6 @@
                                                         </td>
                                                     </tr>
                                                 }
-
                                             </tbody>
                                         </table>
                                     </div>
