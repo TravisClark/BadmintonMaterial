@@ -22,7 +22,7 @@ namespace WebApplication2.Models
         public string status { get; set; }
         public string voucher { get; set; }
         public double price { get; set; }
-    
+
         public virtual KhachHang KhachHang { get; set; }
         public virtual SanPham SanPham { get; set; }
         public virtual TrangThaiDonHang TrangThaiDonHang { get; set; }

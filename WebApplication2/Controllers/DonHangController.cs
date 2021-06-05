@@ -12,14 +12,32 @@ namespace WebApplication2.Controllers
 {
     public class DonHangController : Controller
     {
-        private CT25Team17Entities db = new CT25Team17Entities();
+        public CT25Team17Entities db = new CT25Team17Entities();
+        private List<DonHang> cart = null;
+        public DonHangController()
+        {
+            var Session = System.Web.HttpContext.Current.Session;
+
+            if (Session["cart"] != null)
+            {
+                cart = Session["cart"] as List<DonHang>;
+            }
+            else
+            {
+                cart = new List<DonHang>();
+                Session["cart"] = cart;
+            }
+        }
 
         // GET: DonHang
         public ActionResult Index()
         {
             var donHangs = db.DonHangs.Include(d => d.KhachHang).Include(d => d.SanPham).Include(d => d.TrangThaiDonHang).Include(d => d.KhuyenMai);
+            ViewBag.status = new SelectList(db.TrangThaiDonHangs, "status", "name_status");
+            ViewBag.hinh = ".png";
             return View(donHangs.ToList());
         }
+
 
         // GET: DonHang/Details/5
         public ActionResult Details(int? id)
@@ -102,7 +120,7 @@ namespace WebApplication2.Controllers
             ViewBag.customer_id = new SelectList(db.KhachHangs, "customer_id", "customer_name", donHang.customer_id);
             ViewBag.product_id = new SelectList(db.SanPhams, "MaSP", "TenSP", donHang.product_id);
             ViewBag.status = new SelectList(db.TrangThaiDonHangs, "status", "name_status", donHang.status);
-            ViewBag.voucher = new SelectList(db.KhuyenMais, "Makhuyenmai", "Maloai", donHang.voucher);
+            ViewBag.voucher = new SelectList(db.KhuyenMais, "Makhuyenmai", "maloai", donHang.voucher);
             return View(donHang);
         }
 
