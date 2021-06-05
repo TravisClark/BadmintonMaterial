@@ -13,22 +13,7 @@ namespace WebApplication2.Controllers
     public class DonHangController : Controller
     {
         public CT25Team17Entities db = new CT25Team17Entities();
-        private List<DonHang> cart = null;
-        public DonHangController()
-        {
-            var Session = System.Web.HttpContext.Current.Session;
-
-            if (Session["cart"] != null)
-            {
-                cart = Session["cart"] as List<DonHang>;
-            }
-            else
-            {
-                cart = new List<DonHang>();
-                Session["cart"] = cart;
-            }
-        }
-
+        [Authorize(Roles = "Admin")]
         // GET: DonHang
         public ActionResult Index()
         {
