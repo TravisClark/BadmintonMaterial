@@ -14,6 +14,7 @@ namespace WebApplication2.Controllers
     {
         public CT25Team17Entities db = new CT25Team17Entities();
         [Authorize(Roles = "Admin")]
+
         // GET: DonHang
         public ActionResult Index()
         {
