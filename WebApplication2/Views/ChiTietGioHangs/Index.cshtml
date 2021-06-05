@@ -46,13 +46,13 @@ else
                     <td>
                         <img style="text-align:center; width:100px" src="~/images/@item.SanPham.MaSP@ViewBag.hinh" alt="Alternate Text" />
                     </td>
-                    <td>
-                        <a href="@Url.Action("chitietsanpham","sanpham", new{item.SanPham.MaSP })">@item.SanPham.TenSP</a>
+                    <td  style=" padding-top: 40px;">
+                        <a style="font-size:16px" href="@Url.Action("chitietsanpham","sanpham", new{item.SanPham.MaSP })">@item.SanPham.TenSP</a>
                     </td>
-                    <td>
+                    <td  style=" padding-top: 40px;">
                         @item.SanPham.GiaSP.ToString("N0") VNĐ
                     </td>
-                    <td>
+                    <td  style=" padding-top: 40px;">
                         <form action="@Url.Action("Edit","chitietgiohangs")" method="post">
 
                             <input type="hidden" name="maSp" value="@item.SanPham.MaSP" />
@@ -65,10 +65,10 @@ else
                         </form>
 
                     </td>
-                    <td>
+                    <td  style=" padding-top: 40px;">
                         @string.Format("{0:#,##0}", item.SanPham.GiaSP * item.SoLuong) VNĐ
                     </td>
-                    <td><a href="@Url.Action("Delete","Chitietgiohangs", new { maSP=item.SanPham.MaSP})">Xóa Sản Phẩm</a></td>
+                    <td  style=" padding-top: 40px;"><a href="@Url.Action("Delete","Chitietgiohangs", new { maSP=item.SanPham.MaSP})">Xóa Sản Phẩm</a></td>
 
                 </tr>
             }
