@@ -10,45 +10,45 @@ using WebApplication2.Controllers;
 namespace WebApplication2.Tests.Controllers
 {
     [TestClass]
-    public class HomeControllerTest
+    public class UnitTest1
     {
-        /*[TestMethod]
+        [TestMethod]
         public void Index()
         {
             // Arrange
-            HomeController controller = new HomeController();
+            KhuyenMaisController controller = new KhuyenMaisController();
 
             // Act
             ViewResult result = controller.Index() as ViewResult;
 
             // Assert
             Assert.IsNotNull(result);
-        }*/
-
-        [TestMethod]
-        public void About()
-        {
-            // Arrange
-            HomeController controller = new HomeController();
-
-            // Act
-            ViewResult result = controller.About() as ViewResult;
-
-            // Assert
-            Assert.AreEqual("Your application description page.", result.ViewBag.Message);
         }
 
         [TestMethod]
-        public void Contact()
+        public void Create()
         {
             // Arrange
-            HomeController controller = new HomeController();
+            KhuyenMaisController controller = new KhuyenMaisController();
 
             // Act
-            ViewResult result = controller.Contact() as ViewResult;
+            ViewResult result = controller.Create() as ViewResult;
 
             // Assert
             Assert.IsNotNull(result);
         }
+
+        /*[TestMethod]
+        public void Delete()
+        {
+            // Arrange
+            KhuyenMaisController controller = new KhuyenMaisController();
+
+            // Act
+            ViewResult result = controller.Delete() as ViewResult;
+
+            // Assert
+            Assert.IsNotNull(result);
+        }*/
     }
 }
