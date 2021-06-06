@@ -13,6 +13,14 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quantity)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.date)
         </dt>
 
@@ -21,11 +29,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ChiTietDonHang.product_name)
+            @Html.DisplayNameFor(model => model.price)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ChiTietDonHang.product_name)
+            @Html.DisplayFor(model => model.price)
         </dd>
 
         <dt>
@@ -34,6 +42,14 @@
 
         <dd>
             @Html.DisplayFor(model => model.KhachHang.customer_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SanPham.TenSP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SanPham.TenSP)
         </dd>
 
         <dt>

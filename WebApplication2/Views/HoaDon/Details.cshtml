@@ -11,36 +11,16 @@
     <h4>DonHang</h4>
     <hr />
     <dl class="dl-horizontal">
-
-        <h1>Khách hàng</h1>
-
         <dt>
-            @Html.DisplayName("Tên khách hàng")
+            @Html.DisplayNameFor(model => model.quantity)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.KhachHang.customer_name)
+            @Html.DisplayFor(model => model.quantity)
         </dd>
 
         <dt>
-            @Html.DisplayName("Số điện thoại")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.KhachHang.numberphone)
-        </dd>
-
-        <dt>
-            @Html.DisplayName("Địa chỉ")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.KhachHang.address)
-        </dd>
-
-
-        <dt>
-            @Html.DisplayName("Ngày đặt")
+            @Html.DisplayNameFor(model => model.date)
         </dt>
 
         <dd>
@@ -48,45 +28,43 @@
         </dd>
 
         <dt>
-            @Html.DisplayName("Ghi chú")
+            @Html.DisplayNameFor(model => model.price)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.status)
+            @Html.DisplayFor(model => model.price)
         </dd>
 
         <dt>
-            @Html.DisplayName("Mã khuyến mãi")
+            @Html.DisplayNameFor(model => model.KhachHang.customer_name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.KhuyenMai.Makhuyenmai)
-        </dd>
-
-        <h2>Thanh toán</h2>
-
-        <dt>
-            @Html.DisplayName("Tên sản phẩm")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ChiTietDonHang.product_name)
+            @Html.DisplayFor(model => model.KhachHang.customer_name)
         </dd>
 
         <dt>
-            @Html.DisplayName("Số lượng sản phẩm")
+            @Html.DisplayNameFor(model => model.SanPham.TenSP)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ChiTietDonHang.product_amout)
+            @Html.DisplayFor(model => model.SanPham.TenSP)
         </dd>
 
         <dt>
-            @Html.DisplayName("Tổng tiền")
+            @Html.DisplayNameFor(model => model.TrangThaiDonHang.name_status)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ChiTietDonHang.total_money)
+            @Html.DisplayFor(model => model.TrangThaiDonHang.name_status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KhuyenMai.Maloai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KhuyenMai.Maloai)
         </dd>
 
     </dl>

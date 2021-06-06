@@ -184,6 +184,8 @@
     <Compile Include="Controllers\AspNetRolesController.cs" />
     <Compile Include="Controllers\ChiTietGioHangsController.cs" />
     <Compile Include="Controllers\DonHangController.cs" />
+    <Compile Include="Controllers\HoaDonController.cs" />
+    <Compile Include="Controllers\HoaDonsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KhuyenMaisController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -1389,6 +1391,7 @@
     <Content Include="Views\DonHang\Details.cshtml" />
     <Content Include="Views\DonHang\Edit.cshtml" />
     <Content Include="Views\DonHang\Index.cshtml" />
+    <Content Include="Views\HoaDons\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
