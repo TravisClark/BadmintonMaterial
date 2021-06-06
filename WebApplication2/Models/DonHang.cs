@@ -15,14 +15,16 @@ namespace WebApplication2.Models
     public partial class DonHang
     {
         public int id { get; set; }
-        public string order_id { get; set; }
+        public string product_id { get; set; }
+        public int quantity { get; set; }
         public int customer_id { get; set; }
         public Nullable<System.DateTime> date { get; set; }
         public string status { get; set; }
         public string voucher { get; set; }
-    
-        public virtual ChiTietDonHang ChiTietDonHang { get; set; }
+        public double price { get; set; }
+
         public virtual KhachHang KhachHang { get; set; }
+        public virtual SanPham SanPham { get; set; }
         public virtual TrangThaiDonHang TrangThaiDonHang { get; set; }
         public virtual KhuyenMai KhuyenMai { get; set; }
     }

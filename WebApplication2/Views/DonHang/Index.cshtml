@@ -33,8 +33,8 @@
                                                role="grid" aria-describedby="zero_config_info">
                                             <thead>
                                                 <tr>
+                                                    <th>Hình ảnh</th>
                                                     <th>Ngày đặt</th>
-                                                    <th>Tên sản phẩm</th>
                                                     <th>Tên khách hàng</th>
                                                     <th>Trạng thái</th>
                                                     <th>Mã khuyến mãi</th>
@@ -47,14 +47,17 @@
                                                 {
                                                     <tr>
                                                         <td>
+                                                            <img src="~/images/@item.SanPham.MaSP@ViewBag.hinh" width="50"/>
+                                                        </td>
+
+                                                        <td>
                                                             @Html.DisplayFor(modelItem => item.date)
                                                         </td>
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.ChiTietDonHang.product_name)
-                                                        </td>
+
                                                         <td>
                                                             @Html.DisplayFor(modelItem => item.KhachHang.customer_name)
                                                         </td>
+
                                                         <td>
                                                             @Html.DisplayFor(modelItem => item.TrangThaiDonHang.name_status)
                                                         </td>
@@ -63,7 +66,7 @@
                                                             @Html.DisplayFor(modelItem => item.KhuyenMai.Makhuyenmai)
                                                         </td>
                                                         <td>
-                                                            @Html.DisplayFor(modelItem => item.ChiTietDonHang.total_money)
+                                                            @string.Format("{0:#,##0}", item.SanPham.GiaSP * item.quantity) VNĐ
                                                         </td>
                                                         <td>
                                                             @Html.ActionLink("Cập nhật", "Edit", new { id = item.id }) |
@@ -71,7 +74,6 @@
                                                         </td>
                                                     </tr>
                                                 }
-
                                             </tbody>
                                         </table>
                                     </div>

@@ -5,78 +5,77 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
+<h2>Delete</h2>
 
-<div class="page-wrapper">
-    <div class="page-breadcrumb">
-        <div class="row">
-            <div class="col-12 d-flex no-block align-items-center">
-                <h2 class="page-title">Hoàn thành đơn hàng (Đơn hàng hoàn thành sẽ được xóa khỏi danh sách đơn)</h2>
-            </div>
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>DonHang</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KhachHang.customer_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KhachHang.customer_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SanPham.TenSP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SanPham.TenSP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrangThaiDonHang.name_status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrangThaiDonHang.name_status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KhuyenMai.Maloai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KhuyenMai.Maloai)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
         </div>
-    </div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <table class="table">
-                        <div>
-                            <hr />
-                            <dl class="dl-horizontal">
-                                <dt>
-                                    @Html.DisplayName("Ngày đặt")
-                                </dt>
-
-                                <dd>
-                                    @Html.DisplayFor(model => model.date)
-                                </dd>
-
-                                <dt>
-                                    @Html.DisplayName("Tên sản phẩm")
-                                </dt>
-
-                                <dd>
-                                    @Html.DisplayFor(model => model.ChiTietDonHang.product_name)
-                                </dd>
-
-                                <dt>
-                                    @Html.DisplayName("Tên khách hàng")
-                                </dt>
-
-                                <dd>
-                                    @Html.DisplayFor(model => model.KhachHang.customer_name)
-                                </dd>
-
-                                <dt>
-                                    @Html.DisplayName("Trạng thái")
-                                </dt>
-
-                                <dd>
-                                    @Html.DisplayFor(model => model.TrangThaiDonHang.name_status)
-                                </dd>
-
-                                <dt>
-                                    @Html.DisplayName("Mã khuyến mãi")
-                                </dt>
-
-                                <dd>
-                                    @Html.DisplayFor(model => model.KhuyenMai.Makhuyenmai)
-                                </dd>
-
-                            </dl>
-
-                            @using (Html.BeginForm())
-                            {
-                                @Html.AntiForgeryToken()
-
-                                <div class="form-actions no-color">
-                                    <input type="submit" value="Hoàn thành" class="btn btn-default" /> |
-                                    @Html.ActionLink("Quay lại", "Index")
-                                </div>
-                            }
-                        </div>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
+    }
 </div>
