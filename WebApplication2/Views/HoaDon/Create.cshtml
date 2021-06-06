@@ -1,92 +1,147 @@
-﻿@model WebApplication2.Models.DonHang
-
+﻿
+@model IEnumerable<WebApplication2.Models.ChiTietGioHang>
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/layoutNew.cshtml";
 }
 
-
-
-@using (Html.BeginForm()) 
+@foreach (var item in Model)
 {
-    @Html.AntiForgeryToken()
-    
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12 text-center">
-            <h2>THÔNG TIN ĐƠN HÀNG</h2><br />
-            <h4 class="mb-3">VUI LÒNG ĐIỀN ĐẦY ĐỦ THÔNG TIN KHI THANH TOÁN</h4>
-            <hr />
-            
-            <div class="card" id="content">
-                
-                @using (Html.BeginForm())
-                {
-                    @Html.AntiForgeryToken()
-              
-                <div class="form-horizontal">
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.KhachHang.customer_name, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-5">
-                            @Html.EditorFor(model => model.KhachHang.customer_name, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.KhachHang.customer_name, "", new { @class = "text-danger" })
-                        </div>
-                    </div><br />
+    <div class="col-md-2 order-md-2 mb-2">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-muted">Sản Phẩm Mua :</span>
+            <span class="badge badge-secondary badge-pill">@item.SoLuong</span>
+        </h4>
+        <ul class="list-group mb-3">
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <div>
+                    <img style="text-align:center; width:100px" src="~/images/@item.SanPham.MaSP@ViewBag.hinh" alt="Alternate Text" />
+                </div><br /><br />
+                <div>
+                    <h6 class="my-0">Tên Sản Phẩm :</h6>
+                    <small class="text-muted">@item.SanPham.TenSP</small>
+                </div><br /><br />
+                <h6 class="my-0">Giá Tiền:</h6>
+                <span class="text-muted">@item.SanPham.GiaSP</span>
+                <strong>VND</strong>
+            </li>
+        </ul>
+    </div>
+}
 
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.KhachHang.numberphone, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-5">
-                            @Html.EditorFor(model => model.KhachHang.numberphone, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.KhachHang.numberphone, "", new { @class = "text-danger" })
-                        </div>
-                    </div><br />
+<body class="bg-light">
+    <div class="container">
+        <div class="col-md-8 text-center">
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.KhachHang.address, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-5">
-                            @Html.EditorFor(model => model.KhachHang.address, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.KhachHang.address, "", new { @class = "text-danger" })
-                        </div>
-                    </div><br />
+            <h2>THÔNG TIN ÐƠN HÀNG</h2>
+            <hr class="mdi-battery-80">
+        </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.date, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-5">
-                            @Html.EditorFor(model => model.date, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.date, "", new { @class = "text-danger" })
-                        </div>
-                    </div><br />
+        <div class="col-md-8 order-md-1">
+            <h4 class="mb-3">VUI LÒNG NHẬP THÔNG TIN CÓ (*) KHI THANH TOÁN</h4>
+            <form class="needs-validation" novalidate>
+                <br />
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.voucher, "voucher", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-5">
-                            @Html.DropDownList("voucher", null, htmlAttributes: new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.voucher, "", new { @class = "text-danger" })
-                        </div>
-                    </div><br />
+                <div class=" mb-3">
+                    <label for="Name">Tên Khách Hàng (*)<span class="text-muted"></span></label>
+                    <input type="text" class="form-control" id="moble" placeholder="Vui lòng nhập đầy đủ họ tên" required>
+                </div><br />
 
-                    <hr />
-                    <div>
-                        <a href="@Url.Action("Index","Chitietgiohangs")" class="add-cart item_add" style="padding:20px">Quay Lại Giỏ Hàng</a>
+                <div class="mb-3">
+                    <label for="SÐT">Số điện thoại (*)<span class="text-muted"></span></label>
+                    <input id="mobile" type="text" class="form-control" placeholder="Vui lòng nhập số điện thoại" required>
+                </div><br />
 
+                <div class="mb-3">
+                    <label for="address">Địa chỉ giao hàng (*)<span class="text-muted"></span></label>
+                    <input id="mobile" type="text" class="form-control" placeholder="Vui lòng nhập địa chỉ giao hàng"required>
+                </div><br />
 
-                        <a class="add-cart item_btn btn-default " type="submit" style="text-align: center ;padding:20px; min-width: 158px">Thanh Toán</a>
+                <div class="mb-3">
+                    <label for="note">Ghi Chú<span class="text-muted"></span></label>
+                    <input type="text" class="form-control" id="TH" placeholder="Vui lòng nhập ghi chú">
+                </div><br />
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="state">Chọn Voucher</label>
+                        <select class="form-control" id="TH" type="text" required>
+                            <option value="">Choose</option>
+                            @foreach (var item in ViewBag.km)
+                            {
+                                <option>@item.Makhuyenmai</option>
+                            }
+
+                        </select>
                     </div>
-                    
+                    <div class="col-md-6 md-3">
+                        <label for="state">Ngày Đặt Hàng (*)</label>
+                        <br>
+                        <input type="date" id="TH">
+                    </div>
                 </div>
-                }
+                <hr class="mb-4">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="save-info">
+                    <label class="custom-control-label" for="save-info">Lưu Thông Tin Này Cho Lần Sau</label>
+                </div>
+                <hr class="mb-4">
+                <li class="list-group-item d-flex justify-content-between bg-light">
+                    <div class="text-center">
+                        <div>
+                            <span>Tổng tiền (VND)</span>
+                        </div>
+                        <div>
+                            <strong>@ViewBag.Tong</strong>
+                            <strong>VND</strong>
+                        </div>
+                    </div>
+                </li>
+                <div>
+                    <td><a href="@Url.Action("Index","Chitietgiohangs")" class="add-cart item_add" style="padding:20px">Quay Lại Giỏ Hàng</a></td>
 
+                    <td><a class="add-cart item_add btn-default checkmobile" type="submit" style="text-align: center ;padding:20px; min-width: 158px">Thanh Toán</a></td>
+                </div>
 
-
-                @section Scripts {
-                    @Scripts.Render("~/bundles/jqueryval")
-                }
-            </div>
+            </form>
         </div>
     </div>
-</div>
-}
+
+    <footer class="text-center">
+        BAMINTON MATERIAL
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="https://getbootstrap.com/docs/4.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+    <script src="https://getbootstrap.com/docs/4.3/examples/checkout/form-validation.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('body').on('click', '.checkmobile', function () {
+                var vnf_regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
+                var mobile = $('#mobile').val();
+                var TH = $('#TH').val();
+                if (TH == '') {
+                    alert('Bạn chưa điền thông tin!');
+                } else if (mobile !== '') {
+                    if (vnf_regex.test(mobile) == false)
+                        alert('Ðặt hàng thành công!');
+                }
+
+                if (mobile !== '') {
+                    if (vnf_regex.test(mobile) == true) {
+                        alert('Ðặt hàng thành công!');
+                    }
+                    else {
+                        alert('Thông tin của bạn không đúng hoặc không được bỏ trống!');
+                    }
+                }
+            });
+        });
+    </script>
+
+</body>
+
+
 
 

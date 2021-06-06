@@ -66,15 +66,6 @@
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
-        <EntityType Name="ChiTietDonHang">
-          <Key>
-            <PropertyRef Name="order_id" />
-          </Key>
-          <Property Name="order_id" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="product_name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="product_amout" Type="int" Nullable="false" />
-          <Property Name="total_money" Type="float" Nullable="false" />
-        </EntityType>
         <EntityType Name="ChiTietGioHang">
           <Key>
             <PropertyRef Name="MaChiTietGioHang" />
@@ -85,27 +76,18 @@
           <Property Name="SoLuong" Type="int" />
           <Property Name="MaSanPham" Type="varchar" MaxLength="10" />
         </EntityType>
-        <EntityType Name="ChiTietHoaDon">
-          <Key>
-            <PropertyRef Name="MaChiTietHoaDon" />
-          </Key>
-          <Property Name="MaChiTietHoaDon" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="MaHoaDon" Type="varchar" MaxLength="10" />
-          <Property Name="ThanhTien" Type="int" />
-          <Property Name="SoLuong" Type="int" />
-          <Property Name="MaSanPham" Type="varchar" MaxLength="10" />
-          <Property Name="MaKhuyenMai" Type="varchar" MaxLength="10" />
-        </EntityType>
         <EntityType Name="DonHang">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="order_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="product_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="quantity" Type="int" Nullable="false" />
           <Property Name="customer_id" Type="int" Nullable="false" />
           <Property Name="date" Type="datetime" />
           <Property Name="status" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="voucher" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="price" Type="float" Nullable="false" />
         </EntityType>
         <EntityType Name="GioHang">
           <Key>
@@ -113,18 +95,6 @@
           </Key>
           <Property Name="MaGioHang" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="TaiKhoanKhachHang" Type="nvarchar" MaxLength="128" />
-        </EntityType>
-        <EntityType Name="HoaDon">
-          <Key>
-            <PropertyRef Name="MaHoaDon" />
-          </Key>
-          <Property Name="MaHoaDon" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="CachThucThanhToan" Type="nvarchar" MaxLength="100" />
-          <Property Name="NgayLapHoaDon" Type="datetime" />
-          <Property Name="TinhTrang" Type="nvarchar" MaxLength="100" />
-          <Property Name="TaiKhoanKhachHang" Type="nvarchar" MaxLength="128" />
-          <Property Name="TaiKhoanNhanVien" Type="nvarchar" MaxLength="128" />
-          <Property Name="MaChiTietGioHang" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="KhachHang">
           <Key>
@@ -221,18 +191,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ChiTietDonHang_order_id">
-          <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
-          <End Role="ChiTietDonHang" Type="Self.ChiTietDonHang" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="SanPham">
-              <PropertyRef Name="MaSP" />
-            </Principal>
-            <Dependent Role="ChiTietDonHang">
-              <PropertyRef Name="order_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_CHITIETGIOHANG">
           <End Role="GioHang" Type="Self.GioHang" Multiplicity="0..1" />
           <End Role="ChiTietGioHang" Type="Self.ChiTietGioHang" Multiplicity="*" />
@@ -254,18 +212,6 @@
             </Principal>
             <Dependent Role="ChiTietGioHang">
               <PropertyRef Name="MaSanPham" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_chitiethoadon">
-          <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="0..1" />
-          <End Role="ChiTietHoaDon" Type="Self.ChiTietHoaDon" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HoaDon">
-              <PropertyRef Name="MaHoaDon" />
-            </Principal>
-            <Dependent Role="ChiTietHoaDon">
-              <PropertyRef Name="MaHoaDon" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -337,15 +283,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DonHang_order_id">
-          <End Role="ChiTietDonHang" Type="Self.ChiTietDonHang" Multiplicity="1" />
+        <Association Name="FK_DonHang_product_id">
+          <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
           <End Role="DonHang" Type="Self.DonHang" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="ChiTietDonHang">
-              <PropertyRef Name="order_id" />
+            <Principal Role="SanPham">
+              <PropertyRef Name="MaSP" />
             </Principal>
             <Dependent Role="DonHang">
-              <PropertyRef Name="order_id" />
+              <PropertyRef Name="product_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -385,30 +331,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_HOADON">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
-          <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="HoaDon">
-              <PropertyRef Name="TaiKhoanKhachHang" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_HOADON2">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
-          <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="HoaDon">
-              <PropertyRef Name="TaiKhoanNhanVien" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SanPham_MaNhom">
           <End Role="NhomSanPham" Type="Self.NhomSanPham" Multiplicity="1" />
           <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
@@ -428,12 +350,9 @@
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ChiTietDonHang" EntityType="Self.ChiTietDonHang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChiTietGioHang" EntityType="Self.ChiTietGioHang" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ChiTietHoaDon" EntityType="Self.ChiTietHoaDon" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DonHang" EntityType="Self.DonHang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GioHang" EntityType="Self.GioHang" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="HoaDon" EntityType="Self.HoaDon" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KhachHang" EntityType="Self.KhachHang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KhuyenMai" EntityType="Self.KhuyenMai" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoaiApDung" EntityType="Self.LoaiApDung" Schema="dbo" store:Type="Tables" />
@@ -450,10 +369,6 @@
             <End Role="LoaiKhuyenMai" EntitySet="LoaiKhuyenMai" />
             <End Role="KhuyenMai" EntitySet="KhuyenMai" />
           </AssociationSet>
-          <AssociationSet Name="FK_ChiTietDonHang_order_id" Association="Self.FK_ChiTietDonHang_order_id">
-            <End Role="SanPham" EntitySet="SanPham" />
-            <End Role="ChiTietDonHang" EntitySet="ChiTietDonHang" />
-          </AssociationSet>
           <AssociationSet Name="FK_CHITIETGIOHANG" Association="Self.FK_CHITIETGIOHANG">
             <End Role="GioHang" EntitySet="GioHang" />
             <End Role="ChiTietGioHang" EntitySet="ChiTietGioHang" />
@@ -461,10 +376,6 @@
           <AssociationSet Name="FK_ChiTietGioHang_MaSanPham" Association="Self.FK_ChiTietGioHang_MaSanPham">
             <End Role="SanPham" EntitySet="SanPham" />
             <End Role="ChiTietGioHang" EntitySet="ChiTietGioHang" />
-          </AssociationSet>
-          <AssociationSet Name="FK_chitiethoadon" Association="Self.FK_chitiethoadon">
-            <End Role="HoaDon" EntitySet="HoaDon" />
-            <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDon" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -486,8 +397,8 @@
             <End Role="KhachHang" EntitySet="KhachHang" />
             <End Role="DonHang" EntitySet="DonHang" />
           </AssociationSet>
-          <AssociationSet Name="FK_DonHang_order_id" Association="Self.FK_DonHang_order_id">
-            <End Role="ChiTietDonHang" EntitySet="ChiTietDonHang" />
+          <AssociationSet Name="FK_DonHang_product_id" Association="Self.FK_DonHang_product_id">
+            <End Role="SanPham" EntitySet="SanPham" />
             <End Role="DonHang" EntitySet="DonHang" />
           </AssociationSet>
           <AssociationSet Name="FK_DonHang_status" Association="Self.FK_DonHang_status">
@@ -501,14 +412,6 @@
           <AssociationSet Name="FK_GIOHANG" Association="Self.FK_GIOHANG">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="GioHang" EntitySet="GioHang" />
-          </AssociationSet>
-          <AssociationSet Name="FK_HOADON" Association="Self.FK_HOADON">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="HoaDon" EntitySet="HoaDon" />
-          </AssociationSet>
-          <AssociationSet Name="FK_HOADON2" Association="Self.FK_HOADON2">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="HoaDon" EntitySet="HoaDon" />
           </AssociationSet>
           <AssociationSet Name="FK_SanPham_MaNhom" Association="Self.FK_SanPham_MaNhom">
             <End Role="NhomSanPham" EntitySet="NhomSanPham" />
@@ -577,8 +480,6 @@
           <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
           <NavigationProperty Name="GioHangs" Relationship="Self.FK_GIOHANG" FromRole="AspNetUsers" ToRole="GioHang" />
-          <NavigationProperty Name="HoaDons" Relationship="Self.FK_HOADON" FromRole="AspNetUsers" ToRole="HoaDon" />
-          <NavigationProperty Name="HoaDons1" Relationship="Self.FK_HOADON2" FromRole="AspNetUsers" ToRole="HoaDon" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
         </EntityType>
         <EntityType Name="ChiTietGioHang">
@@ -593,18 +494,6 @@
           <NavigationProperty Name="GioHang" Relationship="Self.FK_CHITIETGIOHANG" FromRole="ChiTietGioHang" ToRole="GioHang" />
           <NavigationProperty Name="SanPham" Relationship="Self.FK_ChiTietGioHang_MaSanPham" FromRole="ChiTietGioHang" ToRole="SanPham" />
         </EntityType>
-        <EntityType Name="ChiTietHoaDon">
-          <Key>
-            <PropertyRef Name="MaChiTietHoaDon" />
-          </Key>
-          <Property Name="MaChiTietHoaDon" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="MaHoaDon" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="ThanhTien" Type="Int32" />
-          <Property Name="SoLuong" Type="Int32" />
-          <Property Name="MaSanPham" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MaKhuyenMai" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="HoaDon" Relationship="Self.FK_chitiethoadon" FromRole="ChiTietHoaDon" ToRole="HoaDon" />
-        </EntityType>
         <EntityType Name="GioHang">
           <Key>
             <PropertyRef Name="MaGioHang" />
@@ -613,21 +502,6 @@
           <Property Name="TaiKhoanKhachHang" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUser" Relationship="Self.FK_GIOHANG" FromRole="GioHang" ToRole="AspNetUsers" />
           <NavigationProperty Name="ChiTietGioHangs" Relationship="Self.FK_CHITIETGIOHANG" FromRole="GioHang" ToRole="ChiTietGioHang" />
-        </EntityType>
-        <EntityType Name="HoaDon">
-          <Key>
-            <PropertyRef Name="MaHoaDon" />
-          </Key>
-          <Property Name="MaHoaDon" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CachThucThanhToan" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="NgayLapHoaDon" Type="DateTime" Precision="3" />
-          <Property Name="TinhTrang" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="TaiKhoanKhachHang" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="TaiKhoanNhanVien" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="MaChiTietGioHang" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_HOADON" FromRole="HoaDon" ToRole="AspNetUsers" />
-          <NavigationProperty Name="AspNetUser1" Relationship="Self.FK_HOADON2" FromRole="HoaDon" ToRole="AspNetUsers" />
-          <NavigationProperty Name="ChiTietHoaDons" Relationship="Self.FK_chitiethoadon" FromRole="HoaDon" ToRole="ChiTietHoaDon" />
         </EntityType>
         <EntityType Name="NhomSanPham">
           <Key>
@@ -650,7 +524,7 @@
           <Property Name="SoLuong" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ChiTietGioHangs" Relationship="Self.FK_ChiTietGioHang_MaSanPham" FromRole="SanPham" ToRole="ChiTietGioHang" />
           <NavigationProperty Name="NhomSanPham" Relationship="Self.FK_SanPham_MaNhom" FromRole="SanPham" ToRole="NhomSanPham" />
-          <NavigationProperty Name="ChiTietDonHang" Relationship="CT25Team17Model.FK_ChiTietDonHang_order_id" FromRole="SanPham" ToRole="ChiTietDonHang" />
+          <NavigationProperty Name="DonHangs" Relationship="CT25Team17Model.FK_DonHang_product_id" FromRole="SanPham" ToRole="DonHang" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -692,30 +566,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_HOADON">
-          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="0..1" />
-          <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="HoaDon">
-              <PropertyRef Name="TaiKhoanKhachHang" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_HOADON2">
-          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="0..1" />
-          <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="HoaDon">
-              <PropertyRef Name="TaiKhoanNhanVien" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_CHITIETGIOHANG">
           <End Role="GioHang" Type="Self.GioHang" Multiplicity="0..1" />
           <End Role="ChiTietGioHang" Type="Self.ChiTietGioHang" Multiplicity="*" />
@@ -737,18 +587,6 @@
             </Principal>
             <Dependent Role="ChiTietGioHang">
               <PropertyRef Name="MaSanPham" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_chitiethoadon">
-          <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="0..1" />
-          <End Role="ChiTietHoaDon" Type="Self.ChiTietHoaDon" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HoaDon">
-              <PropertyRef Name="MaHoaDon" />
-            </Principal>
-            <Dependent Role="ChiTietHoaDon">
-              <PropertyRef Name="MaHoaDon" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -775,9 +613,7 @@
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
           <EntitySet Name="ChiTietGioHangs" EntityType="Self.ChiTietGioHang" />
-          <EntitySet Name="ChiTietHoaDons" EntityType="Self.ChiTietHoaDon" />
           <EntitySet Name="GioHangs" EntityType="Self.GioHang" />
-          <EntitySet Name="HoaDons" EntityType="Self.HoaDon" />
           <EntitySet Name="NhomSanPhams" EntityType="Self.NhomSanPham" />
           <EntitySet Name="SanPhams" EntityType="Self.SanPham" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
@@ -792,14 +628,6 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="GioHang" EntitySet="GioHangs" />
           </AssociationSet>
-          <AssociationSet Name="FK_HOADON" Association="Self.FK_HOADON">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="HoaDon" EntitySet="HoaDons" />
-          </AssociationSet>
-          <AssociationSet Name="FK_HOADON2" Association="Self.FK_HOADON2">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="HoaDon" EntitySet="HoaDons" />
-          </AssociationSet>
           <AssociationSet Name="FK_CHITIETGIOHANG" Association="Self.FK_CHITIETGIOHANG">
             <End Role="GioHang" EntitySet="GioHangs" />
             <End Role="ChiTietGioHang" EntitySet="ChiTietGioHangs" />
@@ -807,10 +635,6 @@
           <AssociationSet Name="FK_ChiTietGioHang_MaSanPham" Association="Self.FK_ChiTietGioHang_MaSanPham">
             <End Role="SanPham" EntitySet="SanPhams" />
             <End Role="ChiTietGioHang" EntitySet="ChiTietGioHangs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_chitiethoadon" Association="Self.FK_chitiethoadon">
-            <End Role="HoaDon" EntitySet="HoaDons" />
-            <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDons" />
           </AssociationSet>
           <AssociationSet Name="FK_SanPham_MaNhom" Association="Self.FK_SanPham_MaNhom">
             <End Role="NhomSanPham" EntitySet="NhomSanPhams" />
@@ -832,20 +656,15 @@
             <End Role="KhuyenMai" EntitySet="KhuyenMais" />
           </AssociationSet>
           <EntitySet Name="sysdiagrams" EntityType="CT25Team17Model.sysdiagram" />
-          <EntitySet Name="ChiTietDonHangs" EntityType="CT25Team17Model.ChiTietDonHang" />
-          <EntitySet Name="DonHangs" EntityType="CT25Team17Model.DonHang" />
           <EntitySet Name="KhachHangs" EntityType="CT25Team17Model.KhachHang" />
           <EntitySet Name="TrangThaiDonHangs" EntityType="CT25Team17Model.TrangThaiDonHang" />
-          <AssociationSet Name="FK_ChiTietDonHang_order_id" Association="CT25Team17Model.FK_ChiTietDonHang_order_id">
-            <End Role="SanPham" EntitySet="SanPhams" />
-            <End Role="ChiTietDonHang" EntitySet="ChiTietDonHangs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DonHang_order_id" Association="CT25Team17Model.FK_DonHang_order_id">
-            <End Role="ChiTietDonHang" EntitySet="ChiTietDonHangs" />
-            <End Role="DonHang" EntitySet="DonHangs" />
-          </AssociationSet>
+          <EntitySet Name="DonHangs" EntityType="CT25Team17Model.DonHang" />
           <AssociationSet Name="FK_DonHang_customer_id" Association="CT25Team17Model.FK_DonHang_customer_id">
             <End Role="KhachHang" EntitySet="KhachHangs" />
+            <End Role="DonHang" EntitySet="DonHangs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DonHang_product_id" Association="CT25Team17Model.FK_DonHang_product_id">
+            <End Role="SanPham" EntitySet="SanPhams" />
             <End Role="DonHang" EntitySet="DonHangs" />
           </AssociationSet>
           <AssociationSet Name="FK_DonHang_status" Association="CT25Team17Model.FK_DonHang_status">
@@ -922,32 +741,6 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="ChiTietDonHang">
-          <Key>
-            <PropertyRef Name="order_id" />
-          </Key>
-          <Property Name="order_id" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="product_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="product_amout" Type="Int32" Nullable="false" />
-          <Property Name="total_money" Type="Double" Nullable="false" />
-          <NavigationProperty Name="SanPham" Relationship="CT25Team17Model.FK_ChiTietDonHang_order_id" FromRole="ChiTietDonHang" ToRole="SanPham" />
-          <NavigationProperty Name="DonHangs" Relationship="CT25Team17Model.FK_DonHang_order_id" FromRole="ChiTietDonHang" ToRole="DonHang" />
-        </EntityType>
-        <EntityType Name="DonHang">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="order_id" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="customer_id" Type="Int32" Nullable="false" />
-          <Property Name="date" Type="DateTime" Precision="3" />
-          <Property Name="status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="voucher" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ChiTietDonHang" Relationship="CT25Team17Model.FK_DonHang_order_id" FromRole="DonHang" ToRole="ChiTietDonHang" />
-          <NavigationProperty Name="KhachHang" Relationship="CT25Team17Model.FK_DonHang_customer_id" FromRole="DonHang" ToRole="KhachHang" />
-          <NavigationProperty Name="TrangThaiDonHang" Relationship="CT25Team17Model.FK_DonHang_status" FromRole="DonHang" ToRole="TrangThaiDonHang" />
-          <NavigationProperty Name="KhuyenMai" Relationship="CT25Team17Model.FK_DonHang_voucher" FromRole="DonHang" ToRole="KhuyenMai" />
-        </EntityType>
         <EntityType Name="KhachHang">
           <Key>
             <PropertyRef Name="customer_id" />
@@ -966,30 +759,23 @@
           <Property Name="name_status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DonHangs" Relationship="CT25Team17Model.FK_DonHang_status" FromRole="TrangThaiDonHang" ToRole="DonHang" />
         </EntityType>
-        <Association Name="FK_ChiTietDonHang_order_id">
-          <End Type="CT25Team17Model.SanPham" Role="SanPham" Multiplicity="1" />
-          <End Type="CT25Team17Model.ChiTietDonHang" Role="ChiTietDonHang" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="SanPham">
-              <PropertyRef Name="MaSP" />
-            </Principal>
-            <Dependent Role="ChiTietDonHang">
-              <PropertyRef Name="order_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_DonHang_order_id">
-          <End Type="CT25Team17Model.ChiTietDonHang" Role="ChiTietDonHang" Multiplicity="1" />
-          <End Type="CT25Team17Model.DonHang" Role="DonHang" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ChiTietDonHang">
-              <PropertyRef Name="order_id" />
-            </Principal>
-            <Dependent Role="DonHang">
-              <PropertyRef Name="order_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+        <EntityType Name="DonHang">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="product_id" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <Property Name="customer_id" Type="Int32" Nullable="false" />
+          <Property Name="date" Type="DateTime" Precision="3" />
+          <Property Name="status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="voucher" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="Double" Nullable="false" />
+          <NavigationProperty Name="KhachHang" Relationship="CT25Team17Model.FK_DonHang_customer_id" FromRole="DonHang" ToRole="KhachHang" />
+          <NavigationProperty Name="SanPham" Relationship="CT25Team17Model.FK_DonHang_product_id" FromRole="DonHang" ToRole="SanPham" />
+          <NavigationProperty Name="TrangThaiDonHang" Relationship="CT25Team17Model.FK_DonHang_status" FromRole="DonHang" ToRole="TrangThaiDonHang" />
+          <NavigationProperty Name="KhuyenMai" Relationship="CT25Team17Model.FK_DonHang_voucher" FromRole="DonHang" ToRole="KhuyenMai" />
+        </EntityType>
         <Association Name="FK_DonHang_customer_id">
           <End Type="CT25Team17Model.KhachHang" Role="KhachHang" Multiplicity="1" />
           <End Type="CT25Team17Model.DonHang" Role="DonHang" Multiplicity="*" />
@@ -999,6 +785,18 @@
             </Principal>
             <Dependent Role="DonHang">
               <PropertyRef Name="customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DonHang_product_id">
+          <End Type="CT25Team17Model.SanPham" Role="SanPham" Multiplicity="1" />
+          <End Type="CT25Team17Model.DonHang" Role="DonHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SanPham">
+              <PropertyRef Name="MaSP" />
+            </Principal>
+            <Dependent Role="DonHang">
+              <PropertyRef Name="product_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1098,36 +896,11 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ChiTietHoaDons">
-            <EntityTypeMapping TypeName="CT25Team17Model.ChiTietHoaDon">
-              <MappingFragment StoreEntitySet="ChiTietHoaDon">
-                <ScalarProperty Name="MaChiTietHoaDon" ColumnName="MaChiTietHoaDon" />
-                <ScalarProperty Name="MaHoaDon" ColumnName="MaHoaDon" />
-                <ScalarProperty Name="ThanhTien" ColumnName="ThanhTien" />
-                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
-                <ScalarProperty Name="MaSanPham" ColumnName="MaSanPham" />
-                <ScalarProperty Name="MaKhuyenMai" ColumnName="MaKhuyenMai" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="GioHangs">
             <EntityTypeMapping TypeName="CT25Team17Model.GioHang">
               <MappingFragment StoreEntitySet="GioHang">
                 <ScalarProperty Name="MaGioHang" ColumnName="MaGioHang" />
                 <ScalarProperty Name="TaiKhoanKhachHang" ColumnName="TaiKhoanKhachHang" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="HoaDons">
-            <EntityTypeMapping TypeName="CT25Team17Model.HoaDon">
-              <MappingFragment StoreEntitySet="HoaDon">
-                <ScalarProperty Name="MaHoaDon" ColumnName="MaHoaDon" />
-                <ScalarProperty Name="CachThucThanhToan" ColumnName="CachThucThanhToan" />
-                <ScalarProperty Name="NgayLapHoaDon" ColumnName="NgayLapHoaDon" />
-                <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
-                <ScalarProperty Name="TaiKhoanKhachHang" ColumnName="TaiKhoanKhachHang" />
-                <ScalarProperty Name="TaiKhoanNhanVien" ColumnName="TaiKhoanNhanVien" />
-                <ScalarProperty Name="MaChiTietGioHang" ColumnName="MaChiTietGioHang" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1200,28 +973,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ChiTietDonHangs">
-            <EntityTypeMapping TypeName="CT25Team17Model.ChiTietDonHang">
-              <MappingFragment StoreEntitySet="ChiTietDonHang">
-                <ScalarProperty Name="total_money" ColumnName="total_money" />
-                <ScalarProperty Name="product_amout" ColumnName="product_amout" />
-                <ScalarProperty Name="product_name" ColumnName="product_name" />
-                <ScalarProperty Name="order_id" ColumnName="order_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DonHangs">
-            <EntityTypeMapping TypeName="CT25Team17Model.DonHang">
-              <MappingFragment StoreEntitySet="DonHang">
-                <ScalarProperty Name="voucher" ColumnName="voucher" />
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="date" ColumnName="date" />
-                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
-                <ScalarProperty Name="order_id" ColumnName="order_id" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="KhachHangs">
             <EntityTypeMapping TypeName="CT25Team17Model.KhachHang">
               <MappingFragment StoreEntitySet="KhachHang">
@@ -1237,6 +988,20 @@
               <MappingFragment StoreEntitySet="TrangThaiDonHang">
                 <ScalarProperty Name="name_status" ColumnName="name_status" />
                 <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DonHangs">
+            <EntityTypeMapping TypeName="CT25Team17Model.DonHang">
+              <MappingFragment StoreEntitySet="DonHang">
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="voucher" ColumnName="voucher" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
