@@ -24,7 +24,7 @@ namespace WebApplication2.Controllers
             }
             
             ViewBag.Tong = Tong;
-            ViewBag.hinh = ".png" ;
+            ViewBag.hinh = ".png";
             return View(cart);
         }
     }
