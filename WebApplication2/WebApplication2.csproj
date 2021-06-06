@@ -178,7 +178,6 @@
     <Compile Include="Controllers\AspNetRolesController.cs" />
     <Compile Include="Controllers\ChiTietDonHangController.cs" />
     <Compile Include="Controllers\ChiTietGioHangsController.cs" />
-    <Compile Include="Controllers\DatHangController.cs" />
     <Compile Include="Controllers\DonHangController.cs" />
     <Compile Include="Controllers\HoaDonController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
