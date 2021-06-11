@@ -86,7 +86,7 @@ namespace WebApplication2.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError("", "Email và password không khớp.");
                     return View(model);
             }
         }
@@ -132,6 +132,7 @@ namespace WebApplication2.Controllers
                     ModelState.AddModelError("", "Invalid code.");
                     return View(model);
             }
+
         }
 
         //
@@ -163,7 +164,7 @@ namespace WebApplication2.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "TrangChu");
                 }
                 AddErrors(result);
             }
@@ -392,7 +393,7 @@ namespace WebApplication2.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "TrangChu");
         }
 
         //
@@ -449,7 +450,7 @@ namespace WebApplication2.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "TrangChu");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult
