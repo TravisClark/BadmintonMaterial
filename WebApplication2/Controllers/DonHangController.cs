@@ -86,7 +86,7 @@ namespace WebApplication2.Controllers
             ViewBag.customer_id = new SelectList(db.KhachHangs, "customer_id", "customer_name", donHang.customer_id);
             ViewBag.product_id = new SelectList(db.SanPhams, "MaSP", "TenSP", donHang.product_id);
             ViewBag.status = new SelectList(db.TrangThaiDonHangs, "status", "name_status", donHang.status);
-            ViewBag.voucher = new SelectList(db.KhuyenMais, "Makhuyenmai", "Maloai", donHang.voucher);
+            ViewBag.voucher = new SelectList(db.KhuyenMais, "Makhuyenmai", "Makhuyenmai", donHang.voucher);
             return View(donHang);
         }
 
@@ -106,7 +106,7 @@ namespace WebApplication2.Controllers
             ViewBag.customer_id = new SelectList(db.KhachHangs, "customer_id", "customer_name", donHang.customer_id);
             ViewBag.product_id = new SelectList(db.SanPhams, "MaSP", "TenSP", donHang.product_id);
             ViewBag.status = new SelectList(db.TrangThaiDonHangs, "status", "name_status", donHang.status);
-            ViewBag.voucher = new SelectList(db.KhuyenMais, "Makhuyenmai", "maloai", donHang.voucher);
+            ViewBag.voucher = new SelectList(db.KhuyenMais, "Makhuyenmai", "Makhuyenmai", donHang.voucher);
             return View(donHang);
         }
 
