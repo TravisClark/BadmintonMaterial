@@ -33,6 +33,7 @@
                                                role="grid" aria-describedby="zero_config_info">
                                             <thead>
                                                 <tr>
+                                                    <th>Mã đơn hàng</th>
                                                     <th>Hình ảnh</th>
                                                     <th>Ngày đặt</th>
                                                     <th>Tên khách hàng</th>
@@ -47,7 +48,11 @@
                                                 {
                                                     <tr>
                                                         <td>
-                                                            <img src="~/images/@item.SanPham.MaSP@ViewBag.hinh" width="50"/>
+                                                            @Html.DisplayFor(modelItem => item.id)
+                                                        </td>
+
+                                                        <td>
+                                                            <img src="~/images/@item.SanPham.MaSP@ViewBag.hinh" width="50" />
                                                         </td>
 
                                                         <td>

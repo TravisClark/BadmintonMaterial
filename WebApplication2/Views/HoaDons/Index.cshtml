@@ -33,18 +33,18 @@
     <div class="container">
         <div class="col-md-8 text-center">
 
-            <h2>THÔNG TIN ÐON HÀNG</h2>
+            <h2>THÔNG TIN ÐƠN HÀNG</h2>
             <hr class="mdi-battery-80">
         </div>
 
         <div class="col-md-8 order-md-1">
-            <h4 class="mb-3">VUI LÒNG NHẬPP THÔNG TIN CÓ (*) KHI THANH TOÁN</h4>
+            <h4 class="mb-3">VUI LÒNG NHẬP THÔNG TIN CÓ (*) KHI THANH TOÁN</h4>
             <form class="needs-validation" novalidate>
                 <br />
 
                 <div class=" mb-3">
                     <label for="Name">Tên Khách Hàng (*)<span class="text-muted"></span></label>
-                    <input type="text" class="form-control" id="moble" placeholder="Vui lòng nhập đầy đủ họ tên" required>
+                    <input type="text" class="form-control" id="TH" placeholder="Vui lòng nhập đầy đủ họ tên" required>
                 </div><br />
 
                 <div class="mb-3">
@@ -54,7 +54,7 @@
 
                 <div class="mb-3">
                     <label for="address">Ðịa chỉ giao hàng (*)<span class="text-muted"></span></label>
-                    <input id="mobile" type="text" class="form-control" placeholder="Vui lòng nhập địa chỉ giao hàng"required>
+                    <input id="TH" type="text" class="form-control" placeholder="Vui lòng nhập địa chỉ giao hàng"required>
                 </div><br />
 
                 <div class="mb-3">
@@ -79,11 +79,6 @@
                         <br>
                         <input type="date" id="TH">
                     </div>
-                </div>
-                <hr class="mb-4">
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="save-info">
-                    <label class="custom-control-label" for="save-info">Luu Thông Tin Này Cho Lần Sau</label>
                 </div>
                 <hr class="mb-4">
                 <li class="list-group-item d-flex justify-content-between bg-light">
@@ -128,13 +123,11 @@
                         alert('Ðặt hàng thành công!');
                 }
 
-                if (mobile !== '') {
+                if (mobile == '') {
                     if (vnf_regex.test(mobile) == true) {
-                        alert('Ðặt hàng thành công!');
+                        alert('Thông tin của bạn không đúng hoặc không bỏ trống!');
                     }
-                    else {
-                        alert('Thông tin của bạn không đúng hoặc không được bỏ trống!');
-                    }
+     
                 }
             });
         });
