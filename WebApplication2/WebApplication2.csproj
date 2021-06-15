@@ -1081,6 +1081,7 @@
     <Content Include="images\V003.png" />
     <Content Include="images\V005.png" />
     <Content Include="images\VCL33512.png" />
+    <Content Include="images\VCL33529.png" />
     <Content Include="js\classie.js" />
     <Content Include="js\customize.js" />
     <Content Include="js\imagezoom.js" />
